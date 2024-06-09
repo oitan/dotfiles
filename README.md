@@ -19,10 +19,10 @@ Install catppuccin mocha theme
 ## TMUX
 
 Clone tpm into tmux plugins
-`$ git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm`
+`$ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm`
 
 Source tpm for tmux
-`$ tmux source ~/.config/tmux/tmux.conf`
+`$ tmux source ~/.config/tmux/tmux.conf` or `<prefix>r` if in tmux session
 
 Install plugins
 `<C-a>I`
