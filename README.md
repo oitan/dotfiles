@@ -1,5 +1,11 @@
 # Setup
 
+* Install HomeBrew
+* `$ brew install git stow`
+* git clone this repo to your `$HOME`
+* `$ cd ~/dotfiles`
+* `$ stow .`
+
 ## Alacritty
 
 Install catppuccin mocha theme
