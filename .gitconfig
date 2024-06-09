@@ -1,0 +1,7 @@
+[user]
+	email = alikhan.oitan@gmail.com
+	name = Alikhan Oitan
+[pull]
+	rebase = false
+[init]
+	defaultBranch = master

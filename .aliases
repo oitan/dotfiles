@@ -1,0 +1,4 @@
+alias lsa="ls -a"
+alias zj="zellij"
+alias e="eza --color=always --long --no-filesize --icons=always --no-time --no-user --no-permissions --all --classify --group-directories-first"
+
