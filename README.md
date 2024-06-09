@@ -1,10 +1,14 @@
+# Info
+
+- Using catppuccin mocha palette wherever possible
+
 # Setup
 
-* Install HomeBrew
-* `$ brew install git stow`
-* git clone this repo to your `$HOME`
-* `$ cd ~/dotfiles`
-* `$ stow .`
+- Install HomeBrew
+- `$ brew install git stow`
+- git clone this repo to your `$HOME`
+- `$ cd ~/dotfiles`
+- `$ stow .`
 
 ## Alacritty
 
