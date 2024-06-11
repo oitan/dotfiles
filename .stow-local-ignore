@@ -3,5 +3,6 @@ scripts
 .config/tmux/plugins
 .config/raycast
 .config/alacritty/themes
+.config/bat/themes
 README.md
 
