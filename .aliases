@@ -6,5 +6,5 @@ alias gpl="git pull"
 alias gph="git push"
 alias gaa="git add -A"
 alias gcm="git commit -m"
-alias gd="git diff"
+alias gd="git diff -w"
 

@@ -37,6 +37,8 @@ eval "$(zoxide init zsh)"
 
 ### FZF
 eval "$(fzf --zsh)"
+# use fd instead of find
+export FZF_DEFAULT_COMMAND='fd --hidden --follow --exclude .git --exclude node_modules'
 
 ### macchina - system information frontend
 macchina
