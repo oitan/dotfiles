@@ -10,6 +10,10 @@
 - `$ cd ~/dotfiles`
 - `$ stow .`
 
+## fzf-git
+
+Git clone [fzf-git](https://github.com/oitan/fzf-git.sh) into `$HOME` dir
+
 ## Alacritty
 
 Install catppuccin mocha theme
