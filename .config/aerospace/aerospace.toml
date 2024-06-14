@@ -145,7 +145,7 @@ alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
 
 [[on-window-detected]]
-if.app-id = 'com.microsoft.VSCode'
+if.app-name-regex-substring = 'alacritty|kitty'
 if.during-aerospace-startup = false
 check-further-callbacks = true
 run = ['move-node-to-workspace 1']
@@ -157,11 +157,11 @@ check-further-callbacks = true
 run = ['move-node-to-workspace 2']
 
 
-[[on-window-detected]]
-if.app-id = 'org.alacritty'
-if.during-aerospace-startup = false
-check-further-callbacks = true
-run = ['move-node-to-workspace 3']
+#[[on-window-detected]]
+#if.app-id = 'org.alacritty'
+#if.during-aerospace-startup = false
+#check-further-callbacks = true
+#run = ['move-node-to-workspace 3']
 
 [[on-window-detected]]
 if.app-id = 'md.obsidian'

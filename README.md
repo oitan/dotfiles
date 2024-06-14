@@ -2,6 +2,10 @@
 
 - Using catppuccin mocha palette wherever possible
 
+# To-Dos
+
+- [ ] format on save
+
 # Setup
 
 - Install HomeBrew
@@ -19,6 +23,12 @@ Git clone [fzf-git](https://github.com/oitan/fzf-git.sh) into `$HOME` dir
 Install catppuccin mocha theme
 `$ mkdir -p ~/.config/alacritty/themes`
 `$ curl -LO --output-dir ~/.config/alacritty https://github.com/catppuccin/alacritty/raw/main/catppuccin-mocha.toml`
+
+## Kitty
+
+Install catppuccin mocha theme
+`$ mkdir -p ~/.config/kitty/themes`
+`$ kitty +kitten themes --reload-in=all Catppuccin-Mocha`
 
 ## TMUX
 
@@ -38,4 +48,4 @@ Check color palette
 
 `$ brew install git macchina eza fzf borders fd luv neovim ripgrep ripgrep-all starship stow tmux tree-sitter volta zoxide zsh-autosuggestions zsh-syntax-highlighting`
 
-`$ brew install --cask nikitabobko/tap/aerospace alacritty aldente alt-tab asana discord docker dropbox font-fira-code-nerd-font hiddenbar jetbrains-toolbox keka obsidian postman raycast recut slack stats ticktick time-out visual-studio-code`
+`$ brew install --cask nikitabobko/tap/aerospace alacritty aldente alt-tab asana discord docker dropbox font-fira-code-nerd-font hiddenbar jetbrains-toolbox keka obsidian postman raycast recut slack stats ticktick time-out visual-studio-code kitty`
