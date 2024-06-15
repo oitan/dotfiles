@@ -6,10 +6,11 @@ return {
 
 		config = function()
 			local telescope = require("telescope")
-			local telescopeConfig = require("telescope.config")
+			local telescope_config = require("telescope.config")
+			local telescope_actions = require("telescope.actions")
 
 			-- Clone the default Telescope configuration
-			local vimgrep_arguments = { unpack(telescopeConfig.values.vimgrep_arguments) }
+			local vimgrep_arguments = { unpack(telescope_config.values.vimgrep_arguments) }
 
 			-- I want to search in hidden/dot files.
 			table.insert(vimgrep_arguments, "--hidden")
