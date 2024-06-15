@@ -10,4 +10,6 @@ alias gaa="git add -A"
 alias gcm="git commit -m"
 alias gd="git diff -w"
 alias ga="git add"
+alias gb="git branch"
+alias gcb="git checkout -b"
 
