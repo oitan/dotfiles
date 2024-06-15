@@ -7,4 +7,5 @@
 .config/kitty/current-theme.conf
 README.md
 scripts
+.gitignore
 
