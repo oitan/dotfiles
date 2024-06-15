@@ -7,7 +7,6 @@ return {
 		config = function()
 			local telescope = require("telescope")
 			local telescope_config = require("telescope.config")
-			local telescope_actions = require("telescope.actions")
 
 			-- Clone the default Telescope configuration
 			local vimgrep_arguments = { unpack(telescope_config.values.vimgrep_arguments) }
