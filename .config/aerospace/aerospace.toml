@@ -42,12 +42,12 @@ key-mapping.preset = 'qwerty'
 #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
 #                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-inner.horizontal = 8
-inner.vertical =   8
-outer.left =       4
-outer.bottom =     4
-outer.top =        4
-outer.right =      4
+inner.horizontal = 35
+inner.vertical =   35
+outer.left =       35
+outer.bottom =     35
+outer.top =        35
+outer.right =      35
 
 # See https://nikitabobko.github.io/AeroSpace/guide#exec-env-vars
 [exec]                   # Again, you don't need to copy all config sections to your config.
@@ -188,6 +188,7 @@ if.during-aerospace-startup = false
 check-further-callbacks = true
 run = ['move-node-to-workspace 7']
 
+# Put all the other windows in a specific workspace
 # [[on-window-detected]]
 # if.app-name-regex-substring = '^(?!slack)(?!asana)(?!code)(?!arc)(?!alacritty)(?!obsidian)(?!ticktick)(?!telegram)(?!1password)'
 # if.during-aerospace-startup = false

@@ -6,4 +6,10 @@ vim.cmd("set shiftwidth=2")
 vim.cmd("set number")
 vim.cmd("set colorcolumn=81")
 
+-- quickfix navigation
+vim.keymap.set("n", "<leader>f,", ":cprev<CR>", {})
+vim.keymap.set("n", "<leader>f.", ":cnext<CR>", {})
+vim.keymap.set("n", "<leader>fo", ":copen<CR>", {})
+vim.keymap.set("n", "<leader>fc", ":cclose<CR>", {})
+
 vim.o.termguicolors = true
