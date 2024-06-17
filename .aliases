@@ -13,3 +13,8 @@ alias ga="git add"
 alias gb="git branch"
 alias gcb="git checkout -b"
 
+# npm
+alias nr="npm run"
+alias nrb="npm run build"
+alias nrt="npm run test"
+
