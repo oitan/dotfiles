@@ -55,7 +55,7 @@ return {
 			lspconfig.tsserver.setup(default_ls_config)
 			lspconfig.html.setup(default_ls_config)
 			lspconfig.cssls.setup(default_ls_config)
-			lspconfig.bashls.setup(default_ls_config)
+			lspconfig.bashls.setup({ unpack(default_ls_config), filetypes = { "sh", "zsh" } })
 
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})

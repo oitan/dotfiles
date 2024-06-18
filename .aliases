@@ -1,5 +1,7 @@
 alias cat="bat"
 alias cd="z"
+alias vi="vim"
+alias vim="nvim"
 
 # eza
 alias e="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions --all --classify --group-directories-first"
