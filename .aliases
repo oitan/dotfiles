@@ -12,6 +12,7 @@ alias gd="git diff -w"
 alias ga="git add"
 alias gb="git branch"
 alias gcb="git checkout -b"
+alias gc="git checkout"
 
 # npm
 alias nr="npm run"

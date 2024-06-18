@@ -58,3 +58,7 @@ Check color palette
 `$ brew install git macchina eza fzf borders fd luv neovim ripgrep ripgrep-all starship stow tmux tree-sitter volta zoxide zsh-autosuggestions zsh-syntax-highlighting`
 
 `$ brew install --cask nikitabobko/tap/aerospace alacritty aldente alt-tab asana discord docker dropbox font-fira-code-nerd-font hiddenbar jetbrains-toolbox keka obsidian postman raycast recut slack stats ticktick time-out visual-studio-code kitty`
+
+## Slack
+
+Install catppuccin mocha theme for Slack: https://github.com/catppuccin/slack?tab=readme-ov-file#theme-strings
