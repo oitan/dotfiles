@@ -62,7 +62,6 @@ Check color palette
 `$ brew install --formula
 bat
 borders
-catimg
 eza
 fd
 fzf
@@ -80,6 +79,13 @@ wget
 zoxide
 zsh-autosuggestions
 zsh-syntax-highlighting
+file-formula
+yazi
+ffmpegthumbnailer
+unar
+jq
+poppler
+font-symbols-only-nerd-font
 `
 
 `$ brew install --cask

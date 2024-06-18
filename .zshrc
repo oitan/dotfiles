@@ -19,8 +19,15 @@ bindkey "^[[1;3C" forward-word
 bindkey "^[[1;9D" beginning-of-line
 bindkey "^[[1;9C" end-of-line
 
-# Catppuccin theme for syntax highlighting
+## Catppuccin theme
+
+# zsh syntax highlighting
 source ~/zsh-syntax-highlighting/themes/catppuccin_mocha-zsh-syntax-highlighting.zsh
+# fzf
+export FZF_DEFAULT_OPTS=" \
+--color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
+--color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+--color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
 
 # autosuggestions
 autoload -Uz compinit && compinit
@@ -43,6 +50,16 @@ eval "$(fzf --zsh)"
 # use fd instead of find
 export FZF_DEFAULT_COMMAND='fd --hidden --follow --exclude .git --exclude node_modules'
 source ~/fzf-git.sh/fzf-git.sh
+
+### Yazi
+function yy() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
 
 ### macchina - system information frontend
 macchina
