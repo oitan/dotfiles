@@ -59,9 +59,48 @@ Check color palette
 
 ## HomeBrew Packages
 
-`$ brew install git macchina eza fzf borders fd luv neovim ripgrep ripgrep-all starship stow tmux tree-sitter volta zoxide zsh-autosuggestions zsh-syntax-highlighting`
+`$ brew install --formula
+bat
+borders
+catimg
+eza
+fd
+fzf
+git
+macchina
+neovim
+ripgrep
+ripgrep-all
+starship
+stow
+tmux
+tree-sitter
+volta
+wget
+zoxide
+zsh-autosuggestions
+zsh-syntax-highlighting
+`
 
-`$ brew install --cask nikitabobko/tap/aerospace alacritty aldente alt-tab asana discord docker dropbox font-fira-code-nerd-font hiddenbar jetbrains-toolbox keka obsidian postman raycast recut slack stats ticktick time-out visual-studio-code kitty`
+`$ brew install --cask
+aerospace
+alacritty
+aldente
+alt-tab
+docker
+dropbox
+font-fira-code-nerd-font
+hiddenbar
+kitty
+obsidian
+postman
+raycast
+slack
+stats
+ticktick
+time-out
+visual-studio-code
+`
 
 ## Slack
 
