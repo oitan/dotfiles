@@ -193,5 +193,5 @@ run = ['move-node-to-workspace 7']
 # if.app-name-regex-substring = '^(?!slack)(?!asana)(?!code)(?!arc)(?!alacritty)(?!obsidian)(?!ticktick)(?!telegram)(?!1password)'
 # if.during-aerospace-startup = false
 # check-further-callbacks = true
-# run = ['move-node-to-workspace 8']
+# run = ['move-node-to-workspace 7']
 
