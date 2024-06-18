@@ -18,6 +18,15 @@
 
 Git clone [fzf-git](https://github.com/oitan/fzf-git.sh) into `$HOME` dir
 
+## bat
+
+Install Catppuccin Mocha theme for `bat`
+
+- `$ mkdir themes`
+- `$ wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Mocha.tmTheme`
+- `$ bat cache --build`
+- Run `$ bat --list-themes`, and check if the themes are present in the list.
+
 ## Alacritty
 
 Install catppuccin mocha theme
