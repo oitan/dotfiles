@@ -19,6 +19,9 @@ bindkey "^[[1;3C" forward-word
 bindkey "^[[1;9D" beginning-of-line
 bindkey "^[[1;9C" end-of-line
 
+# Catppuccin theme for syntax highlighting
+source ~/zsh-syntax-highlighting/themes/catppuccin_mocha-zsh-syntax-highlighting.zsh
+
 # autosuggestions
 autoload -Uz compinit && compinit
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh

@@ -27,6 +27,10 @@ Install Catppuccin Mocha theme for `bat`
 - `$ bat cache --build`
 - Run `$ bat --list-themes`, and check if the themes are present in the list.
 
+## zsh-syntax-highlighting
+
+Install Catppuccin Mocha theme for zsh syntax highlighting: https://github.com/catppuccin/zsh-syntax-highlighting
+
 ## Alacritty
 
 Install catppuccin mocha theme
@@ -61,4 +65,4 @@ Check color palette
 
 ## Slack
 
-Install catppuccin mocha theme for Slack: https://github.com/catppuccin/slack?tab=readme-ov-file#theme-strings
+Install Catppuccin Mocha theme for Slack: https://github.com/catppuccin/slack?tab=readme-ov-file#theme-strings
