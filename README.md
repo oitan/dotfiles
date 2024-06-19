@@ -86,6 +86,7 @@ unar
 jq
 poppler
 font-symbols-only-nerd-font
+jstkdng/programs/ueberzugpp
 `
 
 `$ brew install --cask
