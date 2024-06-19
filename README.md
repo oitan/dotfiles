@@ -107,6 +107,8 @@ stats
 ticktick
 time-out
 visual-studio-code
+firefox@developer-edition
+betterdisplay
 `
 
 ## Slack

@@ -42,12 +42,12 @@ key-mapping.preset = 'qwerty'
 #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
 #                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-inner.horizontal = 35
-inner.vertical =   35
-outer.left =       35
-outer.bottom =     35
-outer.top =        35
-outer.right =      35
+inner.horizontal = 25
+inner.vertical =   25
+outer.left =       25
+outer.bottom =     10
+outer.top =        10
+outer.right =      25
 
 # See https://nikitabobko.github.io/AeroSpace/guide#exec-env-vars
 [exec]                   # Again, you don't need to copy all config sections to your config.
