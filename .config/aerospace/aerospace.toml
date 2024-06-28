@@ -23,7 +23,7 @@ accordion-padding = 30
 
 # Possible values: tiles|accordion
 # default-root-container-layout = 'accordion'
-default-root-container-layout = 'tiles'
+default-root-container-layout = 'accordion'
 
 # Possible values: horizontal|vertical|auto
 # 'auto' means: wide monitor (anything wider than high) gets horizontal orientation,
@@ -42,12 +42,12 @@ key-mapping.preset = 'qwerty'
 #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
 #                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-inner.horizontal = 25
-inner.vertical =   25
-outer.left =       25
-outer.bottom =     10
-outer.top =        10
-outer.right =      25
+inner.horizontal = 5
+inner.vertical =   5
+outer.left =       0
+outer.bottom =     0
+outer.top =        0
+outer.right =      0
 
 # See https://nikitabobko.github.io/AeroSpace/guide#exec-env-vars
 [exec]                   # Again, you don't need to copy all config sections to your config.
@@ -110,6 +110,16 @@ alt-6 = 'workspace 6'
 alt-7 = 'workspace 7'
 alt-8 = 'workspace 8'
 alt-9 = 'workspace 9'
+alt-q = 'workspace q'
+alt-w = 'workspace w'
+alt-e = 'workspace e'
+alt-r = 'workspace r'
+alt-t = 'workspace t'
+alt-y = 'workspace y'
+alt-u = 'workspace u'
+alt-i = 'workspace i'
+alt-o = 'workspace o'
+alt-p = 'workspace p'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-shift-1 = 'move-node-to-workspace 1'
@@ -121,6 +131,16 @@ alt-shift-6 = 'move-node-to-workspace 6'
 alt-shift-7 = 'move-node-to-workspace 7'
 alt-shift-8 = 'move-node-to-workspace 8'
 alt-shift-9 = 'move-node-to-workspace 9'
+alt-shift-q = 'move-node-to-workspace q'
+alt-shift-w = 'move-node-to-workspace w'
+alt-shift-e = 'move-node-to-workspace e'
+alt-shift-r = 'move-node-to-workspace r'
+alt-shift-t = 'move-node-to-workspace t'
+alt-shift-y = 'move-node-to-workspace y'
+alt-shift-u = 'move-node-to-workspace u'
+alt-shift-i = 'move-node-to-workspace i'
+alt-shift-o = 'move-node-to-workspace o'
+alt-shift-p = 'move-node-to-workspace p'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 alt-tab = 'workspace-back-and-forth'
@@ -145,23 +165,23 @@ alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'alacritty|kitty'
+if.app-name-regex-substring = 'alacritty|kitty|terminal'
 if.during-aerospace-startup = false
 check-further-callbacks = true
 run = ['move-node-to-workspace 1']
 
 [[on-window-detected]]
-if.app-id = 'company.thebrowser.Browser'
+if.app-name-regex-substring = 'arc|firefox|safari'
 if.during-aerospace-startup = false
 check-further-callbacks = true
 run = ['move-node-to-workspace 2']
 
 
-#[[on-window-detected]]
-#if.app-id = 'org.alacritty'
-#if.during-aerospace-startup = false
-#check-further-callbacks = true
-#run = ['move-node-to-workspace 3']
+[[on-window-detected]]
+if.app-id = 'com.postmanlabs.mac'
+if.during-aerospace-startup = false
+check-further-callbacks = true
+run = ['move-node-to-workspace 3']
 
 [[on-window-detected]]
 if.app-id = 'md.obsidian'
@@ -171,27 +191,32 @@ run = ['move-node-to-workspace 4']
 
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'ticktick'
+if.app-name-regex-substring = 'datagrip|code'
 if.during-aerospace-startup = false
 check-further-callbacks = true
 run = ['move-node-to-workspace 5']
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'asana'
+if.app-name-regex-substring = 'asana|toggl'
 if.during-aerospace-startup = false
 check-further-callbacks = true
 run = ['move-node-to-workspace 6']
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'slack|telegram'
+if.app-name-regex-substring = 'slack|spark'
 if.during-aerospace-startup = false
 check-further-callbacks = true
 run = ['move-node-to-workspace 7']
 
-# Put all the other windows in a specific workspace
-# [[on-window-detected]]
-# if.app-name-regex-substring = '^(?!slack)(?!asana)(?!code)(?!arc)(?!alacritty)(?!obsidian)(?!ticktick)(?!telegram)(?!1password)'
-# if.during-aerospace-startup = false
-# check-further-callbacks = true
-# run = ['move-node-to-workspace 7']
+[[on-window-detected]]
+if.app-name-regex-substring = 'ticktick|calendar'
+if.during-aerospace-startup = false
+check-further-callbacks = true
+run = ['move-node-to-workspace 8']
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'telegram|whatsapp'
+if.during-aerospace-startup = false
+check-further-callbacks = true
+run = ['move-node-to-workspace 9']
 

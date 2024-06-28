@@ -1,14 +1,16 @@
 alias cat="bat"
 alias cd="z"
-alias vi="vim"
 alias vim="nvim"
+alias vi="nvim"
+alias v="nvim"
+alias t="tmux"
 
 # eza
-alias e="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions --all --classify --group-directories-first"
 alias ls="eza"
 alias lsa="eza --all"
 alias ll="eza -alh"
 alias tree="ls --tree"
+alias e="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions --all --classify --group-directories-first"
 
 # git
 alias gs="git status"
@@ -26,4 +28,8 @@ alias gc="git checkout"
 alias nr="npm run"
 alias nrb="npm run build"
 alias nrt="npm run test"
+alias nrsd="npm run start:dev"
+alias nrf="npm run format"
+alias nrl="npm run lint"
+alias nrd="npm run dev"
 
