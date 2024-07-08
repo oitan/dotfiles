@@ -57,12 +57,14 @@ return {
 			lspconfig.cssls.setup(default_ls_config)
 			lspconfig.bashls.setup({ unpack(default_ls_config), filetypes = { "sh", "zsh" } })
 
-			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
-			vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
-			vim.keymap.set("n", "gr", vim.lsp.buf.references, {})
-			vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
-			vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, {})
-			vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, {})
+			vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "see definition" })
+			vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "go to definition" })
+			vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "see references" })
+			vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "code actions" })
+			vim.keymap.set("v", "<leader>ca", vim.lsp.buf.code_action, { desc = "code actions" })
+			vim.keymap.set("x", "<leader>ca", vim.lsp.buf.code_action, { desc = "code actions" })
+			vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "diagnostics" })
+			vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "rename" })
 		end,
 	},
 }

@@ -10,6 +10,6 @@ return {
 			session_lens = {},
 		})
 
-		vim.keymap.set("n", "<leader>ls", session_lens.search_session, { noremap = true })
+		vim.keymap.set("n", "<leader>ls", session_lens.search_session, { noremap = true, desc = "search sessions" })
 	end,
 }

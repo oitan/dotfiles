@@ -5,8 +5,8 @@ return {
 			local gitsigns = require("gitsigns")
 			gitsigns.setup({})
 
-			vim.keymap.set("n", "<leader>ph", gitsigns.preview_hunk, {})
-			vim.keymap.set("n", "<leader>gtb", gitsigns.toggle_current_line_blame, {})
+			vim.keymap.set("n", "<leader>ph", gitsigns.preview_hunk, { desc = "preview hunk" })
+			vim.keymap.set("n", "<leader>gtb", gitsigns.toggle_current_line_blame, { desc = "toggle git blame" })
 		end,
 	},
 	{
@@ -20,9 +20,7 @@ return {
 			local neogit = require("neogit")
 			neogit.setup({})
 
-			vim.keymap.set("n", "<leader>ge", function()
-				neogit.open({})
-			end, {})
+			vim.keymap.set("n", "<leader>ge", neogit.open, { desc = "open git explorer" })
 		end,
 	},
 }

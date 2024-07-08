@@ -34,6 +34,11 @@ autoload -Uz compinit && compinit
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+### VOLTA
+VOLTA_HOME=$HOME/.volta
+PATH=$VOLTA_HOME/bin:$PATH
+
+
 ### ENVMAN
 
 # Generated for envman. Do not edit.
@@ -60,6 +65,18 @@ function yy() {
 	fi
 	rm -f -- "$tmp"
 }
+
+### Restart
+function restart() {
+  clear
+  source ~/.zshrc
+}
+
+# load aliases
+source $HOME/.aliases
+
+# EDITOR
+export EDITOR="nvim"
 
 ### macchina - system information frontend
 macchina

@@ -4,11 +4,11 @@ return {
 		local goto_preview = require("goto-preview")
 		goto_preview.setup({})
 
-		vim.keymap.set("n", "gpd", goto_preview.goto_preview_definition, {})
-		vim.keymap.set("n", "gpt", goto_preview.goto_preview_type_definition, {})
-		vim.keymap.set("n", "gpi", goto_preview.goto_preview_implementation, {})
-		vim.keymap.set("n", "gpD", goto_preview.goto_preview_declaration, {})
-		vim.keymap.set("n", "gP", goto_preview.close_all_win, {})
-		vim.keymap.set("n", "gpr", goto_preview.goto_preview_references, {})
+		vim.keymap.set("n", "gpd", goto_preview.goto_preview_definition, { desc = "preview definition" })
+		vim.keymap.set("n", "gpt", goto_preview.goto_preview_type_definition, { desc = "preview type definition" })
+		vim.keymap.set("n", "gpi", goto_preview.goto_preview_implementation, { desc = "preview implementation" })
+		vim.keymap.set("n", "gpD", goto_preview.goto_preview_declaration, { desc = "preview declaration" })
+		vim.keymap.set("n", "gP", goto_preview.close_all_win, { desc = "close all preview windows" })
+		vim.keymap.set("n", "gpr", goto_preview.goto_preview_references, { desc = "preview references" })
 	end,
 }

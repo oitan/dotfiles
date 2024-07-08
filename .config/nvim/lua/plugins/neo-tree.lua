@@ -29,7 +29,7 @@ return {
 			neo_tree_command.execute({ position = "float", source = "git_status" })
 		end
 
-		vim.keymap.set("n", "<C-n>", toggle_filesystem, {})
-		vim.keymap.set("n", "<leader>gs", show_git_status, {})
+		vim.keymap.set("n", "<C-n>", toggle_filesystem, { desc = "toggle filesystem" })
+		vim.keymap.set("n", "<leader>gs", show_git_status, { desc = "show git status" })
 	end,
 }
