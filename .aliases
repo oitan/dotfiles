@@ -5,6 +5,7 @@ alias vi="nvim"
 alias v="nvim"
 alias t="tmux"
 alias c="code ."
+alias res="restart"
 
 # eza
 alias ls="eza"

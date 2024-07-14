@@ -110,6 +110,7 @@ alt-6 = 'workspace 6'
 alt-7 = 'workspace 7'
 alt-8 = 'workspace 8'
 alt-9 = 'workspace 9'
+alt-0 = 'workspace 0'
 alt-q = 'workspace q'
 alt-w = 'workspace w'
 alt-e = 'workspace e'
@@ -131,6 +132,7 @@ alt-shift-6 = 'move-node-to-workspace 6'
 alt-shift-7 = 'move-node-to-workspace 7'
 alt-shift-8 = 'move-node-to-workspace 8'
 alt-shift-9 = 'move-node-to-workspace 9'
+alt-shift-0 = 'move-node-to-workspace 0'
 alt-shift-q = 'move-node-to-workspace q'
 alt-shift-w = 'move-node-to-workspace w'
 alt-shift-e = 'move-node-to-workspace e'
@@ -166,57 +168,53 @@ alt-shift-l = ['join-with right', 'mode main']
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'alacritty|kitty|terminal'
-if.during-aerospace-startup = false
 check-further-callbacks = true
 run = ['move-node-to-workspace 1']
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'arc|firefox|safari'
-if.during-aerospace-startup = false
 check-further-callbacks = true
 run = ['move-node-to-workspace 2']
 
 
 [[on-window-detected]]
 if.app-id = 'com.postmanlabs.mac'
-if.during-aerospace-startup = false
 check-further-callbacks = true
 run = ['move-node-to-workspace 3']
 
 [[on-window-detected]]
 if.app-id = 'md.obsidian'
-if.during-aerospace-startup = false
 check-further-callbacks = true
 run = ['move-node-to-workspace 4']
 
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'datagrip|code'
-if.during-aerospace-startup = false
 check-further-callbacks = true
 run = ['move-node-to-workspace 5']
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'asana|toggl'
-if.during-aerospace-startup = false
 check-further-callbacks = true
 run = ['move-node-to-workspace 6']
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'slack|spark'
-if.during-aerospace-startup = false
 check-further-callbacks = true
 run = ['move-node-to-workspace 7']
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'ticktick|calendar'
-if.during-aerospace-startup = false
 check-further-callbacks = true
 run = ['move-node-to-workspace 8']
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'telegram|whatsapp'
-if.during-aerospace-startup = false
 check-further-callbacks = true
 run = ['move-node-to-workspace 9']
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'spotify'
+check-further-callbacks = true
+run = ['move-node-to-workspace 0']
 
