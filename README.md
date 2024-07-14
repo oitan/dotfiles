@@ -31,12 +31,6 @@ Install Catppuccin Mocha theme for `bat`
 
 Install Catppuccin Mocha theme for zsh syntax highlighting: https://github.com/catppuccin/zsh-syntax-highlighting
 
-## Alacritty
-
-Install catppuccin mocha theme
-`$ mkdir -p ~/.config/alacritty/themes`
-`$ curl -LO --output-dir ~/.config/alacritty https://github.com/catppuccin/alacritty/raw/main/catppuccin-mocha.toml`
-
 ## Kitty
 
 Install catppuccin mocha theme
@@ -91,7 +85,6 @@ jstkdng/programs/ueberzugpp
 
 `$ brew install --cask
 aerospace
-alacritty
 aldente
 alt-tab
 docker
