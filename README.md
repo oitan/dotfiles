@@ -51,9 +51,14 @@ Install plugins
 Check color palette
 `$ ./24-bit-color.sh`
 
+## Slack
+
+Install Catppuccin Mocha theme for Slack: https://github.com/catppuccin/slack?tab=readme-ov-file#theme-strings
+
 ## HomeBrew Packages
 
-`$ brew install --formula
+```
+$ brew install --formula
 bat
 borders
 eza
@@ -81,29 +86,39 @@ jq
 poppler
 font-symbols-only-nerd-font
 jstkdng/programs/ueberzugpp
-`
+```
 
-`$ brew install --cask
+```
+$ brew install --cask
 aerospace
-aldente
 alt-tab
+asana
+beekeeper-studio
+betterdisplay
+discord
 docker
 dropbox
 font-fira-code-nerd-font
+font-symbols-only-nerd-font
 hiddenbar
 kitty
 obsidian
 postman
 raycast
+skype
 slack
-stats
 ticktick
 time-out
 visual-studio-code
-firefox@developer-edition
-betterdisplay
-`
+```
 
-## Slack
+## App Store
+Gapplin
+Hand Mirror
+Xnip
+Xmind
+HEIC Converter
+PDFgear
+MindNode
+1Password for Safari
 
-Install Catppuccin Mocha theme for Slack: https://github.com/catppuccin/slack?tab=readme-ov-file#theme-strings
