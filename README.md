@@ -110,6 +110,8 @@ slack
 ticktick
 time-out
 visual-studio-code
+caffeine
+flux
 ```
 
 ## App Store

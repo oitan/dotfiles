@@ -23,6 +23,7 @@ bindkey "^[[1;9C" end-of-line
 
 # zsh syntax highlighting
 source ~/zsh-syntax-highlighting/themes/catppuccin_mocha-zsh-syntax-highlighting.zsh
+
 # fzf
 export FZF_DEFAULT_OPTS=" \
 --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
@@ -33,6 +34,11 @@ export FZF_DEFAULT_OPTS=" \
 autoload -Uz compinit && compinit
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# NGROK
+if command -v ngrok &>/dev/null; then
+  eval "$(ngrok completion)"
+fi
 
 ### VOLTA
 VOLTA_HOME=$HOME/.volta
