@@ -86,6 +86,8 @@ jq
 poppler
 font-symbols-only-nerd-font
 jstkdng/programs/ueberzugpp
+deno
+
 ```
 
 ```
@@ -93,7 +95,6 @@ $ brew install --cask
 aerospace
 alt-tab
 asana
-beekeeper-studio
 betterdisplay
 discord
 docker
@@ -112,6 +113,10 @@ time-out
 visual-studio-code
 caffeine
 flux
+webtorrent
+ngrok
+notion
+dbeaver-community
 ```
 
 ## App Store

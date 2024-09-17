@@ -1,3 +1,4 @@
+source ~/.secret-aliases
 alias cat="bat"
 alias cd="z"
 alias vim="nvim"
@@ -37,6 +38,7 @@ alias gc="git checkout"
 alias nr="npm run"
 alias nrb="npm run build"
 alias nrt="npm run test"
+alias nrs="npm run start"
 alias nrsd="npm run start:dev"
 alias nrf="npm run format"
 alias nrl="npm run lint"

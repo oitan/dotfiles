@@ -117,7 +117,7 @@ alt-e = 'workspace e'
 alt-r = 'workspace r'
 alt-t = 'workspace t'
 alt-y = 'workspace y'
-alt-u = 'workspace u'
+# alt-u = 'workspace u'
 alt-i = 'workspace i'
 alt-o = 'workspace o'
 alt-p = 'workspace p'
@@ -139,7 +139,7 @@ alt-shift-e = 'move-node-to-workspace e'
 alt-shift-r = 'move-node-to-workspace r'
 alt-shift-t = 'move-node-to-workspace t'
 alt-shift-y = 'move-node-to-workspace y'
-alt-shift-u = 'move-node-to-workspace u'
+# alt-shift-u = 'move-node-to-workspace u'
 alt-shift-i = 'move-node-to-workspace i'
 alt-shift-o = 'move-node-to-workspace o'
 alt-shift-p = 'move-node-to-workspace p'
@@ -167,7 +167,7 @@ alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'alacritty|kitty|terminal'
+if.app-name-regex-substring = 'code'
 check-further-callbacks = true
 run = ['move-node-to-workspace 1']
 
@@ -187,34 +187,27 @@ if.app-id = 'md.obsidian'
 check-further-callbacks = true
 run = ['move-node-to-workspace 4']
 
-
 [[on-window-detected]]
-if.app-name-regex-substring = 'datagrip|code'
+if.app-name-regex-substring = 'asana|toggl|ticktick|calendar'
 check-further-callbacks = true
 run = ['move-node-to-workspace 5']
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'asana|toggl'
+if.app-name-regex-substring = 'slack|spark'
 check-further-callbacks = true
 run = ['move-node-to-workspace 6']
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'slack|spark'
+if.app-name-regex-substring = 'telegram|whatsapp'
 check-further-callbacks = true
 run = ['move-node-to-workspace 7']
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'ticktick|calendar'
+if.app-name-regex-substring = 'alacritty|kitty|terminal'
 check-further-callbacks = true
-run = ['move-node-to-workspace 8']
+run = ['move-node-to-workspace q']
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'telegram|whatsapp'
+if.app-name-regex-substring = 'dbeaver|beekeeper'
 check-further-callbacks = true
-run = ['move-node-to-workspace 9']
-
-[[on-window-detected]]
-if.app-name-regex-substring = 'spotify'
-check-further-callbacks = true
-run = ['move-node-to-workspace 0']
-
+run = ['move-node-to-workspace w']
