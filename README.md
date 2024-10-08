@@ -12,7 +12,7 @@
 - `$ brew install git stow`
 - git clone this repo to your `$HOME`
 - `$ cd ~/dotfiles`
-- `$ stow .`
+- `$ stow .` or `$stow --adopt .`
 
 ## fzf-git
 
