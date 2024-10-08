@@ -84,8 +84,6 @@ source $HOME/.aliases
 # EDITOR
 export EDITOR="nvim"
 
-### macchina - system information frontend
-macchina
 ###-begin-pm2-completion-###
 ### credits to npm for the completion file model
 #
@@ -126,3 +124,4 @@ elif type compctl &>/dev/null; then
   compctl -K _pm2_completion + -f + pm2
 fi
 ###-end-pm2-completion-###
+. "/Users/oitan/.deno/env"

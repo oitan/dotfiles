@@ -188,7 +188,7 @@ check-further-callbacks = true
 run = ['move-node-to-workspace 4']
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'asana|toggl|ticktick|calendar'
+if.app-name-regex-substring = 'asana|toggl|ticktick|calendar|habitify'
 check-further-callbacks = true
 run = ['move-node-to-workspace 5']
 

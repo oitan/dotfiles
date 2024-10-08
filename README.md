@@ -65,7 +65,6 @@ eza
 fd
 fzf
 git
-macchina
 neovim
 ripgrep
 ripgrep-all
