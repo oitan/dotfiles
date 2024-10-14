@@ -43,4 +43,5 @@ alias nrsd="npm run start:dev"
 alias nrf="npm run format"
 alias nrl="npm run lint"
 alias nrd="npm run dev"
+alias nrk="npm run knip"
 
