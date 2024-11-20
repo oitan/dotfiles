@@ -19,7 +19,7 @@ return {
 			require("mason-lspconfig").setup({
 				ensure_installed = {
 					"lua_ls",
-					"tsserver",
+					"ts_ls",
 					"html",
 					"cssls",
 					"bashls",
@@ -52,7 +52,7 @@ return {
 			}
 
 			lspconfig.lua_ls.setup(default_ls_config)
-			lspconfig.tsserver.setup({
+			lspconfig.ts_ls.setup({
 				capabilities = capabilities,
 				on_attach = function(client, _bufnr)
 					-- Disable tsserver's formatter if you want to use prettierd
