@@ -1,5 +1,8 @@
 palette = "catppuccin_mocha"
 
+[time]
+disabled = false
+
 [aws]
 symbol = "  "
 

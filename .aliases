@@ -9,6 +9,7 @@ alias c="code ."
 alias res="restart"
 
 # eza
+alias l="eza"
 alias ls="eza"
 alias lsa="eza --all"
 alias ll="eza -alh"
@@ -45,3 +46,13 @@ alias nrl="npm run lint"
 alias nrd="npm run dev"
 alias nrk="npm run knip"
 
+# yarn
+alias y="yarn"
+alias yb="yarn build"
+alias yt="yarn test"
+alias ys="yarn start"
+alias yd="yarn dev"
+alias yf="yarn format"
+alias yfc="yarn format:check"
+alias yl="yarn lint"
+alias ylc="yarn lint:check"
