@@ -55,76 +55,17 @@ Check color palette
 
 Install Catppuccin Mocha theme for Slack: https://github.com/catppuccin/slack?tab=readme-ov-file#theme-strings
 
-## HomeBrew Packages
+## HomeBrew
 
-```
-$ brew install --formula
-bat
-borders
-eza
-fd
-fzf
-git
-neovim
-ripgrep
-ripgrep-all
-starship
-stow
-tmux
-tree-sitter
-volta
-wget
-zoxide
-zsh-autosuggestions
-zsh-syntax-highlighting
-file-formula
-yazi
-ffmpegthumbnailer
-unar
-jq
-poppler
-font-symbols-only-nerd-font
-jstkdng/programs/ueberzugpp
-deno
-
-```
-
-```
-$ brew install --cask
-aerospace
-alt-tab
-asana
-betterdisplay
-discord
-docker
-dropbox
-font-fira-code-nerd-font
-font-symbols-only-nerd-font
-hiddenbar
-kitty
-obsidian
-postman
-raycast
-skype
-slack
-ticktick
-time-out
-visual-studio-code
-caffeine
-flux
-webtorrent
-ngrok
-notion
-dbeaver-community
-```
+See the list of casks in ./brew-list
 
 ## App Store
 Gapplin
 Hand Mirror
 Xnip
-Xmind
 HEIC Converter
 PDFgear
 MindNode
 1Password for Safari
+Spark Classic
 
