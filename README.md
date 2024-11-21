@@ -60,12 +60,11 @@ Install Catppuccin Mocha theme for Slack: https://github.com/catppuccin/slack?ta
 See the list of casks in ./brew-list
 
 ## App Store
+
 Gapplin
 Hand Mirror
 Xnip
 HEIC Converter
 PDFgear
-MindNode
 1Password for Safari
 Spark Classic
-
