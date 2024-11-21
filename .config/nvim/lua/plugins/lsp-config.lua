@@ -55,7 +55,7 @@ return {
 			lspconfig.ts_ls.setup({
 				capabilities = capabilities,
 				on_attach = function(client, _bufnr)
-					-- Disable tsserver's formatter if you want to use prettierd
+					-- Disable ts_ls's formatter if you want to use prettierd
 					client.server_capabilities.documentFormattingProvider = false
 				end,
 			})
