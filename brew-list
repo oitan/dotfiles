@@ -1,4 +1,7 @@
+# Formulae
 bat
+ca-certificates
+deno
 eza
 fd
 fzf
@@ -8,6 +11,7 @@ neovim
 ripgrep
 ripgrep-all
 starship
+sdkman-cli
 stow
 tmux
 tree-sitter
@@ -17,24 +21,23 @@ yazi
 zoxide
 zsh-autosuggestions
 zsh-syntax-highlighting
+
+# Casks
 aerospace
-alt-tab
+arc
 betterdisplay
 caffeine
-dbeaver-community
 docker
 dropbox
 flux
 font-fira-code-nerd-font
 font-symbols-only-nerd-font
 hiddenbar
-kitty
 ngrok
 notion
 obsidian
 postman
 raycast
-ticktick
-time-out
 visual-studio-code
 webtorrent
+jetbrains-toolbox

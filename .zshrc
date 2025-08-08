@@ -125,4 +125,24 @@ elif type compctl &>/dev/null; then
 fi
 ###-end-pm2-completion-###
 
-. "/Users/oitan/.deno/env"
+### SDKMAN
+export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
+[[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
+export JAVA_HOME=$HOME/.sdkman/candidates/java/current
+export PATH=$JAVA_HOME/bin:$PATH
+
+
+# pnpm
+export PNPM_HOME="/Users/oitan/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/oitan/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions
+
+[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"

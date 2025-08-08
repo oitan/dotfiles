@@ -4,7 +4,7 @@
 
 # To-Dos
 
-- [ ] format on save
+- [x] format on save
 
 # Setup
 
@@ -31,30 +31,6 @@ Install Catppuccin Mocha theme for `bat`
 
 Install Catppuccin Mocha theme for zsh syntax highlighting: https://github.com/catppuccin/zsh-syntax-highlighting
 
-## Kitty
-
-Install catppuccin mocha theme
-`$ mkdir -p ~/.config/kitty/themes`
-`$ kitty +kitten themes --reload-in=all Catppuccin-Mocha`
-
-## TMUX
-
-Clone tpm into tmux plugins
-`$ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm`
-
-Source tpm for tmux
-`$ tmux source ~/.config/tmux/tmux.conf` or `<prefix>r` if in tmux session
-
-Install plugins
-`<C-a>I`
-
-Check color palette
-`$ ./24-bit-color.sh`
-
-## Slack
-
-Install Catppuccin Mocha theme for Slack: https://github.com/catppuccin/slack?tab=readme-ov-file#theme-strings
-
 ## HomeBrew
 
 See the list of casks in ./brew-list
@@ -66,5 +42,4 @@ Hand Mirror
 Xnip
 HEIC Converter
 PDFgear
-1Password for Safari
 Spark Classic

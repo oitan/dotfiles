@@ -79,7 +79,7 @@ cmd-h = [] # Disable annoying and useless "hide application" shortcut
 # You can uncomment this line to open up terminal with alt + enter shortcut
 # See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
 # alt-enter = 'exec-and-forget open -n /System/Applications/Utilities/Terminal.app'
-alt-enter = 'exec-and-forget exec /Applications/kitty.app/Contents/MacOS/kitty "$@"'
+alt-enter = 'exec-and-forget open -n /Applications/Ghostty.app "$@"'
 
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
@@ -160,13 +160,13 @@ run = ['move-node-to-workspace 1']
 
 # notes
 [[on-window-detected]]
-if.app-id = 'md.obsidian'
+if.app-name-regex-substring = 'notion|obsidian'
 check-further-callbacks = true
 run = ['move-node-to-workspace 2']
 
 # productivity
 [[on-window-detected]]
-if.app-name-regex-substring = 'asana|toggl|ticktick|calendar|habitify'
+if.app-name-regex-substring = 'asana|toggl|ticktick|calendar|habitify|trello|planny|reminders'
 check-further-callbacks = true
 run = ['move-node-to-workspace 3']
 
@@ -176,21 +176,27 @@ if.app-name-regex-substring = 'slack|spark|telegram|whatsapp'
 check-further-callbacks = true
 run = ['move-node-to-workspace 4']
 
+# audio
+[[on-window-detected]]
+if.app-name-regex-substring = 'music'
+check-further-callbacks = true
+run = ['move-node-to-workspace 5']
+
 # code editor
 [[on-window-detected]]
-if.app-name-regex-substring = 'code'
+if.app-name-regex-substring = 'code|trae|cursor'
 check-further-callbacks = true
 run = ['move-node-to-workspace q']
 
 # terminal
 [[on-window-detected]]
-if.app-name-regex-substring = 'alacritty|kitty|terminal'
+if.app-name-regex-substring = 'alacritty|kitty|terminal|ghostty'
 check-further-callbacks = true
 run = ['move-node-to-workspace w']
 
 # DB
 [[on-window-detected]]
-if.app-name-regex-substring = 'dbeaver|beekeeper'
+if.app-name-regex-substring = 'dbeaver|beekeeper|datagrip'
 check-further-callbacks = true
 run = ['move-node-to-workspace e']
 
@@ -199,3 +205,10 @@ run = ['move-node-to-workspace e']
 if.app-id = 'com.postmanlabs.mac'
 check-further-callbacks = true
 run = ['move-node-to-workspace r']
+
+# GIT
+[[on-window-detected]]
+if.app-name-regex-substring = 'git'
+check-further-callbacks = true
+run = ['move-node-to-workspace t']
+
