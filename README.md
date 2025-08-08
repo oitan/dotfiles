@@ -5,6 +5,7 @@
 # To-Dos
 
 - [x] format on save
+- [ ] update all packages, plugins, apps, extensions, etc.
 
 # Setup
 
