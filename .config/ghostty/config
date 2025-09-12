@@ -1,0 +1,22 @@
+# appearance
+theme = "catppuccin-mocha"
+macos-titlebar-style = hidden
+window-padding-balance = true
+
+#system
+window-save-state = always
+copy-on-select = clipboard
+
+# keybindings
+keybind = cmd+s>r=reload_config
+
+# split
+keybind = cmd+s>\=new_split:right
+keybind = cmd+s>-=new_split:down
+keybind = cmd+s>j=goto_split:bottom
+keybind = cmd+s>k=goto_split:top
+keybind = cmd+s>h=goto_split:left
+keybind = cmd+s>l=goto_split:right
+keybind = cmd+s>z=toggle_split_zoom
+keybind = cmd+s>e=equalize_splits
+

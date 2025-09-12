@@ -79,7 +79,8 @@ cmd-h = [] # Disable annoying and useless "hide application" shortcut
 # You can uncomment this line to open up terminal with alt + enter shortcut
 # See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
 # alt-enter = 'exec-and-forget open -n /System/Applications/Utilities/Terminal.app'
-alt-enter = 'exec-and-forget open -n /Applications/Ghostty.app "$@"'
+# alt-enter = 'exec-and-forget open -n /Applications/Ghostty.app "$@"'
+alt-enter = 'exec-and-forget open /Applications/Ghostty.app'
 
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
@@ -154,7 +155,7 @@ alt-shift-l = ['join-with right', 'mode main']
 
 # web
 [[on-window-detected]]
-if.app-name-regex-substring = 'arc|firefox|safari'
+if.app-name-regex-substring = 'dia|arc|firefox|safari'
 check-further-callbacks = true
 run = ['move-node-to-workspace 1']
 
@@ -166,7 +167,7 @@ run = ['move-node-to-workspace 2']
 
 # productivity
 [[on-window-detected]]
-if.app-name-regex-substring = 'asana|toggl|ticktick|calendar|habitify|trello|planny|reminders'
+if.app-name-regex-substring = 'asana|toggl|ticktick|calendar|habitify|trello|planny|reminders|opal'
 check-further-callbacks = true
 run = ['move-node-to-workspace 3']
 
@@ -184,7 +185,7 @@ run = ['move-node-to-workspace 5']
 
 # code editor
 [[on-window-detected]]
-if.app-name-regex-substring = 'code|trae|cursor'
+if.app-name-regex-substring = 'code|trae|cursor|xcode'
 check-further-callbacks = true
 run = ['move-node-to-workspace q']
 
