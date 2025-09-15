@@ -1,7 +1,25 @@
 # AeroSpace
 
+- `<alt-shift-;>` - enter service mode
 - `<alt-,>` - change accordion layout
 - `<alt-/>` - change tile layout
+- `<alt-[workspace]>` - go to workspace
+- `<alt-shift-[workspace]>` - move window to workspace
+- `<alt-shift-minus>` - decrease window size
+- `<alt-shift-equal>` - increase window size
+- `<alt-shift-h/j/k/l>` - move window position
+- `<alt-h/j/k/l>` - focus to another window
+- `<alt-enter>` - open ghostty
+- `<alt-tab>` - go to previous workspace
+- `<alt-shift-tab>` - move workspace to another monitor
+
+
+## service mode
+- `esc` - reload config
+- `r` - reset layout
+- `f` - toggle window between floating and tiling layout
+- `backspace` - close all windows on the workspace but current
+
 
 # Ghostty
 
@@ -115,7 +133,7 @@ just like `find` but better.
 - `<leader>f,/.` - jump between quick fix items
 - `<leader>fo` - open quick fix list
 - `<leader>fc` - close quick fix list
-- gx - open link in browser
+- `gx` - open link in browser
 
 ## command mode
 
