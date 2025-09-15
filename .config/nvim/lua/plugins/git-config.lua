@@ -17,11 +17,15 @@ return {
       "nvim-telescope/telescope.nvim",
     },
     config = function()
-      local neogit = require('neogit')
+      local neogit = require("neogit")
 
       neogit.setup()
 
-      vim.keymap.set("n", "<leader>ge", neogit.open, { desc = "open git explorer" })
+      local toggle_filesystem = function()
+        neogit.open({ kind = "floating" })
+      end
+
+      vim.keymap.set("n", "<leader>ge", toggle_filesystem, { desc = "open git explorer" })
     end,
   },
 }
