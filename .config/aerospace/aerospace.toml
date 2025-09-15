@@ -81,7 +81,10 @@ cmd-h = [] # Disable annoying and useless "hide application" shortcut
 # alt-enter = 'exec-and-forget open -n /System/Applications/Utilities/Terminal.app'
 # alt-enter = 'exec-and-forget open -n /Applications/Ghostty.app "$@"'
 alt-enter = 'exec-and-forget open /Applications/Ghostty.app'
-
+alt-q = 'exec-and-forget open /System/Applications/Reminders.app'
+alt-w = 'exec-and-forget open /Applications/Telegram.app'
+alt-e = 'exec-and-forget open ~/Applications/DataGrip.app'
+alt-r = 'exec-and-forget open /Applications/Notion.app'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
 alt-slash = 'layout tiles horizontal vertical'
@@ -108,28 +111,12 @@ alt-1 = 'workspace 1'
 alt-2 = 'workspace 2'
 alt-3 = 'workspace 3'
 alt-4 = 'workspace 4'
-alt-5 = 'workspace 5'
-alt-6 = 'workspace 6'
-alt-q = 'workspace q'
-alt-w = 'workspace w'
-alt-e = 'workspace e'
-alt-r = 'workspace r'
-alt-t = 'workspace t'
-alt-y = 'workspace y'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-shift-1 = 'move-node-to-workspace 1'
 alt-shift-2 = 'move-node-to-workspace 2'
 alt-shift-3 = 'move-node-to-workspace 3'
 alt-shift-4 = 'move-node-to-workspace 4'
-alt-shift-5 = 'move-node-to-workspace 5'
-alt-shift-6 = 'move-node-to-workspace 6'
-alt-shift-q = 'move-node-to-workspace q'
-alt-shift-w = 'move-node-to-workspace w'
-alt-shift-e = 'move-node-to-workspace e'
-alt-shift-r = 'move-node-to-workspace r'
-alt-shift-t = 'move-node-to-workspace t'
-alt-shift-y = 'move-node-to-workspace y'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 alt-tab = 'workspace-back-and-forth'
@@ -155,61 +142,25 @@ alt-shift-l = ['join-with right', 'mode main']
 
 # web
 [[on-window-detected]]
-if.app-name-regex-substring = 'dia|arc|firefox|safari'
+if.app-name-regex-substring = 'dia|arc|safari|firefox|chrome'
 check-further-callbacks = true
 run = ['move-node-to-workspace 1']
 
-# notes
+# code
 [[on-window-detected]]
-if.app-name-regex-substring = 'notion|obsidian'
+if.app-name-regex-substring = 'code|cursor|trae|kiro|xcode|webstorm'
 check-further-callbacks = true
 run = ['move-node-to-workspace 2']
 
-# productivity
+# dev
 [[on-window-detected]]
-if.app-name-regex-substring = 'asana|toggl|ticktick|calendar|habitify|trello|planny|reminders|opal'
+if.app-name-regex-substring = 'alacritty|kitty|terminal|ghostty|dbeaver|beekeeper|datagrip|postman|docker|git'
 check-further-callbacks = true
 run = ['move-node-to-workspace 3']
 
-# communication
+# other
 [[on-window-detected]]
-if.app-name-regex-substring = 'slack|spark|telegram|whatsapp'
+if.app-name-regex-substring = 'notion|telegram|whatsapp|spark|reminders|calendar|mail|opal'
 check-further-callbacks = true
 run = ['move-node-to-workspace 4']
-
-# audio
-[[on-window-detected]]
-if.app-name-regex-substring = 'music'
-check-further-callbacks = true
-run = ['move-node-to-workspace 5']
-
-# code editor
-[[on-window-detected]]
-if.app-name-regex-substring = 'code|trae|cursor|xcode'
-check-further-callbacks = true
-run = ['move-node-to-workspace q']
-
-# terminal
-[[on-window-detected]]
-if.app-name-regex-substring = 'alacritty|kitty|terminal|ghostty'
-check-further-callbacks = true
-run = ['move-node-to-workspace w']
-
-# DB
-[[on-window-detected]]
-if.app-name-regex-substring = 'dbeaver|beekeeper|datagrip'
-check-further-callbacks = true
-run = ['move-node-to-workspace e']
-
-# API
-[[on-window-detected]]
-if.app-id = 'com.postmanlabs.mac'
-check-further-callbacks = true
-run = ['move-node-to-workspace r']
-
-# GIT
-[[on-window-detected]]
-if.app-name-regex-substring = 'git'
-check-further-callbacks = true
-run = ['move-node-to-workspace t']
 

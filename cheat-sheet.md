@@ -9,10 +9,17 @@
 - `<alt-shift-equal>` - increase window size
 - `<alt-shift-h/j/k/l>` - move window position
 - `<alt-h/j/k/l>` - focus to another window
-- `<alt-enter>` - open ghostty
+
 - `<alt-tab>` - go to previous workspace
 - `<alt-shift-tab>` - move workspace to another monitor
+- `$ ff` - fuzzy jump to app
 
+## open applications
+- `<alt-enter>` - open ghostty
+- `<alt-q>` - open reminders
+- `<alt-w>` - open telegram
+- `<alt-e>` - open data grip
+- `<alt-r>` - open notion
 
 ## service mode
 - `esc` - reload config
