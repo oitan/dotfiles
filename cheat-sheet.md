@@ -152,7 +152,7 @@ just like `find` but better.
 ## insert mode
 
 - `<C-x><C-o>` - autocomplete
-- `<C-o>`puts in normal mode for one command and puts back to insert
+- `<C-o>` - puts in normal mode for one command and puts back to insert
 - `<C-i>` - tab (no need for this, use actual tab)
 
 ## neo-tree
