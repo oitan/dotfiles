@@ -3,6 +3,10 @@
 - `<alt-,>` - change accordion layout
 - `<alt-/>` - change tile layout
 
+# Ghostty
+
+- `$ ghostty +list-keybinds` - list keybinds
+
 # Yazi
 
 - `q` - quit
@@ -12,7 +16,7 @@
 - `K/J` - navigate x 5
 - `gg` - to the top
 - `G` - to the bottom
-- 
+-
 
 https://yazi-rs.github.io/docs/quick-start
 
@@ -50,15 +54,15 @@ all shortcuts below can be used as `<C-g><C-<key>>` instead of `<C-g><key>`
 
 Unless otherwise specified, fzf starts in "extended-search mode" where you can type in multiple search terms delimited by spaces. e.g. `^music .mp3$ sbtrkt !fire`
 
-| Token | Match type | Description |
-| --- | --- | --- |
-| `sbtrkt` | fuzzy-match | Items that match `sbtrkt` |
-| `'wild` | exact-match (quoted) | Items that include `wild` |
-| `^music` | prefix-exact-match | Items that start with `music` |
-| `.mp3$` | suffix-exact-match | Items that end with `.mp3` |
-| `!fire` | inverse-exact-match | Items that do not include `fire` |
+| Token     | Match type                 | Description                          |
+| --------- | -------------------------- | ------------------------------------ |
+| `sbtrkt`  | fuzzy-match                | Items that match `sbtrkt`            |
+| `'wild`   | exact-match (quoted)       | Items that include `wild`            |
+| `^music`  | prefix-exact-match         | Items that start with `music`        |
+| `.mp3$`   | suffix-exact-match         | Items that end with `.mp3`           |
+| `!fire`   | inverse-exact-match        | Items that do not include `fire`     |
 | `!^music` | inverse-prefix-exact-match | Items that do not start with `music` |
-| `!.mp3$` | inverse-suffix-exact-match | Items that do not end with `.mp3` |
+| `!.mp3$`  | inverse-suffix-exact-match | Items that do not end with `.mp3`    |
 
 ## eza
 
@@ -67,7 +71,7 @@ Unless otherwise specified, fzf starts in "extended-search mode" where you can t
 ## zoxide
 
 - `$ z -` - go to previous dir (cd has this as well)
-- `$ z <part1> <part2> <part3>` - can go to `~/part1/something/another-thing/part2/unknown-thing/part3`  if trained. Order of parts passed has to be the same as with the dir. Last items must match.
+- `$ z <part1> <part2> <part3>` - can go to `~/part1/something/another-thing/part2/unknown-thing/part3` if trained. Order of parts passed has to be the same as with the dir. Last items must match.
 - use `$ z` instead of `$ cd` to train zoxide
 - zoxide is case-insensitive
 - `$ zi` - enter interactive mode (with `fzf`)
@@ -77,13 +81,12 @@ Unless otherwise specified, fzf starts in "extended-search mode" where you can t
 ## ripgrep
 
 - `$ rg word path` - searches for lines that contains `word` in files inside `path`.
-    - `word` can be regex.
-    - `path` is optional, can also be a regex, default is `./`.
-    - `./--hidden` - search hidden files and directories
-    - `L/--follow` - follow symbolic links while recursively searching.
-    - `r new-word` - replace `word` with `new-word`. also regexable like in find-replace in vscode
-    - 
-        - `c/--count`: Report a count of total matched lines.
+  - `word` can be regex.
+  - `path` is optional, can also be a regex, default is `./`.
+  - `./--hidden` - search hidden files and directories
+  - `L/--follow` - follow symbolic links while recursively searching.
+  - `r new-word` - replace `word` with `new-word`. also regexable like in find-replace in vscode
+  - - `c/--count`: Report a count of total matched lines.
 
 ## fd
 
@@ -112,6 +115,7 @@ just like `find` but better.
 - `<leader>f,/.` - jump between quick fix items
 - `<leader>fo` - open quick fix list
 - `<leader>fc` - close quick fix list
+- gx - open link in browser
 
 ## command mode
 
@@ -177,24 +181,24 @@ just like `find` but better.
 ## comment
 
 - NORMAL mode
-`gcc` - Toggles the current line using linewise comment
-`gbc` - Toggles the current line using blockwise comment
-`[count]gcc` - Toggles the number of line given as a prefix-count using linewise
-`[count]gbc` - Toggles the number of line given as a prefix-count using blockwise
-`gc[count]{motion}` - (Op-pending) Toggles the region using linewise comment
-`gb[count]{motion}` - (Op-pending) Toggles the region using blockwise comment
+  `gcc` - Toggles the current line using linewise comment
+  `gbc` - Toggles the current line using blockwise comment
+  `[count]gcc` - Toggles the number of line given as a prefix-count using linewise
+  `[count]gbc` - Toggles the number of line given as a prefix-count using blockwise
+  `gc[count]{motion}` - (Op-pending) Toggles the region using linewise comment
+  `gb[count]{motion}` - (Op-pending) Toggles the region using blockwise comment
 - VISUAL mode
-`gc` - Toggles the region using linewise comment
-`gb` - Toggles the region using blockwise comment
+  `gc` - Toggles the region using linewise comment
+  `gb` - Toggles the region using blockwise comment
 
 ### extra mappings
 
 These mappings are enabled by default. (config: `mappings.extra`)
 
 - NORMAL mode
-`gco` - Insert comment to the next line and enters INSERT mode
-`gcO` - Insert comment to the previous line and enters INSERT mode
-`gcA` - Insert comment to end of the current line and enters INSERT mode
+  `gco` - Insert comment to the next line and enters INSERT mode
+  `gcO` - Insert comment to the previous line and enters INSERT mode
+  `gcA` - Insert comment to end of the current line and enters INSERT mode
 
 ### examples
 
@@ -213,83 +217,3 @@ These mappings are enabled by default. (config: `mappings.extra`)
 `gb2}` - Toggle until the 2 next blank line
 `gbaf` - Toggle comment around a function (w/ LSP/treesitter support)
 `gbac` - Toggle comment around a class (w/ LSP/treesitter support)
-
-# TMUX
-
-https://tmuxcheatsheet.com/`<C-a>` is my custom prefix (`<C-b>` by default)
-
-## outside of tmux
-
-- `tmux source <path-to-tmux-config>` - load config
-- `tmux new -s <new-session-name>` - create a new session with a name
-- `tmux ls` - list sessions
-- `tmux` - create new session
-- `tmux a -t <session-name>` - attach to a session
-- `tmux a` - attach to the most recent session
-- `tmux list-keys` - list key bindings (shortcuts)
-
-## inside of tmux
-
-- `<prefix>I` - install packages
-- `<prefix>r` - reload config
-- `<prefix><alt-u>` - uninstall removed/commented out packages
-- `<prefix>?` - list key bindings (shortcuts)
-
-### copy mode
-
-- `<prefix>[` - enter copy mode
-- `<C-Space>` - start selection
-- `y` - copy selection
-- `<prefix>]` - paste
-- `q` - quit copy mode
-- `o` - "open" a highlighted selection
-- `Ctrl-o` - open a highlighted selection with the `$EDITOR`
-- `Shift-s` - search the highlighted selection directly inside a search engine (google)
-- `<C-s>` - search
-
-### yank normal mode
-
-- `<prefix>y` - copy command line to clipboard
-- `<prefix>Y` - copy current path to clipboard
-
-### yank copy mode
-
-- `<prefix>y` - copy selection to clipboard
-- `<prefix>Y` - paste to command line
-
-### resurrect
-
-- `<prefix><C-s>` - save environment
-- `<prefix><C-r>` - restore environment
-
-### session
-
-- `<prefix>s` - list sessions
-- `<prefix>w` - previews for each session
-- `<prefix>d`detach
-- `<prefix>$` - rename current session
-- `<prefix>(/)` - switch to the previous/next session.
-
-### window
-
-- `<prefix>c` - create a window
-- `<prefix><window-number>` - change to a window
-- `<prefix><C-n/p/a(because of prefix key)>` - switch between windows
-- `<prefix>&` - kill window
-- `<prefix>,` - rename window
-- `<prefix></>` - move windows in direction left and right
-- `<prefix>. <session-name>:<window-number>` - move window between sessions
-- `<prefix>&` - close window
-
-### pane
-
-- `<prefix>{/}` - swap panes
-- `<prefix>q` - toggle pane numbers
-- `<prefix>z` - zoom into and out of current pane
-- `<prefix>!` - turn pane into window
-- `<prefix>x` - kill pane
-- `<prefix>"` - split pane horizontally
-- `<prefix>%` - split pane vertically
-- `<C-h/j/k/l>` or `<prefix>h/j/k/l` or `<prefix><C-h/j/k/l>` - move between panes
-- `<prefix>H/J/K/L` - resize pane
-- `<prefix>|/-/\\/_` - split the current panee
