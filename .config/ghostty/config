@@ -1,9 +1,8 @@
 # appearance
 theme = "catppuccin-mocha"
-macos-titlebar-style = hidden
 window-padding-balance = true
 
-#system
+# system
 window-save-state = always
 copy-on-select = clipboard
 

@@ -202,7 +202,7 @@ These mappings are enabled by default. (config: `mappings.extra`)
 
 ### examples
 
-### linewise
+#### linewise
 
 `gcw` - Toggle from the current cursor position to the next word
 `gc$` - Toggle from the current cursor position to the end of line
@@ -212,7 +212,7 @@ These mappings are enabled by default. (config: `mappings.extra`)
 `gcip` - Toggle inside of paragraph
 `gca}` - Toggle around curly brackets
 
-### blockwise
+#### blockwise
 
 `gb2}` - Toggle until the 2 next blank line
 `gbaf` - Toggle comment around a function (w/ LSP/treesitter support)
