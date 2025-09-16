@@ -1,6 +1,7 @@
 # appearance
 theme = "Catppuccin Mocha"
 window-padding-balance = true
+font-family = "FiraCode Nerd Font Mono"
 
 # system
 window-save-state = always

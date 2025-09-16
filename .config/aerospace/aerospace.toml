@@ -1,6 +1,6 @@
 after-startup-command = ['exec-and-forget sketchybar']
 exec-on-workspace-change = ['/bin/bash', '-c',
-  'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE',
+  'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
 ]
 
 # Start AeroSpace at login
@@ -13,7 +13,7 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 # See: https://nikitabobko.github.io/AeroSpace/guide#layouts
 # The 'accordion-padding' specifies the size of accordion padding
 # You can set 0 to disable the padding feature
-accordion-padding = 30
+accordion-padding = 0
 
 # Possible values: tiles|accordion
 # default-root-container-layout = 'accordion'
@@ -38,10 +38,10 @@ key-mapping.preset = 'qwerty'
 [gaps]
 inner.horizontal = 5
 inner.vertical =   5
-outer.left =       0
-outer.bottom =     0
-outer.top =        0
-outer.right =      0
+outer.left =       5
+outer.bottom =     5
+outer.top =        5
+outer.right =      5
 
 # See https://nikitabobko.github.io/AeroSpace/guide#exec-env-vars
 [exec]                   # Again, you don't need to copy all config sections to your config.
