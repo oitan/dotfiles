@@ -1,10 +1,6 @@
 .git
-.config/tmux/plugins
 .config/raycast
-.config/alacritty/themes
 .config/bat/themes
-.config/kitty/themes
-.config/kitty/current-theme.conf
 README.md
 scripts
 .gitignore
