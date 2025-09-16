@@ -194,6 +194,15 @@ just like `find` but better.
 - `<leader>n/p` - cycle tags
 - `<leader>M` - toggle
 - `<leader>m` - list tags
+- `<leader>ft` - find tags
+
+### tags window
+
+- `<CR>` - select tag
+- `|` - select tag in vertical split
+- `<C-s>` - select tag in horizontal split
+- `1-9` - quick select by ID
+- `R` - rename
 
 ## nerdy
 

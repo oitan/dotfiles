@@ -14,7 +14,9 @@ return {
 				lualine_b = {
 					{
 						function()
-							return "󰛢[" .. require("grapple").name_or_index() .. "]"
+							local grapple = require("grapple")
+							return grapple.statusline({ icon = "󰛢" })
+							-- return "󰛢[" .. grapple.name_or_index() .. "]"
 						end,
 						cond = function()
 							return package.loaded["grapple"] and require("grapple").exists()
