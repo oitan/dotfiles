@@ -1,6 +1,6 @@
 # Info
 
-- Using catppuccin mocha palette wherever possible
+- Using *catppuccin mocha* palette wherever possible
 
 # To-Dos
 

@@ -23,6 +23,7 @@ return {
 					"html",
 					"cssls",
 					"bashls",
+          "prismals"
 				},
 			})
 		end,
