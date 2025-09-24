@@ -14,7 +14,7 @@ alias l="eza"
 alias ls="eza"
 alias lsa="eza --all"
 alias ll="eza -alh"
-alias tree="ls --tree"
+alias tree="eza --tree"
 alias e="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions --all --classify --group-directories-first"
 
 # git

@@ -24,7 +24,6 @@ return {
           "cssls",
           "bashls",
           "prismals",
-          "lua_ls",
         },
       })
     end,
@@ -63,7 +62,7 @@ return {
       }))
       lspconfig.html.setup(with_defaults())
       lspconfig.cssls.setup(with_defaults())
-      lspconfig.bashls.setup(with_defaults({ filtypes = { "zsh", "sh" } }))
+      lspconfig.bashls.setup(with_defaults({ filetypes = { "zsh", "sh" } }))
       lspconfig.prismals.setup(with_defaults())
 
       vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "see definition" })

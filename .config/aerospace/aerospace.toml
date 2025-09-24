@@ -79,6 +79,7 @@ alt-q = 'exec-and-forget open /System/Applications/Reminders.app'
 alt-w = 'exec-and-forget open /Applications/Telegram.app'
 alt-e = 'exec-and-forget open ~/Applications/DataGrip.app'
 alt-r = 'exec-and-forget open /Applications/Notion.app'
+alt-t = 'exec-and-forget open /Applications/Postman.app'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
 alt-slash = 'layout tiles horizontal vertical'
@@ -136,7 +137,7 @@ alt-shift-l = ['join-with right', 'mode main']
 
 # web
 [[on-window-detected]]
-if.app-name-regex-substring = 'dia|arc|safari|firefox|chrome'
+if.app-name-regex-substring = 'gpt|dia|arc|safari|firefox|chrome'
 check-further-callbacks = true
 run = ['move-node-to-workspace 1']
 

@@ -84,6 +84,12 @@ function restart() {
   source ~/.zshrc
 }
 
+### CX
+function cx() {
+  z "$1" || return
+  eza -l
+}
+
 # load aliases
 source $HOME/.aliases
 
@@ -151,4 +157,13 @@ autoload -Uz compinit
 compinit
 # End of Docker CLI completions
 
+### CARAPACE
+export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
+zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
+source <(carapace _carapace)
+
+### ATUIN
+eval "$(atuin init zsh)"
+
+### KIRO
 [[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
