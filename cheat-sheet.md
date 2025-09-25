@@ -147,6 +147,11 @@ just like `find` but better.
 - `<leader>fm` -> format
 - `<C-w>s/v` -> open new split window (horizontal/vertical)
 - `<C-up/down/left/right>` -> resize split window
+- `<C-w>r`/`<C-w><C-r>` -> move window to right or down. Cursor stays in the same window
+- `<C-w>R` -> move window to left or up. Cursor stays in the same window
+- `<C-w>H/J/K/L` -> move current window to the top left/bottom/top/right position
+- `<C-w>T` -> move the current split window to a new tab
+- `<C-w> =` -> resize all splits equally
 - `<leader>cr` -> rename variable
 - `<leader>e` -> open current diagnostics
 - `<leader>fd` -> open file diagnostics
