@@ -48,9 +48,14 @@ return {
     config = function()
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
       local lspconfig = require("lspconfig")
+      local telescope = require("telescope.builtin")
 
       local function with_defaults(extra)
         return vim.tbl_deep_extend("force", { capabilities = capabilities }, extra or {})
+      end
+
+      local function file_diagnostics()
+        telescope.diagnostics({ bufnr = 0 })
       end
 
       lspconfig.lua_ls.setup(with_defaults())
@@ -72,6 +77,8 @@ return {
       vim.keymap.set("v", "<leader>ca", vim.lsp.buf.code_action, { desc = "code actions" })
       vim.keymap.set("x", "<leader>ca", vim.lsp.buf.code_action, { desc = "code actions" })
       vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "diagnostics" })
+      vim.keymap.set("n", "<leader>fd", file_diagnostics, { desc = "file diagnostics" })
+      vim.keymap.set("n", "<leader>fD", telescope.diagnostics, { desc = "workspace diagnostics" })
       vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "rename" })
     end,
   },
