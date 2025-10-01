@@ -166,9 +166,6 @@ return {
 				end),
 				{ desc = "Diffview: Expand All Folds" }
 			)
-
-			-- Example of your style:
-			-- vim.keymap.set("n", "<leader>ge", toggle_filesystem, { desc = "open git explorer" })
 		end,
 	},
 	{
