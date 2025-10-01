@@ -142,7 +142,7 @@ just like `find` but better.
 - `K` -> shows info for current symbol in a floating window. Pressing twice will jump into the floating window
 - `<leader>gd` -> go to definition
 - `<leader>ca` -> lists available code actions
-- `<leader>gr` -> see references
+- `<leader>gR` -> see references
 - `<C-n>` -> reveal filesystem
 - `<leader>fm` -> format
 - `<C-w>s/v` -> open new split window (horizontal/vertical)
@@ -152,6 +152,7 @@ just like `find` but better.
 - `<C-w>H/J/K/L` -> move current window to the top left/bottom/top/right position
 - `<C-w>T` -> move the current split window to a new tab
 - `<C-w> =` -> resize all splits equally
+- `<C-w>q`/`<C-w><C-q>` -> close current window
 - `<leader>cr` -> rename variable
 - `<leader>e` -> open current diagnostics
 - `<leader>fd` -> open file diagnostics
@@ -237,8 +238,26 @@ just like `find` but better.
 
 ## gitsigns
 
-- `<leader>ph` -> preview git hunk
+- `<leader>gph` -> preview git hunk
 - `<leader>gtb` -> toggle current line blame
+
+## diffview
+
+- `<leader>do` -> open Diffview
+- `<leader>dc` -> close Diffview
+- `<leader>df` -> toggle files panel
+- `<leader>dF` -> focus files panel
+- `]d` -> select next entry
+- `[d` -> select previous entry
+- `<leader>dn` -> focus next panel
+- `<leader>dp` -> focus previous panel
+- `<leader>dt` -> open entry in new tab
+- `<leader>dr` -> refresh files
+- `<leader>dh` -> file history (cwd)
+- `<leader>dH` -> file history (current buffer)
+- `<leader>ds` -> toggle stage entry
+- `<leader>dX` -> collapse all folds
+- `<leader>dE` -> expand all folds
 
 ## grapple
 

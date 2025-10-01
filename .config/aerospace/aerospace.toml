@@ -143,13 +143,13 @@ run = ['move-node-to-workspace 1']
 
 # code
 [[on-window-detected]]
-if.app-name-regex-substring = 'code|cursor|trae|kiro|xcode|webstorm'
+if.app-name-regex-substring = 'code|cursor|trae|kiro|xcode|webstorm|datagrip'
 check-further-callbacks = true
 run = ['move-node-to-workspace 2']
 
 # dev
 [[on-window-detected]]
-if.app-name-regex-substring = 'alacritty|kitty|terminal|ghostty|dbeaver|beekeeper|datagrip|postman|docker|git'
+if.app-name-regex-substring = 'terminal|ghostty|postman|docker|git'
 check-further-callbacks = true
 run = ['move-node-to-workspace 3']
 

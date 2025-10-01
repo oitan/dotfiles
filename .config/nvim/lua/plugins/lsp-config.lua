@@ -84,7 +84,7 @@ return {
 			-- keymaps
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "see definition" })
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "go to definition" })
-			vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "see references" })
+			vim.keymap.set("n", "gR", vim.lsp.buf.references, { desc = "see references" })
 			vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "code actions" })
 			vim.keymap.set("v", "<leader>ca", vim.lsp.buf.code_action, { desc = "code actions" })
 			vim.keymap.set("x", "<leader>ca", vim.lsp.buf.code_action, { desc = "code actions" })
