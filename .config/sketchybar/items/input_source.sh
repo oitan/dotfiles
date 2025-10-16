@@ -5,6 +5,6 @@ sketchybar --set input_source \
     icon.font="$FONT:Regular:20.0" \
     script="$PLUGIN_DIR/get_input_source.sh" \
     icon.color=0xffffffff \
-    update_freq=1 
-
+    update_freq=1 \
+    click_script="$PLUGIN_DIR/input_source_click.sh"
 
