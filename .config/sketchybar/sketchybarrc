@@ -78,7 +78,7 @@ sketchybar --default "${defaults[@]}"
 source "$ITEM_DIR/apple.sh"
 source "$ITEM_DIR/spaces.sh"
 source "$ITEM_DIR/front_app.sh"
-source "$ITEM_DIR/space-shortcuts.sh"
+#source "$ITEM_DIR/space-shortcuts.sh"
 #source "$ITEM_DIR/yabai.sh"
 
 # Center
@@ -96,7 +96,14 @@ source "$ITEM_DIR/volume.sh"
 source "$ITEM_DIR/svim.sh"
 
 source "$ITEM_DIR/cpu.sh"
-source "$ITEM_DIR/weather.sh"
+# No weather on the bar
+# source "$ITEM_DIR/weather.sh"
+
+# Place QWERTY space shortcuts on the right side (left edge of right cluster)
+source "$ITEM_DIR/space-shortcuts.sh"
+
+# Ensure any previously-added weather item is removed
+sketchybar --remove weather > /dev/null 2>&1 || true
 
 sketchybar --hotload on
 

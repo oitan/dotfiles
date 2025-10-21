@@ -7,8 +7,8 @@ CONTROLLER="space_shortcuts.controller"
 # Remove any single-label version from previous iteration
 sketchybar --remove space_shortcuts >/dev/null 2>&1 || true
 
-# Define keys in the same order the plugin expects
-KEYS=(q w e r t y)
+# Define keys. For right side placement, add in reverse so the visual order reads q w e r t y.
+KEYS=(y t r e w q)
 
 # Clean up any previously created paired items
 for k in "${KEYS[@]}"; do
@@ -19,7 +19,7 @@ done
 # Create single pill per key: letter on the left (icon field, system font), app icon on the right (label field, icon font)
 for k in "${KEYS[@]}"; do
   item="space_shortcuts.${k}"
-  sketchybar --add item "$item" left \
+  sketchybar --add item "$item" right \
              --set "$item" \
                   icon.font="$FONT:Semibold:15.0" \
                   icon.y_offset=-1 \
@@ -35,7 +35,7 @@ for k in "${KEYS[@]}"; do
 done
 
 # Hidden controller item to run the updater script on events
-sketchybar --add item "$CONTROLLER" left \
+sketchybar --add item "$CONTROLLER" right \
            --set "$CONTROLLER" drawing=off script="$PLUGIN_DIR/space-shortcuts.sh" \
            --subscribe "$CONTROLLER" aerospace_workspace_change
 
