@@ -2,7 +2,7 @@
 
 ### START-OF-ICON-MAP
 function __icon_map() {
-    case "$1" in
+   case "$1" in
    "Live")
         icon_result=":ableton:"
         ;;
@@ -51,7 +51,7 @@ function __icon_map() {
    "App Store")
         icon_result=":app_store:"
         ;;
-   "Arc")
+   "Arc" | "Dia")
         icon_result=":arc:"
         ;;
    "Atom")
@@ -528,7 +528,7 @@ function __icon_map() {
    "Telegram")
         icon_result=":telegram:"
         ;;
-   "Terminal" | "终端")
+   "Terminal" | "终端" | "Ghostty")
         icon_result=":terminal:"
         ;;
    "Typora")
