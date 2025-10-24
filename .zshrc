@@ -163,7 +163,7 @@ zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
 source <(carapace _carapace)
 
 ### ATUIN
-eval "$(atuin init zsh)"
+# eval "$(atuin init zsh)"
 
 ### KIRO
 [[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"

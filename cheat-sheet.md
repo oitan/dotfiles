@@ -65,6 +65,8 @@ https://docs.atuin.sh/configuration/key-binding/#atuin-ui-shortcuts
 
 ## fzf
 
+search syntax: https://github.com/junegunn/fzf?tab=readme-ov-file#search-syntax
+
 - `<alt-c>` -> fzf in dirs
 - `<C-t>` -> fzf in files and dirs
 - `<C-r>` -> fzf in commands history
