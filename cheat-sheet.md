@@ -140,7 +140,9 @@ just like `find` but better.
 ## normal mode
 
 - `<leader>fg` -> fuzzy find in files
+- `<leader>fG` -> fuzzy find in files (hidden files included)
 - `<C-p>` -> fuzzy find by filename
+- `<leader>fh` -> fuzzy find by filename (hidden files included)
 - `K` -> shows info for current symbol in a floating window. Pressing twice will jump into the floating window
 - `<leader>gd` -> go to definition
 - `<leader>ca` -> lists available code actions
