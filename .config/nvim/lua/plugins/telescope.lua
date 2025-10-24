@@ -50,17 +50,16 @@ return {
 			-- Hidden grep: include dotfiles, ignore VCS ignores; exclude .git, node_modules, dist
 			vim.keymap.set("n", "<leader>fG", function()
 				builtin.live_grep({
+					-- additional_args must be a function returning a list
+					-- Use --glob with a separate value (or combined with =)
 					additional_args = function()
 						return {
 							"--hidden",
 							"--no-ignore-vcs",
-							"--glob",
-							"!**/node_modules/**",
-							"--glob",
-							"!**/dist/**",
-							"--glob",
-							"!**/.yarn/**",
-							"!**/.adminjs/**",
+							"--glob", "!**/node_modules/**",
+							"--glob", "!**/dist/**",
+							"--glob", "!**/.yarn/**",
+							"--glob", "!**/.adminjs/**",
 						}
 					end,
 				})
