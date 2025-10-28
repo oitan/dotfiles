@@ -40,3 +40,6 @@ vim.keymap.set("t", "<C-Right>", "<cmd>vertical resize +2<CR>", { desc = "resize
 vim.opt.termguicolors = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+
+-- clear search highlight
+vim.keymap.set("n", "<leader>h", "<cmd>nohlsearch<CR>", { desc = "clear search highlight" })

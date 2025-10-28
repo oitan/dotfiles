@@ -70,3 +70,6 @@ alias yuil="yarn upgrade-interactive --latest"
 alias yad="yarn add -D"
 alias ya="yarn add"
 
+# docker
+alias dps="docker ps  -a --format 'table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Names}}'"
+
