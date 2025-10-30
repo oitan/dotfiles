@@ -47,7 +47,7 @@ defaults=(
   updates=when_shown
   icon.font="$FONT:Regular:14.0"
   icon.color=$ICON_COLOR
-  icon.padding_left=$PADDINS
+  icon.padding_left=$PADDINGS
   icon.padding_right=$PADDINGS
   label.font="$FONT:Semibold:13.0"
   label.color=$LABEL_COLOR
@@ -78,26 +78,18 @@ sketchybar --default "${defaults[@]}"
 source "$ITEM_DIR/apple.sh"
 source "$ITEM_DIR/spaces.sh"
 source "$ITEM_DIR/front_app.sh"
-#source "$ITEM_DIR/space-shortcuts.sh"
-#source "$ITEM_DIR/yabai.sh"
-
-# Center
-# source "$ITEM_DIR/spotify.sh"
-# source "$ITEM_DIR/media.sh"
 
 # Right
 source "$ITEM_DIR/calendar.sh"
 source "$ITEM_DIR/input_source.sh"
 source "$ITEM_DIR/battery.sh"
-#source "$ITEM_DIR/brew.sh"
-#source "$ITEM_DIR/github.sh"
-source "$ITEM_DIR/wifi.sh"
 source "$ITEM_DIR/volume.sh"
-source "$ITEM_DIR/svim.sh"
 
-source "$ITEM_DIR/cpu.sh"
-# No weather on the bar
-# source "$ITEM_DIR/weather.sh"
+# Ensure any previously-added CPU items are removed
+sketchybar --remove cpu.top > /dev/null 2>&1 || true
+sketchybar --remove cpu.percent > /dev/null 2>&1 || true
+sketchybar --remove cpu.sys > /dev/null 2>&1 || true
+sketchybar --remove cpu.user > /dev/null 2>&1 || true
 
 # Place QWERTY space shortcuts on the right side (left edge of right cluster)
 source "$ITEM_DIR/space-shortcuts.sh"
