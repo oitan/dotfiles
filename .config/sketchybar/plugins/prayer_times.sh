@@ -141,14 +141,14 @@ fi
 if [ -n "$date_line" ]; then
   add_or_set prayer.date label="$date_line" \
                         label.font="$FONT:Bold:12.0" \
-                        label.color=$YELLOW \
+                        label.color=0xffffffff \
                         icon.drawing=off \
                         padding_left=8 \
                         padding_right=8
 fi
 
-add_or_set prayer.fajr    icon="🌅"  icon.padding_right=6 label="Fajr    $Fajr"
-add_or_set prayer.dhuhr   icon="☀️"  icon.padding_right=6 label="Dhuhr   $Dhuhr"
-add_or_set prayer.asr     icon="🌓"  icon.padding_right=6 label="Asr     $Asr"
-add_or_set prayer.maghrib icon="🌇"  icon.padding_right=6 label="Maghrib $Maghrib"
-add_or_set prayer.isha    icon="🌙"  icon.padding_right=6 label="Isha    $Isha"
+add_or_set prayer.fajr    icon="🌅"  icon.padding_right=6 label.color=0xffffffff label="Fajr    $Fajr"
+add_or_set prayer.dhuhr   icon="☀️"  icon.padding_right=6 label.color=0xffffffff label="Dhuhr   $Dhuhr"
+add_or_set prayer.asr     icon="🌓"  icon.padding_right=6 label.color=0xffffffff label="Asr     $Asr"
+add_or_set prayer.maghrib icon="🌇"  icon.padding_right=6 label.color=0xffffffff label="Maghrib $Maghrib"
+add_or_set prayer.isha    icon="🌙"  icon.padding_right=6 label.color=0xffffffff label="Isha    $Isha"
