@@ -34,7 +34,10 @@ Install Catppuccin Mocha theme for zsh syntax highlighting: https://github.com/c
 
 ## HomeBrew
 
-See the list of casks in ./brew-list
+Make scripts executable and run the installer:
+
+- `$ chmod +x ./scripts/*`
+- `$ ./scripts/install-brew.sh`
 
 ## App Store
 
