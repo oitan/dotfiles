@@ -16,6 +16,7 @@ FORMULAE=(
   atuin
   bat
   borders
+  btop
   ca-certificates
   carapace
   cmake
@@ -59,6 +60,7 @@ CASKS=(
   betterdisplay
   caffeine
   chatgpt-atlas
+  coderabbit
   docker
   docker-desktop
   dropbox
@@ -79,8 +81,10 @@ CASKS=(
   notion
   notion-calendar
   notion-mail
+  obs
   postman
   raycast
+  tor-browser
   visual-studio-code
   vlc
   webtorrent

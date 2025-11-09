@@ -24,6 +24,7 @@ return {
           "cssls",
           "bashls",
           "prismals",
+          "gopls",
         },
       })
     end,
@@ -39,6 +40,11 @@ return {
           "stylua",
           "eslint_d",
           "lua_ls",
+          -- Go tooling
+          "gopls",
+          "goimports",
+          "gofumpt",
+          "golangci-lint",
         },
       })
     end,
@@ -72,6 +78,15 @@ return {
       vim.lsp.config("cssls", with_defaults())
       vim.lsp.config("bashls", with_defaults({ filetypes = { "zsh", "sh" } }))
       vim.lsp.config("prismals", with_defaults())
+      vim.lsp.config(
+        "gopls",
+        with_defaults({
+          on_attach = function(client, _)
+            -- Use null-ls for formatting to keep consistency
+            client.server_capabilities.documentFormattingProvider = false
+          end,
+        })
+      )
 
       -- enable configs (activates for their filetypes)
       vim.lsp.enable("lua_ls")
@@ -80,6 +95,7 @@ return {
       vim.lsp.enable("cssls")
       vim.lsp.enable("bashls")
       vim.lsp.enable("prismals")
+      vim.lsp.enable("gopls")
 
       -- keymaps
       vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "see definition" })
