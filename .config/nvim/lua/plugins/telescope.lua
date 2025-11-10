@@ -2,7 +2,16 @@ return {
 	{
 		"nvim-telescope/telescope.nvim",
 		tag = "0.1.8",
-		dependencies = { "nvim-lua/plenary.nvim" },
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			{
+				"nvim-telescope/telescope-fzf-native.nvim",
+				build = "make",
+				cond = function()
+					return vim.fn.executable("make") == 1
+				end,
+			},
+		},
 
 		config = function()
 			local telescope = require("telescope")
@@ -26,6 +35,14 @@ return {
 					vimgrep_arguments = vimgrep_arguments,
 				},
 				pickers = {},
+				extensions = {
+					fzf = {
+						fuzzy = true,
+						override_generic_sorter = true,
+						override_file_sorter = true,
+						case_mode = "smart_case",
+					},
+				},
 			})
 
 			local builtin = require("telescope.builtin")
@@ -65,6 +82,9 @@ return {
 				})
 			end, { desc = "live grep (hidden)" })
 			vim.keymap.set("n", "<leader>ft", grapple.tags, { desc = "find grapple tags" })
+
+			-- Load extensions
+			telescope.load_extension("fzf")
 		end,
 	},
 	{
