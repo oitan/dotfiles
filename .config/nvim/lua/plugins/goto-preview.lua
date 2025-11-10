@@ -3,7 +3,12 @@ return {
 	dependencies = { "rmagatti/logger.nvim" },
 	config = function()
 		local goto_preview = require("goto-preview")
-		goto_preview.setup({})
+		goto_preview.setup({
+			references = {
+				provider = "telescope",
+				telescope = require("telescope.themes").get_dropdown({ hide_preview = false }),
+			},
+		})
 
 		vim.keymap.set("n", "gpd", goto_preview.goto_preview_definition, { desc = "preview definition" })
 		vim.keymap.set("n", "gpt", goto_preview.goto_preview_type_definition, { desc = "preview type definition" })
