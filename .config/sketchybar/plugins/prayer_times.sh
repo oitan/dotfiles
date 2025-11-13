@@ -3,7 +3,7 @@
 # Displays next prayer name and time using Aladhan API
 # Configurable via env vars: PRAYER_CITY, PRAYER_COUNTRY, PRAYER_METHOD, PRAYER_SCHOOL, PRAYER_LAT_ADJ
 
-CITY=${PRAYER_CITY:-"Aktobe"}
+CITY=${PRAYER_CITY:-"Astana"}
 COUNTRY=${PRAYER_COUNTRY:-"Kazakhstan"}
 # Default to a common setup used in Kazakhstan: MWL method + Hanafi school
 # METHOD 4 = MWL, SCHOOL 1 = Hanafi (Asr shadow factor 2)

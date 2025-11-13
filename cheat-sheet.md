@@ -178,11 +178,26 @@ just like `find` but better.
 - `zt` -> current line to top of window
 - `zz` -> current line to center of window
 - `zb` -> current line to bottom of window
+- `<C-d>` -> scroll half-page down
+- `<C-u>` -> scroll half-page up
+- `<C-f>` -> scroll full page down
+- `<C-b>` -> scroll full page up
 - `<C-y>` -> scroll window up one line (cursor stays)
 - `<C-e>` -> scroll window down one line (cursor stays)
 - `H` -> move cursor to top of window
 - `M` -> move cursor to middle of window
 - `L` -> move cursor to bottom of window
+
+### telescope subfolder search
+
+- files (one dir): `:Telescope find_files cwd=path/to/dir`
+- files (one dir, hidden): `:Telescope find_files cwd=path/to/dir hidden=true`
+- files (multi dir): `:Telescope find_files search_dirs=dir1 search_dirs=dir2`
+- files (multi dir, hidden): `:Telescope find_files search_dirs=dir1 search_dirs=dir2 hidden=true`
+- live grep (one dir): `:Telescope live_grep cwd=path/to/dir`
+- live grep (one dir, hidden): `:Telescope live_grep cwd=path/to/dir additional_args=--hidden additional_args=--glob=!.git/**`
+- live grep (multi dir): `:Telescope live_grep search_dirs=dir1 search_dirs=dir2`
+- live grep (multi dir, hidden): `:Telescope live_grep search_dirs=dir1 search_dirs=dir2 additional_args=--hidden additional_args=--glob=!.git/**`
 
 ## command mode
 
@@ -198,6 +213,10 @@ just like `find` but better.
   `n` -> skip this match
   `a` -> replace all remaining matches without asking
   `q` -> quit substitution
+
+### notifications
+
+- `<leader>nd` -> dismiss notifications (nvim-notify)
   `l` -> replace this and quit
   `<C-e/y>` -> scroll up/down
 

@@ -77,6 +77,7 @@ CASKS=(
   github
   jetbrains-toolbox
   karabiner-elements
+  libreoffice
   ngrok
   notion
   notion-calendar

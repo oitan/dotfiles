@@ -73,3 +73,5 @@ alias ya="yarn add"
 # docker
 alias dps="docker ps  -a --format 'table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Names}}'"
 
+# stow
+alias sw="cd ~/dotfiles && stow . && stow --adopt ."

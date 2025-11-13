@@ -16,6 +16,7 @@ return {
 		config = function()
 			local telescope = require("telescope")
 			local telescope_config = require("telescope.config")
+			local actions = require("telescope.actions")
 			local grapple = telescope.load_extension("grapple")
 
 			-- Clone the default Telescope configuration
@@ -33,6 +34,20 @@ return {
 				defaults = {
 					-- Keep default visibility for pickers; control per-mapping instead.
 					vimgrep_arguments = vimgrep_arguments,
+					mappings = {
+						i = {
+							["<C-q>"] = function(prompt_bufnr)
+								actions.smart_send_to_qflist(prompt_bufnr)
+								actions.open_qflist(prompt_bufnr)
+							end,
+						},
+						n = {
+							["<C-q>"] = function(prompt_bufnr)
+								actions.smart_send_to_qflist(prompt_bufnr)
+								actions.open_qflist(prompt_bufnr)
+							end,
+						},
+					},
 				},
 				pickers = {},
 				extensions = {

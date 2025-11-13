@@ -43,3 +43,19 @@ vim.opt.smartcase = true
 
 -- clear search highlight
 vim.keymap.set("n", "<leader>h", "<cmd>nohlsearch<CR>", { desc = "clear search highlight" })
+
+-- notifications
+vim.keymap.set("n", "<leader>nd", function()
+  local ok, notify = pcall(require, "notify")
+  if ok then
+    notify.dismiss({ silent = true, pending = true })
+  end
+end, { desc = "dismiss notifications" })
+
+-- cheat sheet (floating window)
+vim.keymap.set("n", "<leader>?", function()
+  require("cheatsheet").open()
+end, { desc = "open cheat sheet" })
+vim.keymap.set("v", "<leader>?", function()
+  require("cheatsheet").open()
+end, { desc = "open cheat sheet" })
