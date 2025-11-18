@@ -59,11 +59,11 @@ CASKS=(
   alt-tab
   betterdisplay
   caffeine
-  chatgpt-atlas
   coderabbit
   docker
   docker-desktop
   dropbox
+  firefox@developer-edition
   flux-app
   font-fira-code-nerd-font
   font-hack-nerd-font
