@@ -75,12 +75,11 @@ cmd-h = [] # Disable annoying and useless "hide application" shortcut
 # alt-enter = 'exec-and-forget open -n /System/Applications/Utilities/Terminal.app'
 # alt-enter = 'exec-and-forget open -n /Applications/Ghostty.app "$@"'
 alt-enter = 'exec-and-forget open /Applications/Ghostty.app'
-alt-q = 'exec-and-forget open /System/Applications/Reminders.app'
-alt-w = 'exec-and-forget open /Applications/Telegram.app'
-alt-e = 'exec-and-forget open ~/Applications/DataGrip.app'
-alt-r = 'exec-and-forget open /Applications/Notion.app'
-alt-t = 'exec-and-forget open /Applications/Postman.app'
-alt-y = 'exec-and-forget open /Applications/Dia.app'
+alt-shift-t = 'exec-and-forget open /Applications/Telegram.app'
+alt-shift-d = 'exec-and-forget open ~/Applications/DataGrip.app'
+alt-shift-n = 'exec-and-forget open /Applications/Notion.app'
+alt-shift-p = 'exec-and-forget open /Applications/Postman.app'
+alt-shift-b = 'exec-and-forget open "/Applications/Google Chrome.app"'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
 alt-slash = 'layout tiles horizontal vertical'
@@ -108,6 +107,7 @@ alt-2 = 'workspace 2'
 alt-3 = 'workspace 3'
 alt-4 = 'workspace 4'
 alt-5 = 'workspace 5'
+alt-6 = 'workspace 6'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-shift-1 = 'move-node-to-workspace 1'
@@ -115,6 +115,7 @@ alt-shift-2 = 'move-node-to-workspace 2'
 alt-shift-3 = 'move-node-to-workspace 3'
 alt-shift-4 = 'move-node-to-workspace 4'
 alt-shift-5 = 'move-node-to-workspace 5'
+alt-shift-6 = 'move-node-to-workspace 6'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 alt-tab = 'workspace-back-and-forth'
@@ -140,27 +141,33 @@ alt-shift-l = ['join-with right', 'mode main']
 
 # web
 [[on-window-detected]]
-if.app-name-regex-substring = 'gpt|dia|arc|safari|firefox|chrome'
+if.app-name-regex-substring = 'safari|firefox|chrome'
 check-further-callbacks = true
 run = ['move-node-to-workspace 1']
 
-# code
+# code and dev
 [[on-window-detected]]
-if.app-name-regex-substring = 'code|cursor|trae|kiro|xcode|webstorm|datagrip'
+if.app-name-regex-substring = 'code|cursor|datagrip|postman'
 check-further-callbacks = true
 run = ['move-node-to-workspace 2']
 
-# dev
+# terminal
 [[on-window-detected]]
-if.app-name-regex-substring = 'terminal|ghostty|postman|docker|git'
+if.app-name-regex-substring = 'ghostty'
 check-further-callbacks = true
 run = ['move-node-to-workspace 3']
 
-# other
+# chats
 [[on-window-detected]]
-if.app-name-regex-substring = 'notion|telegram|whatsapp|spark|reminders|calendar|mail|opal'
+if.app-name-regex-substring = 'telegram|whatsapp'
 check-further-callbacks = true
 run = ['move-node-to-workspace 4']
 
-# workspace 5 is for special works and no app should use it by default to be free at the time of need
+# task management
+[[on-window-detected]]
+if.app-name-regex-substring = 'notion|reminders|calendar'
+check-further-callbacks = true
+run = ['move-node-to-workspace 5']
+
+# workspace 6 is for special works and no app should use it by default to be free at the time of need
 

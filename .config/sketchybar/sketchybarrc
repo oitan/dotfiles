@@ -92,9 +92,6 @@ sketchybar --remove cpu.percent > /dev/null 2>&1 || true
 sketchybar --remove cpu.sys > /dev/null 2>&1 || true
 sketchybar --remove cpu.user > /dev/null 2>&1 || true
 
-# Place QWERTY space shortcuts on the right side (left edge of right cluster)
-source "$ITEM_DIR/space-shortcuts.sh"
-
 # Ensure any previously-added weather item is removed
 sketchybar --remove weather > /dev/null 2>&1 || true
 
