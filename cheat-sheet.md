@@ -172,6 +172,9 @@ just like `find` but better.
 - `gv` -> select last visual selection
 - `ge` -> prev end of word
 - `gi` -> go to last insert
+- `{`/`}` -> go to previous/next paragraph
+- `>>`/`<<` -> shift line/selection right/left
+- `<C-a>`/`<C-x>` -> increment/decrement number under cursor
 
 ### navigation
 
@@ -203,6 +206,7 @@ just like `find` but better.
 
 - `:wqa` -> write quit all
 - `:x` -> save and quit
+- `ZZ` -> save and quit (`:wq!`)
 - `:help key-notation` -> see key notations
 - `:h jumplist` -> a lot of good motions to learn about jumps
 
@@ -225,6 +229,8 @@ just like `find` but better.
 - `<C-x><C-o>` -> autocomplete
 - `<C-o>` -> puts in normal mode for one command and puts back to insert
 - `<C-i>` -> tab (no need for this, use actual tab)
+- `<C-e/y>` -> pull character from below/above line
+- `<C-j>` -> join line with the next
 
 ### autocomplete
 

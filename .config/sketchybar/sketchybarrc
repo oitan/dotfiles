@@ -81,6 +81,7 @@ source "$ITEM_DIR/front_app.sh"
 source "$ITEM_DIR/prayer.sh"
 
 # Right
+source "$ITEM_DIR/itsycal.sh"
 source "$ITEM_DIR/calendar.sh"
 source "$ITEM_DIR/input_source.sh"
 source "$ITEM_DIR/battery.sh"
