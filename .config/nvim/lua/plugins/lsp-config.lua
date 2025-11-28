@@ -25,6 +25,7 @@ return {
           "bashls",
           "prismals",
           "gopls",
+          "pyright",
         },
       })
     end,
@@ -45,6 +46,12 @@ return {
           "goimports",
           "gofumpt",
           "golangci-lint",
+          -- Python tooling
+          "pyright",
+          "ruff",
+          "black",
+          "isort",
+          "mypy",
         },
       })
     end,
@@ -87,6 +94,7 @@ return {
           end,
         })
       )
+      vim.lsp.config("pyright", with_defaults())
 
       -- enable configs (activates for their filetypes)
       vim.lsp.enable("lua_ls")
@@ -96,6 +104,7 @@ return {
       vim.lsp.enable("bashls")
       vim.lsp.enable("prismals")
       vim.lsp.enable("gopls")
+      vim.lsp.enable("pyright")
 
       -- keymaps
       vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "see definition" })

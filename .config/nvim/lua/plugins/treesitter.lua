@@ -7,6 +7,7 @@ return {
 			auto_install = true,
 			ensure_installed = {
 				"jsdoc",
+				"python",
 			},
 			highlight = { enable = true },
 			indent = { enable = true },

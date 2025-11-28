@@ -14,6 +14,11 @@ return {
         null_ls.builtins.formatting.goimports,
         null_ls.builtins.formatting.gofumpt,
         null_ls.builtins.diagnostics.golangci_lint,
+        -- Python
+        null_ls.builtins.formatting.black,
+        null_ls.builtins.formatting.isort,
+        require("none-ls.diagnostics.ruff"),
+        null_ls.builtins.diagnostics.mypy,
         require("none-ls.diagnostics.eslint_d"),
         require("none-ls.code_actions.eslint_d"),
         null_ls.builtins.code_actions.gitsigns,
