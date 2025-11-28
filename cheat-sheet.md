@@ -151,6 +151,8 @@ just like `find` but better.
 - `<leader>fm` -> format
 - `<C-w>s/v` -> open new split window (horizontal/vertical)
 - `<C-up/down/left/right>` -> resize split window
+- `<leader>ww` -> window picker: choose window and focus it
+- `<leader>ws` -> window picker: choose window and send current buffer there
 - `<C-w>r`/`<C-w><C-r>` -> move window to right or down. Cursor stays in the same window
 - `<C-w>R` -> move window to left or up. Cursor stays in the same window
 - `<C-w>H/J/K/L` -> move current window to the top left/bottom/top/right position
