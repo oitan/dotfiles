@@ -204,6 +204,14 @@ just like `find` but better.
 - live grep (multi dir): `:Telescope live_grep search_dirs=dir1 search_dirs=dir2`
 - live grep (multi dir, hidden): `:Telescope live_grep search_dirs=dir1 search_dirs=dir2 additional_args=--hidden additional_args=--glob=!.git/**`
 
+### surround (mini.surround)
+
+- `sa[motion][delims]` -> add surround (e.g., `saiw"`, `saip(`)
+- `sd` -> delete current surround
+- `sr[delims]` -> replace current surround (e.g., `sr'`)
+- `sf`/`sF` -> select nearest surround to right/left
+- `sh` -> highlight surrounding region
+
 ## command mode
 
 - `:wqa` -> write quit all
@@ -312,43 +320,3 @@ just like `find` but better.
 ## neogit
 
 - `<leader>ge` -> git explorer
-
-## comment
-
-- NORMAL mode
-  `gcc` -> Toggles the current line using linewise comment
-  `gbc` -> Toggles the current line using blockwise comment
-  `[count]gcc` -> Toggles the number of line given as a prefix-count using linewise
-  `[count]gbc` -> Toggles the number of line given as a prefix-count using blockwise
-  `gc[count]{motion}` -> (Op-pending) Toggles the region using linewise comment
-  `gb[count]{motion}` -> (Op-pending) Toggles the region using blockwise comment
-- VISUAL mode
-  `gc` -> Toggles the region using linewise comment
-  `gb` -> Toggles the region using blockwise comment
-
-### extra mappings
-
-These mappings are enabled by default. (config: `mappings.extra`)
-
-- NORMAL mode
-  `gco` -> Insert comment to the next line and enters INSERT mode
-  `gcO` -> Insert comment to the previous line and enters INSERT mode
-  `gcA` -> Insert comment to end of the current line and enters INSERT mode
-
-### examples
-
-#### linewise
-
-`gcw` -> Toggle from the current cursor position to the next word
-`gc$` -> Toggle from the current cursor position to the end of line
-`gc}` -> Toggle until the next blank line
-`gc5j` -> Toggle 5 lines after the current cursor position
-`gc8k` -> Toggle 8 lines before the current cursor position
-`gcip` -> Toggle inside of paragraph
-`gca}` -> Toggle around curly brackets
-
-#### blockwise
-
-`gb2}` -> Toggle until the 2 next blank line
-`gbaf` -> Toggle comment around a function (w/ LSP/treesitter support)
-`gbac` -> Toggle comment around a class (w/ LSP/treesitter support)

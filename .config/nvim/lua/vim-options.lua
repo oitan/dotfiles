@@ -18,6 +18,16 @@ vim.keymap.set("n", "<leader>f.", ":cnext<CR>", { desc = "next qf item" })
 vim.keymap.set("n", "<leader>fo", ":copen<CR>", { desc = "open qf list" })
 vim.keymap.set("n", "<leader>fc", ":cclose<CR>", { desc = "close qf list" })
 
+-- system clipboard
+vim.keymap.set("v", "<leader>y", '"+y', { desc = "yank selection to system clipboard" })
+vim.keymap.set("n", "<leader>Y", '"+yg_', { desc = "yank to system clipboard until line end" })
+vim.keymap.set("n", "<leader>y", '"+y', { desc = "yank to system clipboard" })
+vim.keymap.set("n", "<leader>yy", '"+yy', { desc = "yank line to system clipboard" })
+vim.keymap.set("n", "<leader>p", '"+p', { desc = "paste after from system clipboard" })
+vim.keymap.set("n", "<leader>P", '"+P', { desc = "paste before from system clipboard" })
+vim.keymap.set("v", "<leader>p", '"+p', { desc = "paste after from system clipboard" })
+vim.keymap.set("v", "<leader>P", '"+P', { desc = "paste before from system clipboard" })
+
 -- blocks
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "move block down" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "move block up" })
