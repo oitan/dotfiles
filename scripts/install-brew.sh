@@ -43,6 +43,7 @@ FORMULAE=(
   starship
   stow
   tree-sitter
+  treemd
   unar
   unbound
   usage
