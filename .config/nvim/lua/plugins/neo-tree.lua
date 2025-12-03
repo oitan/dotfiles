@@ -12,6 +12,10 @@ return {
       auto_clean_after_session_restore = true,
       filesystem = {
         filtered_items = {
+          never_show ={
+            ".git",
+            ".DS_Store"
+          },
           visible = true,
           hide_dotfiles = false,
         },

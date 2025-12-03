@@ -9,6 +9,6 @@ return {
 			session_lens = {},
 		})
 
-		vim.keymap.set("n", "<leader>ls", "<cmd>AutoSession search<CR>", { noremap = true, desc = "search sessions" })
+		vim.keymap.set("n", "<leader>ls", ":AutoSession search<CR>", { noremap = true, desc = "search sessions" })
 	end,
 }

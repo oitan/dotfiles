@@ -21,11 +21,14 @@ FORMULAE=(
   carapace
   cmake
   codex
+  diffnav
   eza
+  fastfetch
   fd
   fzf
   gh
   git
+  install-nothing
   jq
   lazydocker
   lazygit
@@ -79,6 +82,7 @@ CASKS=(
   jetbrains-toolbox
   karabiner-elements
   libreoffice
+  motionik
   ngrok
   notion
   notion-calendar

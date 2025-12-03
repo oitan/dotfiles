@@ -165,11 +165,11 @@ source <(carapace _carapace)
 ### ATUIN
 # eval "$(atuin init zsh)"
 
-### KIRO
-[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
-
 ### ANDROID
 export ANDROID_HOME=$HOME/Library/Android/sdk
 
 export PATH=$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/latest/bin
 eval "$(mise activate zsh)"
+
+### FASTFETCH
+fastfetch

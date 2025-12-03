@@ -41,10 +41,16 @@ vim.keymap.set("n", "<C-Left>", ":vertical resize -2<CR>", { desc = "resize spli
 vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", { desc = "resize split right" })
 
 -- terminal
-vim.keymap.set("t", "<C-Up>", "<cmd>resize -2<CR>", { desc = "resize split up" })
-vim.keymap.set("t", "<C-Down>", "<cmd>resize +2<CR>", { desc = "resize split down" })
-vim.keymap.set("t", "<C-Left>", "<cmd>vertical resize -2<CR>", { desc = "resize split left" })
-vim.keymap.set("t", "<C-Right>", "<cmd>vertical resize +2<CR>", { desc = "resize split right" })
+vim.keymap.set("t", "<C-Up>", ":resize -2<CR>", { desc = "resize split up" })
+vim.keymap.set("t", "<C-Down>", ":resize +2<CR>", { desc = "resize split down" })
+vim.keymap.set("t", "<C-Left>", ":vertical resize -2<CR>", { desc = "resize split left" })
+vim.keymap.set("t", "<C-Right>", ":vertical resize +2<CR>", { desc = "resize split right" })
+
+-- navigation
+vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "jump to split on the left" })
+vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "jump to split on the bottom" })
+vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "jump to split on the top" })
+vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "jump to split on the right" })
 
 -- colors and search
 vim.opt.termguicolors = true
@@ -52,20 +58,20 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- clear search highlight
-vim.keymap.set("n", "<leader>h", "<cmd>nohlsearch<CR>", { desc = "clear search highlight" })
+vim.keymap.set("n", "<leader>h", ":nohlsearch<CR>", { desc = "clear search highlight" })
 
 -- notifications
 vim.keymap.set("n", "<leader>nd", function()
-  local ok, notify = pcall(require, "notify")
-  if ok then
-    notify.dismiss({ silent = true, pending = true })
-  end
+	local ok, notify = pcall(require, "notify")
+	if ok then
+		notify.dismiss({ silent = true, pending = true })
+	end
 end, { desc = "dismiss notifications" })
 
 -- cheat sheet (floating window)
 vim.keymap.set("n", "<leader>?", function()
-  require("cheatsheet").open()
+	require("cheatsheet").open()
 end, { desc = "open cheat sheet" })
 vim.keymap.set("v", "<leader>?", function()
-  require("cheatsheet").open()
+	require("cheatsheet").open()
 end, { desc = "open cheat sheet" })

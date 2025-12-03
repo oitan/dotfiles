@@ -1,11 +1,14 @@
 source ~/.secret-aliases
+
+# other tools
 alias cat="bat"
 alias cd="z"
 alias v="nvim"
-alias t="trae ."
 alias c="code ."
 alias res="restart"
 alias lg="lazygit"
+alias dps="docker ps  -a --format 'table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Names}}'"
+alias sw="cd ~/dotfiles && stow . && stow --adopt ."
 
 # eza
 alias l="eza"
@@ -69,8 +72,3 @@ alias yuil="yarn upgrade-interactive --latest"
 alias yad="yarn add -D"
 alias ya="yarn add"
 
-# docker
-alias dps="docker ps  -a --format 'table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Names}}'"
-
-# stow
-alias sw="cd ~/dotfiles && stow . && stow --adopt ."
