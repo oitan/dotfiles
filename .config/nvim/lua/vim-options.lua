@@ -3,9 +3,32 @@ vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,
 
 -- indentation
 vim.opt.expandtab = true
-vim.opt.tabstop = 2
-vim.opt.softtabstop = 2
-vim.opt.shiftwidth = 2
+vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.autoindent = false
+vim.opt.smartindent = false
+vim.opt.cindent = false
+
+-- Global Lua function for indentexpr
+function _G.SpaceIndent(lnum)
+	if lnum == 1 then
+		return 0
+	end
+
+	local prev = vim.fn.getline(lnum - 1)
+	-- leading whitespace (spaces or tabs; but we run with expandtab=true)
+	local leading = prev:match("^(%s*)") or ""
+	local width = vim.fn.strdisplaywidth(leading)
+
+	-- Optional: extra indent after opening brace/paren/colon (tweak as needed)
+	if prev:match("{%s*$") or prev:match("%(%s*$") or prev:match("%[%s*$") or prev:match(":%s*$") then
+		local sw = vim.bo.shiftwidth > 0 and vim.bo.shiftwidth or vim.bo.tabstop
+		width = width + sw
+	end
+
+	return width
+end
 
 -- UI
 vim.opt.number = true
