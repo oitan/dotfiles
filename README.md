@@ -1,6 +1,6 @@
 # Info
 
-- Using _catppuccin mocha_ palette wherever possible
+- Using _catppuccin frappe_ (previously I used mocha) palette wherever possible
 
 # To-Dos
 
@@ -21,20 +21,21 @@ Git clone [fzf-git](https://github.com/oitan/fzf-git.sh) into `$HOME` dir
 
 ## bat
 
-Install Catppuccin Mocha theme for `bat`
+Install Catppuccin Frappe theme for `bat`
 
 - `$ mkdir themes`
-- `$ wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Mocha.tmTheme`
+- `$ wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Frappe.tmTheme`
 - `$ bat cache --build`
 - Run `$ bat --list-themes`, and check if the themes are present in the list.
 
 ## zsh-syntax-highlighting
 
-Install Catppuccin Mocha theme for zsh syntax highlighting: https://github.com/catppuccin/zsh-syntax-highlighting
+Install Catppuccin Frappe theme for zsh syntax highlighting: https://github.com/catppuccin/zsh-syntax-highlighting
 
 ## HomeBrew
 
 Install packages using Brewfile
+
 - `$ brew bundle`
 
 ## App Store

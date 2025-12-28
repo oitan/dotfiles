@@ -22,7 +22,7 @@ bindkey "^[[1;9C" end-of-line
 ## Catppuccin theme
 
 # zsh syntax highlighting
-source ~/zsh-syntax-highlighting/themes/catppuccin_mocha-zsh-syntax-highlighting.zsh
+source ~/zsh-syntax-highlighting/themes/catppuccin_frappe-zsh-syntax-highlighting.zsh
 
 # fzf
 export FZF_DEFAULT_OPTS=" \
