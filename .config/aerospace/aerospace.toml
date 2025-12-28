@@ -80,6 +80,10 @@ alt-shift-d = 'exec-and-forget open ~/Applications/DataGrip.app'
 alt-shift-n = 'exec-and-forget open /Applications/Notion.app'
 alt-shift-p = 'exec-and-forget open /Applications/Postman.app'
 alt-shift-b = 'exec-and-forget open "/Applications/Google Chrome.app"'
+alt-shift-w = 'exec-and-forget open /Applications/WhatsApp.app'
+alt-shift-c = 'exec-and-forget open "/Applications/Notion Calendar.app"'
+alt-shift-f = 'exec-and-forget open ~/dev'
+alt-shift-r = 'exec-and-forget open /System/Applications/Reminders.app'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
 alt-slash = 'layout tiles horizontal vertical'

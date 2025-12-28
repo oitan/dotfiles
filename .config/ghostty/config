@@ -6,3 +6,4 @@ font-family = "JetBrainsMono Nerd Font"
 # system
 window-save-state = always
 copy-on-select = clipboard
+shell-integration-features = ssh-terminfo,ssh-env

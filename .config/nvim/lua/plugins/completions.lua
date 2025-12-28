@@ -31,8 +31,11 @@ return {
 					["<C-Space>"] = cmp.mapping.complete(),
 					["<C-e>"] = cmp.mapping.abort(),
 					["<CR>"] = cmp.mapping(function(fallback)
-						if cmp.visible() and cmp.get_active_entry() then
-							cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+						if
+							cmp.visible()
+							-- and cmp.get_active_entry() -- do it only if selected completion option
+						then
+							cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })
 						else
 							fallback() -- send real <CR> to Neovim -> indentation runs
 						end

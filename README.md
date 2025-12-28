@@ -1,6 +1,6 @@
 # Info
 
-- Using *catppuccin mocha* palette wherever possible
+- Using _catppuccin mocha_ palette wherever possible
 
 # To-Dos
 
@@ -34,10 +34,8 @@ Install Catppuccin Mocha theme for zsh syntax highlighting: https://github.com/c
 
 ## HomeBrew
 
-Make scripts executable and run the installer:
-
-- `$ chmod +x ./scripts/*`
-- `$ ./scripts/install-brew.sh`
+Install packages using Brewfile
+- `$ brew bundle`
 
 ## App Store
 

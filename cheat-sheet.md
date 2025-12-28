@@ -178,6 +178,14 @@ just like `find` but better.
 - `>>`/`<<` -> shift line/selection right/left
 - `<C-a>`/`<C-x>` -> increment/decrement number under cursor
 
+### git in nvim
+
+- `Gitsigns`: `<leader>gph` preview hunk; `<leader>gtb` toggle blame
+- `Diffview` open/close: `:DiffviewOpen` or `<leader>do`; `<leader>dc`
+- `Diffview` navigate: `]d` next file; `[d` prev file; `<leader>dF` focus files; `<leader>dp`/`<leader>dn` focus prev/next panel; `<leader>dt` open entry in tab
+- `Diffview` actions: `<leader>df` toggle files panel; `<leader>dr` refresh; `<leader>ds` stage/unstage entry; `<leader>dX`/`<leader>dE` collapse/expand folds; `<leader>dh` file history (cwd); `<leader>dH` file history (file)
+- `Neogit`: `<leader>ge` open Magit-like status (floating)
+
 ### navigation
 
 - `zt` -> current line to top of window
