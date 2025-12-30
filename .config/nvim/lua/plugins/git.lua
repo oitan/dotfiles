@@ -138,7 +138,7 @@ return {
 					vim.notify("No file in current buffer for history", vim.log.levels.WARN)
 					return
 				end
-				diffview.file_history({ paths = { file } })
+				diffview.file_history(nil, { paths = { file } })
 			end, { desc = "Diffview: File History (current file)" })
 
 			vim.keymap.set(

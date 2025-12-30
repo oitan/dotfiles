@@ -4,7 +4,6 @@ return {
 		"nvimtools/none-ls-extras.nvim",
 	},
 	config = function()
-		local python_path = require("plugins.helpers.python_path")
 		local null_ls = require("null-ls")
 
 		null_ls.setup({
@@ -23,9 +22,7 @@ return {
 				null_ls.builtins.code_actions.gitsigns,
 				null_ls.builtins.code_actions.refactoring,
 			},
-			on_attach = function(_client, bufnr)
-				require("lsp_signature").on_attach({}, bufnr)
-			end,
+
 		})
 
 		vim.keymap.set("n", "<leader>fm", vim.lsp.buf.format, { desc = "format" })

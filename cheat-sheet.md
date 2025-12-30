@@ -144,11 +144,26 @@ just like `find` but better.
 - `<C-p>` -> fuzzy find by filename
 - `<leader>fh` -> fuzzy find by filename (hidden files included)
 - `K` -> shows info for current symbol in a floating window. Pressing twice will jump into the floating window
-- `<leader>gd` -> go to definition
+- `gd` -> go to definition
+- `gR` -> see references
 - `<leader>ca` -> lists available code actions
-- `<leader>gR` -> see references
+- `<leader>cr` -> rename symbol
+- `<leader>e` -> open diagnostics float
+- `<leader>fd` -> open file diagnostics
+- `<leader>fD` -> open workspace diagnostics
+- `<C-k>` -> signature help (insert mode)
+- `<C-h/j/k/l>` -> move between splits (left/down/up/right)
 - `<C-n>` -> reveal filesystem
 - `<leader>fm` -> format
+- `<leader>h` -> clear search highlight
+- `<leader>?` -> open cheat sheet
+- `q` -> close cheat sheet window (inside cheat sheet)
+- `<leader>y` -> yank to system clipboard
+- `<leader>Y` -> yank to system clipboard until line end
+- `<leader>yy` -> yank line to system clipboard
+- `<leader>p` -> paste after from system clipboard
+- `<leader>P` -> paste before from system clipboard
+- `<leader>ta` -> toggle alternate (==/!=)
 - `<C-w>s/v` -> open new split window (horizontal/vertical)
 - `<C-up/down/left/right>` -> resize split window
 - `<leader>ww` -> window picker: choose window and focus it
@@ -159,10 +174,6 @@ just like `find` but better.
 - `<C-w>T` -> move the current split window to a new tab
 - `<C-w> =` -> resize all splits equally
 - `<C-w>q`/`<C-w><C-q>` -> close current window
-- `<leader>cr` -> rename variable
-- `<leader>e` -> open current diagnostics
-- `<leader>fd` -> open file diagnostics
-- `<leader>fD` -> open workspace diagnostics
 - `c<number>t<character>` -> change to number'th character
 - `<C-o/i>` -> jump back/forth
 - `di<motion>` -> delete inside motion (delete inside brackets for example)
@@ -188,6 +199,8 @@ just like `find` but better.
 
 ### navigation
 
+- `gt` -> next tab
+- `gT` -> previous tab
 - `zt` -> current line to top of window
 - `zz` -> current line to center of window
 - `zb` -> current line to bottom of window
@@ -203,6 +216,7 @@ just like `find` but better.
 
 ### telescope subfolder search
 
+- `<C-q>` -> send results to quickfix (in Telescope prompt)
 - files (one dir): `:Telescope find_files cwd=path/to/dir`
 - files (one dir, hidden): `:Telescope find_files cwd=path/to/dir hidden=true`
 - files (multi dir): `:Telescope find_files search_dirs=dir1 search_dirs=dir2`
@@ -249,10 +263,29 @@ just like `find` but better.
 - `<C-i>` -> tab (no need for this, use actual tab)
 - `<C-e/y>` -> pull character from below/above line
 - `<C-j>` -> join line with the next
+- `<C-k>` -> signature help
 
-### autocomplete
+### autocomplete (nvim-cmp)
 
-- `<C-p/n>` -> go to prev/next suggestion in a suggestion window
+- `<C-Space>` -> trigger completion
+- `<C-b>` / `<C-f>` -> scroll documentation up/down
+- `<C-e>` -> abort completion
+- `<CR>` -> confirm selection
+- `<C-p/n>` -> go to prev/next suggestion
+
+## visual mode
+
+- `<leader>y` -> yank selection to system clipboard
+- `<leader>p` -> paste after from system clipboard
+- `<leader>P` -> paste before from system clipboard
+- `J` -> move block down
+- `K` -> move block up
+- `<` / `>` -> indent block left/right
+- `<leader>?` -> open cheat sheet
+
+## terminal mode
+
+- `<C-up/down/left/right>` -> resize split window
 
 ## neo-tree
 
@@ -308,6 +341,7 @@ just like `find` but better.
 
 ## grapple
 
+- `<leader>1..9` -> select tag by index
 - `<leader>n/p` -> cycle tags
 - `<leader>M` -> toggle
 - `<leader>m` -> list tags

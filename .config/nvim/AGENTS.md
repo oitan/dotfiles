@@ -130,6 +130,7 @@ If you need to run a formatter manually (examples, adjust paths as needed):
 - Prefer minimal, targeted edits; avoid reorganizing unrelated files.
 - Keep comments succinct and only where they clarify non-obvious logic.
 - Do not introduce new dependencies unless necessary.
+- Keep `cheat-sheet.md` up to date when keymaps change.
 
 ## Typical edit workflow
 - Update or add a plugin config file under `lua/plugins/`.
