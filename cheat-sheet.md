@@ -141,7 +141,7 @@ just like `find` but better.
 
 - `<leader>fg` -> fuzzy find in files
 - `<leader>fG` -> fuzzy find in files (hidden files included)
-- `<leader>ff` -> fuzzy find by filename
+- `<C-p>` -> fuzzy find by filename
 - `<leader>fh` -> fuzzy find by filename (hidden files included)
 - `K` -> shows info for current symbol in a floating window. Pressing twice will jump into the floating window
 - `gd` -> go to definition
@@ -153,7 +153,7 @@ just like `find` but better.
 - `<leader>fD` -> open workspace diagnostics
 - `<C-k>` -> signature help (insert mode)
 - `<C-h/j/k/l>` -> move between splits (left/down/up/right)
-- `<leader>tt` -> toggle filesystem
+- `<C-n>` -> toggle filesystem
 - `<leader>fm` -> format
 - `<leader>h` -> clear search highlight
 - `<leader>?` -> open cheat sheet
@@ -195,6 +195,7 @@ just like `find` but better.
 - `Diffview` open/close: `:DiffviewOpen` or `<leader>do`; `<leader>dc`
 - `Diffview` navigate: `]d` next file; `[d` prev file; `<leader>dF` focus files; `<leader>dp`/`<leader>dn` focus prev/next panel; `<leader>dt` open entry in tab
 - `Diffview` actions: `<leader>df` toggle files panel; `<leader>dr` refresh; `<leader>ds` stage/unstage entry; `<leader>dX`/`<leader>dE` collapse/expand folds; `<leader>dh` file history (cwd); `<leader>dH` file history (file)
+- `Difftastic`: `]f`/`[f` next/prev file; `]c`/`[c` next/prev hunk; `q` close; `<Tab>` focus tree/diff; `<CR>` select; `gf` go to file
 - `Neogit`: `<leader>ge` open Magit-like status (floating)
 
 ### navigation
@@ -216,7 +217,7 @@ just like `find` but better.
 
 ### telescope subfolder search
 
-- `<M-f>` -> send results to quickfix (in Telescope prompt)
+- `<C-q>` -> send results to quickfix (in Telescope prompt)
 - files (one dir): `:Telescope find_files cwd=path/to/dir`
 - files (one dir, hidden): `:Telescope find_files cwd=path/to/dir hidden=true`
 - files (multi dir): `:Telescope find_files search_dirs=dir1 search_dirs=dir2`
@@ -268,7 +269,7 @@ just like `find` but better.
 ### autocomplete (nvim-cmp)
 
 - `<C-Space>` -> trigger completion
-- `<C-u>` / `<C-d>` -> scroll documentation up/down
+- `<C-b>` / `<C-f>` -> scroll documentation up/down
 - `<C-e>` -> abort completion
 - `<CR>` -> confirm selection
 - `<C-p/n>` -> go to prev/next suggestion

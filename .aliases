@@ -4,7 +4,6 @@ source ~/.secret-aliases
 alias cat="bat"
 alias cd="z"
 alias v="nvim"
-alias c="code ."
 alias res="restart"
 alias lzg="lazygit"
 alias lzd="lazydocker"
@@ -13,6 +12,7 @@ alias dps="docker ps  -a --format 'table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Na
 alias sw="cd ~/dotfiles && stow . && stow --adopt ."
 alias zj="zellij"
 alias oc="opencode"
+alias print_path="echo "$PATH" | tr ':' '\n'"
 
 # eza
 alias l="eza"
@@ -25,6 +25,7 @@ alias e="eza --color=always --long --git --no-filesize --icons=always --no-time 
 # git
 alias g="git"
 alias gs="git status"
+alias gssb="git status -sb"
 alias gsb="git switch"
 alias gsh="git stash"
 alias gshm="git stash push -m"

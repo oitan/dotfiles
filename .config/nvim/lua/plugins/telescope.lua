@@ -62,7 +62,7 @@ return {
 
 			local builtin = require("telescope.builtin")
 			-- Normal search: respect .gitignore, no dotfiles
-			vim.keymap.set("n", "<leader>ff", function()
+			vim.keymap.set("n", "<C-p>", function()
 				builtin.find_files({ hidden = false, no_ignore = false })
 			end, { desc = "find files" })
 			-- Hidden search: include dotfiles, ignore VCS ignores; exclude .git, node_modules, dist
@@ -88,10 +88,14 @@ return {
 						return {
 							"--hidden",
 							"--no-ignore-vcs",
-							"--glob", "!**/node_modules/**",
-							"--glob", "!**/dist/**",
-							"--glob", "!**/.yarn/**",
-							"--glob", "!**/.adminjs/**",
+							"--glob",
+							"!**/node_modules/**",
+							"--glob",
+							"!**/dist/**",
+							"--glob",
+							"!**/.yarn/**",
+							"--glob",
+							"!**/.adminjs/**",
 						}
 					end,
 				})
