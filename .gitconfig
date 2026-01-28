@@ -12,5 +12,5 @@
 	required = true
 [push]
 	autoSetupRemote = true
-[coderabbit]
-	machineId = cli/3ed8b026d4394fba9c5037a119db41f3
+[core]
+	excludesfile = /Users/oitan/.gitignore_global

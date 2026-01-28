@@ -187,4 +187,13 @@ return {
 			vim.keymap.set("n", "<leader>ge", toggle_filesystem, { desc = "open git explorer" })
 		end,
 	},
+	{
+		"clabby/difftastic.nvim",
+		dependencies = { "MunifTanjim/nui.nvim" },
+		config = function()
+			require("difftastic-nvim").setup({
+				download = true, -- Auto-download pre-built binary
+			})
+		end,
+	},
 }
