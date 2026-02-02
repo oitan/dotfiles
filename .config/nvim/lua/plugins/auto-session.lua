@@ -7,6 +7,7 @@ return {
 			pre_save_cmds = { "tabdo Neotree close" },
 			post_restore_cmds = { "Neotree" },
 			session_lens = {},
+			delete_session = { "i", "<C-d>" },
 		})
 
 		vim.keymap.set("n", "<leader>ls", ":AutoSession search<CR>", { noremap = true, desc = "search sessions" })
