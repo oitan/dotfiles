@@ -13,7 +13,21 @@
 - `$ brew install git stow`
 - git clone this repo to your `$HOME`
 - `$ cd ~/dotfiles`
-- `$ stow .` or `$stow --adopt .`
+- `$ stow .` or `$ stow --adopt .`
+
+### Adding new config files
+
+Always add new files in `~/dotfiles`, then re-run `$ stow .` to create symlinks in `$HOME`. Stow only symlinks files that exist in the repo at the time it runs.
+
+### Adopting existing config files from `$HOME`
+
+If a program creates a new config file in `$HOME` that you want tracked:
+
+```bash
+cd ~/dotfiles && stow --adopt . --target=$HOME
+```
+
+This moves the home file into the repo and replaces it with a symlink.
 
 ## fzf-git
 
