@@ -74,7 +74,7 @@ alt-shift-t = 'exec-and-forget open /Applications/Telegram.app'
 alt-shift-d = 'exec-and-forget open ~/Applications/DataGrip.app'
 alt-shift-n = 'exec-and-forget open /Applications/Notion.app'
 alt-shift-p = 'exec-and-forget open /Applications/Postman.app'
-alt-shift-b = 'exec-and-forget open "/Applications/Google Chrome.app"'
+alt-shift-b = 'exec-and-forget open "/Applications/Zen.app"'
 alt-shift-w = 'exec-and-forget open /Applications/WhatsApp.app'
 alt-shift-c = 'exec-and-forget open "/Applications/Notion Calendar.app"'
 alt-shift-f = 'exec-and-forget open ~/dev'
@@ -140,7 +140,7 @@ alt-shift-l = ['join-with right', 'mode main']
 
 # web
 [[on-window-detected]]
-if.app-name-regex-substring = 'safari|firefox|chrome'
+if.app-name-regex-substring = 'safari|firefox|chrome|helium|zen'
 check-further-callbacks = true
 run = ['move-node-to-workspace 1']
 

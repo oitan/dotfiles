@@ -8,9 +8,29 @@ window-save-state = always
 copy-on-select = clipboard
 shell-integration-features = ssh-terminfo,ssh-env
 macos-option-as-alt = left
+macos-applescript = false
+
+window-inherit-working-directory = false
+tab-inherit-working-directory = true
+split-inherit-working-directory = true
+
+## notification
+notify-on-command-finish=unfocused
+notify-on-command-finish-action=bell,notify
+notify-on-command-finish-after=5s
 
 # keybinds
 keybind = global:alt+q=toggle_quick_terminal
 keybind = alt+left=unbind
 keybind = alt+right=unbind
+
+## resize
+keybind = resize/arrow_up=resize_split:up,10
+keybind = resize/arrow_down=resize_split:down,10
+keybind = resize/arrow_left=resize_split:left,10
+keybind = resize/arrow_right=resize_split:right,10
+keybind = resize/escape=deactivate_key_table
+keybind = resize/catch_all=ignore
+
+keybind = ctrl+a=activate_key_table:resize
 

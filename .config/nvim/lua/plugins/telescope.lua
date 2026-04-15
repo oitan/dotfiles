@@ -36,13 +36,13 @@ return {
 					vimgrep_arguments = vimgrep_arguments,
 					mappings = {
 						i = {
-							["<M-f>"] = function(prompt_bufnr)
+							["<C-q>"] = function(prompt_bufnr)
 								actions.smart_send_to_qflist(prompt_bufnr)
 								actions.open_qflist(prompt_bufnr)
 							end,
 						},
 						n = {
-							["<M-f>"] = function(prompt_bufnr)
+							["<C-q>"] = function(prompt_bufnr)
 								actions.smart_send_to_qflist(prompt_bufnr)
 								actions.open_qflist(prompt_bufnr)
 							end,
@@ -62,7 +62,7 @@ return {
 
 			local builtin = require("telescope.builtin")
 			-- Normal search: respect .gitignore, no dotfiles
-			vim.keymap.set("n", "<C-p>", function()
+            vim.keymap.set("n", "<C-p>", function()
 				builtin.find_files({ hidden = false, no_ignore = false })
 			end, { desc = "find files" })
 			-- Hidden search: include dotfiles, ignore VCS ignores; exclude .git, node_modules, dist

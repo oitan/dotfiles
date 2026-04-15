@@ -60,11 +60,6 @@ return {
 			local telescope = require("telescope.builtin")
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-			vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
-				vim.lsp.handlers.signature_help,
-				{ border = "rounded" }
-			)
-
 			local function with_defaults(extra)
 				return vim.tbl_deep_extend("force", { capabilities = capabilities }, extra or {})
 			end
@@ -95,7 +90,7 @@ return {
 					end
 					vim.b[bufnr].signature_help_setup = true
 
-					vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, {
+					vim.keymap.set("i", "<C-k>", function() vim.lsp.buf.signature_help({ border = "rounded" }) end, {
 						buffer = bufnr,
 						desc = "signature help",
 					})
@@ -107,7 +102,7 @@ return {
 							if vim.fn.pumvisible() == 1 then
 								return
 							end
-							vim.lsp.buf.signature_help()
+							vim.lsp.buf.signature_help({ border = "rounded" })
 						end,
 					})
 				end,
