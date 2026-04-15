@@ -79,3 +79,6 @@ alias yuil="yarn upgrade-interactive --latest"
 alias yad="yarn add -D"
 alias ya="yarn add"
 
+# pnpm
+alias p="pnpm"
+

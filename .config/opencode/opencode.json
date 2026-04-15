@@ -1,18 +1,13 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "plugin": [
-    "opencode-openai-codex-auth@4.2.0",
-    "opencode-gemini-auth@latest"
-  ],
+  "plugin": ["opencode-openai-codex-auth@4.2.0", "opencode-gemini-auth@latest"],
   "provider": {
     "openai": {
       "options": {
         "reasoningEffort": "medium",
         "reasoningSummary": "auto",
         "textVerbosity": "medium",
-        "include": [
-          "reasoning.encrypted_content"
-        ],
+        "include": ["reasoning.encrypted_content"],
         "store": false
       },
       "models": {
@@ -23,21 +18,14 @@
             "output": 128000
           },
           "modalities": {
-            "input": [
-              "text",
-              "image"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": ["text", "image"],
+            "output": ["text"]
           },
           "options": {
             "reasoningEffort": "none",
             "reasoningSummary": "auto",
             "textVerbosity": "medium",
-            "include": [
-              "reasoning.encrypted_content"
-            ],
+            "include": ["reasoning.encrypted_content"],
             "store": false
           }
         },
@@ -48,21 +36,14 @@
             "output": 128000
           },
           "modalities": {
-            "input": [
-              "text",
-              "image"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": ["text", "image"],
+            "output": ["text"]
           },
           "options": {
             "reasoningEffort": "low",
             "reasoningSummary": "auto",
             "textVerbosity": "medium",
-            "include": [
-              "reasoning.encrypted_content"
-            ],
+            "include": ["reasoning.encrypted_content"],
             "store": false
           }
         },
@@ -73,21 +54,14 @@
             "output": 128000
           },
           "modalities": {
-            "input": [
-              "text",
-              "image"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": ["text", "image"],
+            "output": ["text"]
           },
           "options": {
             "reasoningEffort": "medium",
             "reasoningSummary": "auto",
             "textVerbosity": "medium",
-            "include": [
-              "reasoning.encrypted_content"
-            ],
+            "include": ["reasoning.encrypted_content"],
             "store": false
           }
         },
@@ -98,21 +72,14 @@
             "output": 128000
           },
           "modalities": {
-            "input": [
-              "text",
-              "image"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": ["text", "image"],
+            "output": ["text"]
           },
           "options": {
             "reasoningEffort": "high",
             "reasoningSummary": "detailed",
             "textVerbosity": "medium",
-            "include": [
-              "reasoning.encrypted_content"
-            ],
+            "include": ["reasoning.encrypted_content"],
             "store": false
           }
         },
@@ -123,21 +90,14 @@
             "output": 128000
           },
           "modalities": {
-            "input": [
-              "text",
-              "image"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": ["text", "image"],
+            "output": ["text"]
           },
           "options": {
             "reasoningEffort": "xhigh",
             "reasoningSummary": "detailed",
             "textVerbosity": "medium",
-            "include": [
-              "reasoning.encrypted_content"
-            ],
+            "include": ["reasoning.encrypted_content"],
             "store": false
           }
         },
@@ -148,21 +108,14 @@
             "output": 128000
           },
           "modalities": {
-            "input": [
-              "text",
-              "image"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": ["text", "image"],
+            "output": ["text"]
           },
           "options": {
             "reasoningEffort": "low",
             "reasoningSummary": "auto",
             "textVerbosity": "medium",
-            "include": [
-              "reasoning.encrypted_content"
-            ],
+            "include": ["reasoning.encrypted_content"],
             "store": false
           }
         },
@@ -173,21 +126,14 @@
             "output": 128000
           },
           "modalities": {
-            "input": [
-              "text",
-              "image"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": ["text", "image"],
+            "output": ["text"]
           },
           "options": {
             "reasoningEffort": "medium",
             "reasoningSummary": "auto",
             "textVerbosity": "medium",
-            "include": [
-              "reasoning.encrypted_content"
-            ],
+            "include": ["reasoning.encrypted_content"],
             "store": false
           }
         },
@@ -198,21 +144,14 @@
             "output": 128000
           },
           "modalities": {
-            "input": [
-              "text",
-              "image"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": ["text", "image"],
+            "output": ["text"]
           },
           "options": {
             "reasoningEffort": "high",
             "reasoningSummary": "detailed",
             "textVerbosity": "medium",
-            "include": [
-              "reasoning.encrypted_content"
-            ],
+            "include": ["reasoning.encrypted_content"],
             "store": false
           }
         },
@@ -223,21 +162,14 @@
             "output": 128000
           },
           "modalities": {
-            "input": [
-              "text",
-              "image"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": ["text", "image"],
+            "output": ["text"]
           },
           "options": {
             "reasoningEffort": "xhigh",
             "reasoningSummary": "detailed",
             "textVerbosity": "medium",
-            "include": [
-              "reasoning.encrypted_content"
-            ],
+            "include": ["reasoning.encrypted_content"],
             "store": false
           }
         },
@@ -248,21 +180,14 @@
             "output": 128000
           },
           "modalities": {
-            "input": [
-              "text",
-              "image"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": ["text", "image"],
+            "output": ["text"]
           },
           "options": {
             "reasoningEffort": "low",
             "reasoningSummary": "detailed",
             "textVerbosity": "medium",
-            "include": [
-              "reasoning.encrypted_content"
-            ],
+            "include": ["reasoning.encrypted_content"],
             "store": false
           }
         },
@@ -273,21 +198,14 @@
             "output": 128000
           },
           "modalities": {
-            "input": [
-              "text",
-              "image"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": ["text", "image"],
+            "output": ["text"]
           },
           "options": {
             "reasoningEffort": "medium",
             "reasoningSummary": "detailed",
             "textVerbosity": "medium",
-            "include": [
-              "reasoning.encrypted_content"
-            ],
+            "include": ["reasoning.encrypted_content"],
             "store": false
           }
         },
@@ -298,21 +216,14 @@
             "output": 128000
           },
           "modalities": {
-            "input": [
-              "text",
-              "image"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": ["text", "image"],
+            "output": ["text"]
           },
           "options": {
             "reasoningEffort": "high",
             "reasoningSummary": "detailed",
             "textVerbosity": "medium",
-            "include": [
-              "reasoning.encrypted_content"
-            ],
+            "include": ["reasoning.encrypted_content"],
             "store": false
           }
         },
@@ -323,21 +234,14 @@
             "output": 128000
           },
           "modalities": {
-            "input": [
-              "text",
-              "image"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": ["text", "image"],
+            "output": ["text"]
           },
           "options": {
             "reasoningEffort": "xhigh",
             "reasoningSummary": "detailed",
             "textVerbosity": "medium",
-            "include": [
-              "reasoning.encrypted_content"
-            ],
+            "include": ["reasoning.encrypted_content"],
             "store": false
           }
         },
@@ -348,21 +252,14 @@
             "output": 128000
           },
           "modalities": {
-            "input": [
-              "text",
-              "image"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": ["text", "image"],
+            "output": ["text"]
           },
           "options": {
             "reasoningEffort": "low",
             "reasoningSummary": "auto",
             "textVerbosity": "medium",
-            "include": [
-              "reasoning.encrypted_content"
-            ],
+            "include": ["reasoning.encrypted_content"],
             "store": false
           }
         },
@@ -373,21 +270,14 @@
             "output": 128000
           },
           "modalities": {
-            "input": [
-              "text",
-              "image"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": ["text", "image"],
+            "output": ["text"]
           },
           "options": {
             "reasoningEffort": "medium",
             "reasoningSummary": "auto",
             "textVerbosity": "medium",
-            "include": [
-              "reasoning.encrypted_content"
-            ],
+            "include": ["reasoning.encrypted_content"],
             "store": false
           }
         },
@@ -398,21 +288,14 @@
             "output": 128000
           },
           "modalities": {
-            "input": [
-              "text",
-              "image"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": ["text", "image"],
+            "output": ["text"]
           },
           "options": {
             "reasoningEffort": "high",
             "reasoningSummary": "detailed",
             "textVerbosity": "medium",
-            "include": [
-              "reasoning.encrypted_content"
-            ],
+            "include": ["reasoning.encrypted_content"],
             "store": false
           }
         },
@@ -423,21 +306,14 @@
             "output": 128000
           },
           "modalities": {
-            "input": [
-              "text",
-              "image"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": ["text", "image"],
+            "output": ["text"]
           },
           "options": {
             "reasoningEffort": "medium",
             "reasoningSummary": "auto",
             "textVerbosity": "medium",
-            "include": [
-              "reasoning.encrypted_content"
-            ],
+            "include": ["reasoning.encrypted_content"],
             "store": false
           }
         },
@@ -448,21 +324,14 @@
             "output": 128000
           },
           "modalities": {
-            "input": [
-              "text",
-              "image"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": ["text", "image"],
+            "output": ["text"]
           },
           "options": {
             "reasoningEffort": "high",
             "reasoningSummary": "detailed",
             "textVerbosity": "medium",
-            "include": [
-              "reasoning.encrypted_content"
-            ],
+            "include": ["reasoning.encrypted_content"],
             "store": false
           }
         },
@@ -473,21 +342,14 @@
             "output": 128000
           },
           "modalities": {
-            "input": [
-              "text",
-              "image"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": ["text", "image"],
+            "output": ["text"]
           },
           "options": {
             "reasoningEffort": "none",
             "reasoningSummary": "auto",
             "textVerbosity": "medium",
-            "include": [
-              "reasoning.encrypted_content"
-            ],
+            "include": ["reasoning.encrypted_content"],
             "store": false
           }
         },
@@ -498,21 +360,14 @@
             "output": 128000
           },
           "modalities": {
-            "input": [
-              "text",
-              "image"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": ["text", "image"],
+            "output": ["text"]
           },
           "options": {
             "reasoningEffort": "low",
             "reasoningSummary": "auto",
             "textVerbosity": "low",
-            "include": [
-              "reasoning.encrypted_content"
-            ],
+            "include": ["reasoning.encrypted_content"],
             "store": false
           }
         },
@@ -523,21 +378,14 @@
             "output": 128000
           },
           "modalities": {
-            "input": [
-              "text",
-              "image"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": ["text", "image"],
+            "output": ["text"]
           },
           "options": {
             "reasoningEffort": "medium",
             "reasoningSummary": "auto",
             "textVerbosity": "medium",
-            "include": [
-              "reasoning.encrypted_content"
-            ],
+            "include": ["reasoning.encrypted_content"],
             "store": false
           }
         },
@@ -548,21 +396,14 @@
             "output": 128000
           },
           "modalities": {
-            "input": [
-              "text",
-              "image"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": ["text", "image"],
+            "output": ["text"]
           },
           "options": {
             "reasoningEffort": "high",
             "reasoningSummary": "detailed",
             "textVerbosity": "high",
-            "include": [
-              "reasoning.encrypted_content"
-            ],
+            "include": ["reasoning.encrypted_content"],
             "store": false
           }
         }
@@ -572,19 +413,12 @@
   "mcp": {
     "dev_manager": {
       "type": "local",
-      "command": [
-        "npx",
-        "dev-manager-mcp",
-        "stdio"
-      ],
+      "command": ["npx", "dev-manager-mcp", "stdio"],
       "enabled": true
     },
     "chrome_devtools": {
       "type": "local",
-      "command": [
-        "npx",
-        "chrome-devtools-mcp@latest"
-      ],
+      "command": ["npx", "chrome-devtools-mcp@latest"],
       "enabled": true
     },
     "exa": {
@@ -599,20 +433,12 @@
     },
     "vibe_kanban": {
       "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "vibe-kanban@latest",
-        "--mcp"
-      ],
+      "command": ["npx", "-y", "vibe-kanban@latest", "--mcp"],
       "enabled": true
     },
     "playwright": {
       "type": "local",
-      "command": [
-        "npx",
-        "@playwright/mcp@latest"
-      ],
+      "command": ["npx", "@playwright/mcp@latest"],
       "enabled": true
     }
   }
