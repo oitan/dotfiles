@@ -19,6 +19,13 @@
 
 Always add new files in `~/dotfiles`, then re-run `$ stow .` to create symlinks in `$HOME`. Stow only symlinks files that exist in the repo at the time it runs.
 
+Tracked global agent instruction files:
+
+- `~/.config/opencode/AGENTS.md`
+- `~/.claude/CLAUDE.md`
+- `~/.gemini/GEMINI.md`
+- `~/.codex/AGENTS.md`
+
 ### Adopting existing config files from `$HOME`
 
 If a program creates a new config file in `$HOME` that you want tracked:
