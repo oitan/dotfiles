@@ -176,3 +176,6 @@ export PATH=$PATH:/Users/oitan/.cargo/bin
 
 ### FASTFETCH
 fastfetch
+
+# Added by Antigravity
+export PATH="/Users/oitan/.antigravity/antigravity/bin:$PATH"

@@ -16,8 +16,8 @@ Macos = "󰀵"
 [directory]
 style = "bg:peach fg:crust"
 format = "[ $path ]($style)"
-truncation_length = 3
-truncation_symbol = "…/"
+truncation_length = 0
+fish_style_pwd_dir_length = 1
 
 [directory.substitutions]
 "Documents" = "󰈙 "

@@ -164,6 +164,11 @@ just like `find` but better.
 - `<leader>p` -> paste after from system clipboard
 - `<leader>P` -> paste before from system clipboard
 - `<leader>ta` -> toggle alternate (==/!=)
+- `gcc` -> toggle comment on current line
+- `gc<motion>` -> toggle comment over motion
+- `gco` -> add commented line below
+- `gcO` -> add commented line above
+- `gcA` -> add comment at end of line
 - `<C-w>s/v` -> open new split window (horizontal/vertical)
 - `<C-up/down/left/right>` -> resize split window
 - `<leader>ww` -> window picker: choose window and focus it
