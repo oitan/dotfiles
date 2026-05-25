@@ -179,3 +179,7 @@ fastfetch
 
 # Added by Antigravity
 export PATH="/Users/oitan/.antigravity/antigravity/bin:$PATH"
+
+
+# Added by Antigravity CLI installer
+export PATH="/Users/oitan/.local/bin:$PATH"

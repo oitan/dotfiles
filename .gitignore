@@ -1,3 +1,4 @@
 .config/raycast
 .config/bat/themes
 .codemachine
+.claude/settings.local.json
