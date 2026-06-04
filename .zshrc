@@ -163,7 +163,7 @@ zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
 source <(carapace _carapace)
 
 ### ATUIN
-# eval "$(atuin init zsh)"
+eval "$(atuin init zsh)"
 
 ### ANDROID
 export ANDROID_HOME=$HOME/Library/Android/sdk
