@@ -13,6 +13,13 @@ return {
 			"bash",
 			"markdown",
 			"markdown_inline",
+			"prisma",
+			"typescript",
+			"tsx",
+			"javascript",
+			"json",
+			"yaml",
+			"go",
 		})
 		vim.api.nvim_create_autocmd("FileType", {
 			callback = function(args)
