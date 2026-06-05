@@ -10,7 +10,6 @@ alias lzd="lazydocker"
 alias lzs="lazyssh"
 alias dps="docker ps  -a --format 'table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Names}}'"
 alias sw="cd ~/dotfiles && stow . && stow --adopt ."
-alias zj="zellij"
 alias oc="opencode"
 alias print_path="echo "$PATH" | tr ':' '\n'"
 
