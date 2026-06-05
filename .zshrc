@@ -186,3 +186,12 @@ export PATH="/Users/oitan/.local/bin:$PATH"
 
 # Added by Antigravity IDE
 export PATH="/Users/oitan/.antigravity-ide/antigravity-ide/bin:$PATH"
+
+# ZELLIJ
+zj() {
+  local session
+
+  session=$(zellij list-sessions --short | fzf) || return
+
+  [[ -n "$session" ]] && zellij attach "$session"
+}
