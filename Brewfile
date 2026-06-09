@@ -31,6 +31,7 @@ brew "lazysql"
 tap "Adembc/homebrew-tap"
 brew "lazyssh"
 brew "lua"
+brew "mas"
 brew "mise"
 brew "mosh"
 brew "neovim"
@@ -118,3 +119,20 @@ cask "webtorrent"
 cask "wooshy"
 cask "zed"
 cask "zen"
+
+# --- Mac App Store ---
+mas "Bitwarden", id: 1352778147
+mas "DaVinci Resolve", id: 571213070
+mas "Gapplin", id: 768053424
+mas "Hand Mirror", id: 1502839586
+mas "Keynote", id: 409183694
+mas "Numbers", id: 409203825
+mas "Pages", id: 409201541
+mas "PDFgear", id: 6469021132
+mas "SocialFocus", id: 1661093205
+mas "Tailscale", id: 1475387142
+mas "Telegram", id: 747648890
+mas "uBlock Origin Lite", id: 6745342698
+mas "WhatsApp", id: 310633997
+mas "Xcode", id: 497799835
+mas "Xnip", id: 1221250572
