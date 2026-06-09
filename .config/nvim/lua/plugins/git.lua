@@ -221,4 +221,10 @@ return {
 			vim.keymap.set("n", "<leader>ge", toggle_filesystem, { desc = "open git explorer" })
 		end,
 	},
+	{
+		"chojs23/ec",
+		keys = {
+			{ "<leader>gr", ":Ec<CR>", desc = "Open ec" },
+		},
+	},
 }
