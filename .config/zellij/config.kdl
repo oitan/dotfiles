@@ -132,6 +132,30 @@ keybinds clear-defaults=true {
             }
             SwitchToMode "normal"
         }
+        bind "1" {
+            SwitchSession {
+                name "marketing"
+            }
+            SwitchToMode "Normal"
+        }
+        bind "2" {
+            SwitchSession {
+                name "merwood"
+            }
+            SwitchToMode "Normal"
+        }
+        bind "3" {
+            SwitchSession {
+                name "algatop"
+            }
+            SwitchToMode "Normal"
+        }
+        bind "4" {
+            SwitchSession {
+                name "misc"
+            }
+            SwitchToMode "Normal"
+        }
     }
     shared_except "locked" {
         bind "Alt left" { MoveFocusOrTab "left"; }
