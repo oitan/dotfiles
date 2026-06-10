@@ -103,12 +103,12 @@ alt-shift-minus = 'resize smart -50'
 alt-shift-equal = 'resize smart +50'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
-alt-1 = 'workspace 1'
-alt-2 = 'workspace 2'
-alt-3 = 'workspace 3'
-alt-4 = 'workspace 4'
-alt-5 = 'workspace 5'
-alt-6 = 'workspace 6'
+alt-1 = 'exec-and-forget ~/dotfiles/scripts/aerospace-workspace 1'
+alt-2 = 'exec-and-forget ~/dotfiles/scripts/aerospace-workspace 2'
+alt-3 = 'exec-and-forget ~/dotfiles/scripts/aerospace-workspace 3'
+alt-4 = 'exec-and-forget ~/dotfiles/scripts/aerospace-workspace 4'
+alt-5 = 'exec-and-forget ~/dotfiles/scripts/aerospace-workspace 5'
+alt-6 = 'exec-and-forget ~/dotfiles/scripts/aerospace-workspace 6'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-shift-1 = 'move-node-to-workspace 1'
@@ -171,4 +171,3 @@ check-further-callbacks = true
 run = ['move-node-to-workspace 5']
 
 # workspace 6 is for special works and no app should use it by default to be free at the time of need
-
