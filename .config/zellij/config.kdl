@@ -152,6 +152,12 @@ keybinds clear-defaults=true {
         }
         bind "4" {
             SwitchSession {
+                name "saafi"
+            }
+            SwitchToMode "Normal"
+        }
+        bind "5" {
+            SwitchSession {
                 name "misc"
             }
             SwitchToMode "Normal"

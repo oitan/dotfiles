@@ -1,6 +1,8 @@
 exit_mode = "return-query"
 ctrl_n_shortcuts = true
 enter_accept = true
+inline_height = 10
+filter_mode_shell_up_key_binding = "directory" # or global, host, directory, etc
 
 [sync]
 records = true
