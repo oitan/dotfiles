@@ -2,3 +2,4 @@
 .config/bat/themes
 .codemachine
 .claude/settings.local.json
+*.swp
