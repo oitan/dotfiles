@@ -14,3 +14,5 @@ Code/commits/PRs: normal. Off: "stop caveman" / "normal mode".
 We want the simplest change possible. We don't care about migration. Code readability matters most, and we're happy to make bigger changes to achieve it.
 
 NEVER code or make changes before asking for approval.
+
+@/Users/oitan/.codex/RTK.md
