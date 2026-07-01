@@ -4,7 +4,7 @@ source ~/.secret-aliases
 alias cat="bat"
 alias cd="z"
 alias v="nvim"
-alias res="restart"
+alias res="clear & exec zsh"
 alias lzg="lazygit"
 alias lzd="lazydocker"
 alias lzs="lazyssh"
@@ -80,3 +80,4 @@ alias ya="yarn add"
 
 # pnpm
 alias p="pnpm"
+alias pb="pnpm build"

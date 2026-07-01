@@ -63,7 +63,6 @@ brew "zsh-syntax-highlighting"
 
 # --- Casks ---
 cask "aerospace"
-cask "alt-tab"
 cask "amical"
 cask "antigravity"
 cask "antigravity-cli"
