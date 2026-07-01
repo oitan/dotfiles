@@ -1,5 +1,10 @@
+config-version = 2
+
 # Start AeroSpace at login
 start-at-login = true
+
+# Persistent workspaces (v2 requires explicit declaration)
+persistent-workspaces = ['1', '2', '3', '4', '5', '6']
 
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
 enable-normalization-flatten-containers = true
@@ -103,12 +108,12 @@ alt-shift-minus = 'resize smart -50'
 alt-shift-equal = 'resize smart +50'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
-alt-1 = 'exec-and-forget ~/dotfiles/scripts/aerospace-workspace 1'
-alt-2 = 'exec-and-forget ~/dotfiles/scripts/aerospace-workspace 2'
-alt-3 = 'exec-and-forget ~/dotfiles/scripts/aerospace-workspace 3'
-alt-4 = 'exec-and-forget ~/dotfiles/scripts/aerospace-workspace 4'
-alt-5 = 'exec-and-forget ~/dotfiles/scripts/aerospace-workspace 5'
-alt-6 = 'exec-and-forget ~/dotfiles/scripts/aerospace-workspace 6'
+alt-1 = 'workspace --fail-if-noop 1 || focus --wrap-around dfs-next'
+alt-2 = 'workspace --fail-if-noop 2 || focus --wrap-around dfs-next'
+alt-3 = 'workspace --fail-if-noop 3 || focus --wrap-around dfs-next'
+alt-4 = 'workspace --fail-if-noop 4 || focus --wrap-around dfs-next'
+alt-5 = 'workspace --fail-if-noop 5 || focus --wrap-around dfs-next'
+alt-6 = 'workspace --fail-if-noop 6 || focus --wrap-around dfs-next'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-shift-1 = 'move-node-to-workspace 1'
