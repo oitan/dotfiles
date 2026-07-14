@@ -1,0 +1,211 @@
+{
+    "profiles": [
+        {
+            "complex_modifications": {
+                "rules": [
+                    {
+                        "description": "Cleaning Mode: hold right_shift+right_command for 3s to toggle. Blocks all keys while active.",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "cleaning_mode",
+                                        "type": "variable_if",
+                                        "value": 0
+                                    }
+                                ],
+                                "from": {
+                                    "modifiers": { "optional": ["any"] },
+                                    "simultaneous": [
+                                        { "key_code": "right_shift" },
+                                        { "key_code": "right_command" }
+                                    ],
+                                    "simultaneous_options": {
+                                        "key_down_order": "insensitive",
+                                        "key_up_order": "insensitive"
+                                    }
+                                },
+                                "parameters": { "basic.to_if_held_down_threshold_milliseconds": 3000 },
+                                "to_if_held_down": [
+                                    {
+                                        "set_variable": {
+                                            "name": "cleaning_mode",
+                                            "value": 1
+                                        }
+                                    },
+                                    { "shell_command": "osascript -e 'display notification \"Cleaning mode ON — keys blocked\" with title \"Karabiner\" sound name \"Glass\"'" }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "cleaning_mode",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "modifiers": { "optional": ["any"] },
+                                    "simultaneous": [
+                                        { "key_code": "right_shift" },
+                                        { "key_code": "right_command" }
+                                    ],
+                                    "simultaneous_options": {
+                                        "key_down_order": "insensitive",
+                                        "key_up_order": "insensitive"
+                                    }
+                                },
+                                "parameters": { "basic.to_if_held_down_threshold_milliseconds": 3000 },
+                                "to_if_held_down": [
+                                    {
+                                        "set_variable": {
+                                            "name": "cleaning_mode",
+                                            "value": 0
+                                        }
+                                    },
+                                    { "shell_command": "osascript -e 'display notification \"Cleaning mode OFF\" with title \"Karabiner\" sound name \"Glass\"'" }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "cleaning_mode",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "any": "key_code",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "cleaning_mode",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "any": "consumer_key_code",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "cleaning_mode",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "any": "apple_vendor_top_case_key_code",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "cleaning_mode",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "any": "apple_vendor_keyboard_key_code",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "F4 decreases keyboard brightness, F5 increases keyboard brightness (bare key only)",
+                        "manipulators": [
+                            {
+                                "from": { "key_code": "f4" },
+                                "to": [{ "key_code": "illumination_decrement" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": { "key_code": "f5" },
+                                "to": [{ "key_code": "illumination_increment" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Silence cmd+left/right in Focus app (blocks pomodoro prev/next session)",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": ["^com\\.malteundjan\\.focus-osx$"],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "left_arrow",
+                                    "modifiers": { "mandatory": ["command"] }
+                                },
+                                "to": [],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": ["^com\\.malteundjan\\.focus-osx$"],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "right_arrow",
+                                    "modifiers": { "mandatory": ["command"] }
+                                },
+                                "to": [],
+                                "type": "basic"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "devices": [
+                {
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "product_id": 28705,
+                        "vendor_id": 1256
+                    },
+                    "simple_modifications": [
+                        {
+                            "from": { "consumer_key_code": "ac_home" },
+                            "to": [{ "key_code": "escape" }]
+                        },
+                        {
+                            "from": { "key_code": "japanese_eisuu" },
+                            "to": [{ "consumer_key_code": "al_terminal_lock_or_screensaver" }]
+                        },
+                        {
+                            "from": { "key_code": "japanese_kana" },
+                            "to": [{ "apple_vendor_top_case_key_code": "keyboard_fn" }]
+                        }
+                    ]
+                }
+            ],
+            "name": "Default profile",
+            "selected": true,
+            "virtual_hid_keyboard": { "keyboard_type_v2": "ansi" }
+        }
+    ]
+}

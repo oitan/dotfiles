@@ -3,6 +3,7 @@ source ~/.secret-aliases
 # other tools
 alias cat="bat"
 alias cd="z"
+alias cdd="cd .."
 alias v="nvim"
 alias res="clear & exec zsh"
 alias lzg="lazygit"
