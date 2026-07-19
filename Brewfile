@@ -68,7 +68,6 @@ cask "chatgpt"
 cask "claude"
 cask "claude-code"
 cask "codex"
-cask "codex-app"
 cask "dropbox"
 cask "flux-app"
 
