@@ -113,6 +113,7 @@ cask "zen"
 # --- Mac App Store ---
 mas "Bitwarden", id: 1352778147
 mas "DaVinci Resolve", id: 571213070
+mas "Focus", id: 777233759
 mas "Gapplin", id: 768053424
 mas "Hand Mirror", id: 1502839586
 mas "Keynote", id: 409183694

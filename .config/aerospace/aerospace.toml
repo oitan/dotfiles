@@ -171,7 +171,7 @@ run = ['move-node-to-workspace 4']
 
 # task management
 [[on-window-detected]]
-if.app-name-regex-substring = 'notion|reminders|calendar'
+if.app-name-regex-substring = 'notion|reminders|calendar|focus'
 check-further-callbacks = true
 run = ['move-node-to-workspace 5']
 
