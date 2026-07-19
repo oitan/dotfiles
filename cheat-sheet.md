@@ -90,8 +90,16 @@ all shortcuts below can be used as `<C-g><C-<key>>` instead of `<C-g><key>`
 ### inside fzf
 
 - `<tab>` or `<shift-tab>` to select multiple objects
-- `<C-l>` to change preview window layout
+- `<C-/>` to change preview window layout
 - `<C-o>` to open the object in the web browser (in GitHub URL scheme)
+
+### fzf-git picker bindings
+
+- `<alt-a>` -> show all (branches, hashes, refs)
+- `<alt-r>` -> toggle raw view (tags, hashes, reflogs)
+- `<alt-f>` -> in hashes: show files in selected commits
+- `<alt-h>` -> in branches: jump to commit hashes for branch
+- `<alt-enter>` -> in each-ref: accept without remote prefix
 
 ### search syntax
 
