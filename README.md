@@ -53,6 +53,14 @@ Install Catppuccin Frappe theme for `bat`
 
 Install Catppuccin Frappe theme for zsh syntax highlighting: https://github.com/catppuccin/zsh-syntax-highlighting
 
+## herdr plugins
+
+`config.toml` is stowed. Plugins are herdr-managed git checkouts (with build artifacts) and are **not** tracked. Reinstall them from GitHub:
+
+- `$ herdr plugin install yankewei/herdr-focus-notify --ref a7d17a532304e285a791749cb5d7b706b6a7ecb9`
+
+Drop `--ref` to install the latest commit. List installed plugins with `$ herdr plugin list`.
+
 ## HomeBrew
 
 Install packages using Brewfile
