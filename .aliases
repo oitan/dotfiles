@@ -2,8 +2,6 @@ source ~/.secret-aliases
 
 # other tools
 alias cat="bat"
-alias cd="z"
-alias cdd="cd .."
 alias v="nvim"
 alias res="clear & exec zsh"
 alias lzg="lazygit"
@@ -11,7 +9,6 @@ alias lzd="lazydocker"
 alias lzs="lazyssh"
 alias dps="docker ps  -a --format 'table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Names}}'"
 alias sw="cd ~/dotfiles && stow . && stow --adopt ."
-alias oc="opencode"
 alias print_path="echo "$PATH" | tr ':' '\n'"
 
 # eza
@@ -56,29 +53,6 @@ alias gl="git log"
 
 # npm
 alias nr="npm run"
-alias nrb="npm run build"
-alias nrt="npm run test"
-alias nrs="npm run start"
-alias nrsd="npm run start:dev"
-alias nrf="npm run format"
-alias nrl="npm run lint"
-alias nrd="npm run dev"
-alias nrk="npm run knip"
-
-# yarn
-alias y="yarn"
-alias yb="yarn build"
-alias yt="yarn test"
-alias ys="yarn start"
-alias yd="yarn dev"
-alias yf="yarn format"
-alias yfc="yarn format:check"
-alias yl="yarn lint"
-alias ylc="yarn lint:check"
-alias yuil="yarn upgrade-interactive --latest"
-alias yad="yarn add -D"
-alias ya="yarn add"
 
 # pnpm
 alias p="pnpm"
-alias pb="pnpm build"

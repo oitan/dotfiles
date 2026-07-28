@@ -57,7 +57,8 @@ eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 
 ### FZF
-eval "$(fzf --zsh)"
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
 # use fd instead of find
 export FZF_DEFAULT_COMMAND='fd --hidden --follow --exclude .git --exclude node_modules'
 source ~/fzf-git.sh/fzf-git.sh
