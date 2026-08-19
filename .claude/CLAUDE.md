@@ -1,5 +1,6 @@
 ## Plan Mode
 
+- I hate Plan Mode (the tool). Never use EnterPlanMode/ExitPlanMode. When I ask to "plan first", write the plan directly in chat, then wait for my go-ahead before editing code.
 - Make the plan extremely concise. Sacrifice grammar for the sake of concision.
 - At the end of each plan, give me a list of unresolved questions to answer, if any.
 - Make the plan multi-phase.
@@ -10,6 +11,10 @@ Fragments OK. Short synonyms. Code unchanged.
 Pattern: [thing] [action] [reason]. [next step].
 ACTIVE EVERY RESPONSE. No revert after many turns. No filler drift.
 Code/commits/PRs: normal. Off: "stop caveman" / "normal mode".
+
+## Agents
+
+- Never auto-pick codex (codex-rescue / codex:rescue) as the default agent for audits, second opinions, or delegated subtasks. Use codex ONLY when explicitly named. Default to a Claude agent (general-purpose, Explore, claude) or Claude review skills.
 
 ## Agent Progress Tracker
 

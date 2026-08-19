@@ -10,6 +10,7 @@ alias lzs="lazyssh"
 alias dps="docker ps  -a --format 'table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Names}}'"
 alias sw="cd ~/dotfiles && stow . && stow --adopt ."
 alias print_path="echo "$PATH" | tr ':' '\n'"
+alias gramps_ru="LANG=ru_RU.UTF-8 open /Applications/Gramps.app"
 
 # eza
 alias l="eza"
@@ -41,7 +42,12 @@ alias gphuo="git push -u origin"
 alias gaa="git add -A"
 alias gcm="git commit -m"
 alias gca="git commit --amend"
-alias gd="git diff -w | diffnav"
+# diffnav leaves SGR mouse tracking on after quitting; reset it so the shell
+# doesn't print raw mouse reports when scrolling afterwards
+gd() {
+  git diff -w "$@" | diffnav
+  printf '\e[?1006l\e[?1015l\e[?1003l\e[?1002l\e[?1000l\e[?25h'
+}
 alias ga="git add"
 alias gb="git branch"
 alias gbvv="git branch -vv"

@@ -33,6 +33,112 @@
 
 - `$ ghostty +list-keybinds` -> list keybinds
 
+# Herdr
+
+terminal workspace manager for AI coding agents. https://herdr.dev
+
+config: `~/.config/herdr/config.toml` (stowed from `.config/herdr/config.toml`)
+
+- `$ herdr --default-config` -> print full default config (all options + docs)
+- `$ herdr --skill` -> print agent skill file (instructions for driving herdr from a pane)
+- `$ herdr config check` -> validate config.toml
+- `$ herdr config reset-keys` -> back up config and drop custom keybindings
+
+## keys
+
+prefix is `<C-b>`. `prefix+x` means press prefix, release, then key.
+
+- `prefix+?` -> help
+- `prefix+s` -> settings
+- `prefix+q` -> detach
+- `prefix+shift-r` -> reload config
+- `prefix+o` -> open notification target
+- `prefix+b` -> toggle sidebar
+- `prefix+g` -> goto (navigate mode)
+- `prefix+e` -> edit scrollback in `$EDITOR`
+
+### navigate mode (after `prefix+g`)
+
+- `up/down` -> move between workspaces
+- `h/j/k/l` -> move between panes (arrows also work left/right)
+
+### workspaces
+
+- `prefix+w` -> workspace picker
+- `prefix+shift-n` -> new workspace
+- `prefix+shift-w` -> rename workspace
+- `prefix+shift-d` -> close workspace
+- `prefix+shift-g` -> new git worktree workspace
+
+### tabs
+
+- `prefix+c` -> new tab
+- `prefix+n` / `prefix+p` -> next / previous tab
+- `prefix+1..9` -> switch to tab by index
+- `prefix+shift-t` -> rename tab
+- `prefix+shift-x` -> close tab
+
+### panes
+
+- `prefix+v` -> split vertical
+- `prefix+minus` -> split horizontal
+- `prefix+h/j/k/l` -> focus pane left/down/up/right
+- `prefix+tab` / `prefix+shift-tab` -> cycle pane next / previous
+- `prefix+z` -> zoom (fullscreen) pane
+- `prefix+r` -> resize mode
+- `prefix+shift-p` -> rename pane
+- `prefix+x` -> close pane
+
+unbound by default (set in `[keys]` if wanted): `open_worktree`, `remove_worktree`,
+`previous_workspace`, `next_workspace`, `previous_agent`, `next_agent`, `focus_agent`,
+`switch_workspace`, `last_pane`.
+
+## sessions
+
+- `$ herdr` -> launch or attach persistent session
+- `$ herdr --session <name>` -> use/create named session
+- `$ herdr session list/attach/stop/delete`
+- `$ herdr --no-session` -> monolithic run, no server/client (escape hatch)
+- `$ herdr --remote <ssh-target> [--session <name>]` -> attach to remote herdr server
+- `$ herdr status [server|client]` -> client + server status
+- `$ herdr server stop` / `$ herdr server reload-config`
+
+## CLI over socket API
+
+drive herdr from inside a pane (scripting / agents):
+
+- `$ herdr pane list|current|split|focus|zoom|resize|swap|move|close|rename`
+- `$ herdr pane read` -> read pane terminal output
+- `$ herdr pane send-text|send-keys|run` -> feed a pane
+- `$ herdr pane wait-output` -> block until output matches
+- `$ herdr agent list|get|read|prompt|send-keys|focus|attach|start|rename`
+- `$ herdr agent wait` -> block until agent hits a state
+- `$ herdr agent explain` -> why herdr thinks a pane is/isn't an agent
+- `$ herdr tab list|create|get|focus|rename|close`
+- `$ herdr workspace list|create|get|focus|rename|close`
+- `$ herdr worktree list|create|open|remove`
+- `$ herdr notification show`
+- `$ herdr integration install|uninstall|status`
+- `$ herdr api <subcommand>` -> socket API metadata + live runtime state
+
+## updates
+
+- `$ herdr update [--handoff]` -> install latest (`--handoff` = live handoff, no restart)
+- `$ herdr channel set <stable|preview>`
+
+## plugins
+
+not tracked in dotfiles (herdr-managed git checkouts with build artifacts). reinstall:
+
+- `$ herdr plugin install yankewei/herdr-focus-notify`
+- `$ herdr plugin list`
+
+## my config
+
+`onboarding = false`, theme `catppuccin`, `[ui] show_agent_labels_on_pane_borders = true`,
+`agent_panel_sort = "priority"` (attention queue, not grouped by space),
+`[ui.toast] delivery = "system"` (OS notifications), `[experimental] pane_history = true`.
+
 # Yazi
 
 - `q` -> quit
