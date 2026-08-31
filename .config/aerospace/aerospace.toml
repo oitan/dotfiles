@@ -153,7 +153,7 @@ run = ['move-node-to-workspace 1']
 
 # code and dev
 [[on-window-detected]]
-if.app-name-regex-substring = 'code|cursor|datagrip|postman|pycharm'
+if.app-name-regex-substring = 'code|cursor|datagrip|postman|pycharm|chatgpt'
 check-further-callbacks = true
 run = ['move-node-to-workspace 2']
 
