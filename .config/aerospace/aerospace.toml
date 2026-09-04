@@ -176,3 +176,8 @@ check-further-callbacks = true
 run = ['move-node-to-workspace 5']
 
 # workspace 6 is for special works and no app should use it by default to be free at the time of need
+
+# finder always floats
+[[on-window-detected]]
+if.app-id = 'com.apple.finder'
+run = ['layout floating']
