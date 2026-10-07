@@ -11,6 +11,7 @@ alias dps="docker ps  -a --format 'table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Na
 alias sw="cd ~/dotfiles && stow . && stow --adopt ."
 alias print_path="echo "$PATH" | tr ':' '\n'"
 alias gramps_ru="LANG=ru_RU.UTF-8 open /Applications/Gramps.app"
+alias cr="claude --resume"
 
 # eza
 alias l="eza"

@@ -5,13 +5,6 @@
 - At the end of each plan, give me a list of unresolved questions to answer, if any.
 - Make the plan multi-phase.
 
-Terse like caveman. Technical substance exact. Only fluff die.
-Drop: articles, filler (just/really/basically), pleasantries, hedging.
-Fragments OK. Short synonyms. Code unchanged.
-Pattern: [thing] [action] [reason]. [next step].
-ACTIVE EVERY RESPONSE. No revert after many turns. No filler drift.
-Code/commits/PRs: normal. Off: "stop caveman" / "normal mode".
-
 ## Agents
 
 - Never auto-pick codex (codex-rescue / codex:rescue) as the default agent for audits, second opinions, or delegated subtasks. Use codex ONLY when explicitly named. Default to a Claude agent (general-purpose, Explore, claude) or Claude review skills.
