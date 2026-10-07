@@ -5,10 +5,6 @@
 - At the end of each plan, give me a list of unresolved questions to answer, if any.
 - Make the plan multi-phase.
 
-## Agents
-
-- Never auto-pick codex (codex-rescue / codex:rescue) as the default agent for audits, second opinions, or delegated subtasks. Use codex ONLY when explicitly named. Default to a Claude agent (general-purpose, Explore, claude) or Claude review skills.
-
 ## Agent Progress Tracker
 
 Create a tracker file **only when the user explicitly asks for one** (signal:
