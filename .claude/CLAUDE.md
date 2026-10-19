@@ -55,5 +55,3 @@ tracker, update `Log` with what remains.
 
 **Abandoned trackers:** no auto-cleanup. Manual sweep of stale files under
 `.agent-progress/` when noticed.
-
-@RTK.md
