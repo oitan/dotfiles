@@ -1,5 +1,14 @@
 ### ZSHELL
 
+# untracked secrets (tokens); loaded before the interactive check so non-interactive shells get them too
+[ -f ~/.zsh_secrets ] && source ~/.zsh_secrets
+
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
 # history
 SAVEHIST=10000
 HISTSIZE=9999
