@@ -67,3 +67,7 @@ tracker, update `Log` with what remains.
 `.agent-progress/` when noticed.
 
 @/Users/oitan/.codex/RTK.md
+
+## Browser Preference
+
+Prefer the integrated sidebar browser for browsing and UI inspection. Use external Chrome only when a required debugging capability is unavailable in the integrated browser or the user explicitly requests it.
