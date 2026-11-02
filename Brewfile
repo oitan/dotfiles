@@ -2,14 +2,10 @@
 # Install with: brew bundle --file ./Brewfile
 
 # --- Taps ---
-tap "0xmh/claude-latest"
-tap "felixkratz/formulae"
 tap "gromgit/brewtils"
 tap "jesseduffield/lazydocker"
 tap "mongodb/brew"
 tap "nikitabobko/tap"
-tap "sdkman/tap"
-tap "steipete/tap"
 tap "vjeantet/tap"
 
 # --- Formulae ---

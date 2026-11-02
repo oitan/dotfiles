@@ -147,12 +147,6 @@ elif type compctl &>/dev/null; then
 fi
 ###-end-pm2-completion-###
 
-### SDKMAN
-export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
-[[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
-export JAVA_HOME=$SDKMAN_DIR/candidates/java/current
-export PATH=$JAVA_HOME/bin:$PATH
-
 
 # pnpm
 export PNPM_HOME="/Users/oitan/Library/pnpm"
