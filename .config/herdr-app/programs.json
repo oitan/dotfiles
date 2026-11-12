@@ -1,0 +1,20 @@
+{
+  "programs": {
+    "bun": {
+      "icon": "my-icons/bun.svg",
+      "tint": false
+    },
+    "node": {
+      "icon": "my-icons/node.svg",
+      "tint": false
+    },
+    "pnpm": {
+      "icon": "my-icons/pnpm.svg",
+      "tint": false
+    },
+    "vite": {
+      "icon": "my-icons/vite.svg",
+      "tint": false
+    }
+  }
+}
