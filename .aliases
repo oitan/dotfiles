@@ -63,3 +63,6 @@ alias nr="npm run"
 
 # pnpm
 alias p="pnpm"
+
+# T3 Code (launcher passes CLAUDE_CODE_OAUTH_TOKEN)
+alias t3='open ~/Applications/"T3 Claude.app"'

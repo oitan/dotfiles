@@ -55,3 +55,7 @@ tracker, update `Log` with what remains.
 
 **Abandoned trackers:** no auto-cleanup. Manual sweep of stale files under
 `.agent-progress/` when noticed.
+
+## Design reference library
+
+For design or redesign work, use [VoltAgent/awesome-design-md](https://github.com/VoltAgent/awesome-design-md) as a reference library. When the visual direction is open, proactively suggest a few relevant entries with direct links and a brief reason each fits the brief. Read the selected DESIGN.md files before adapting their typography, colors, spacing and layout. Follow the user's chosen direction and the project's existing brand or design system.
