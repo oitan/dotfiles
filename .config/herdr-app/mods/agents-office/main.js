@@ -3,7 +3,7 @@
 
 import { View, div, image } from "gpui-kit";
 import { v_flex, h_flex } from "gpui-base";
-import { agents, machines, focused, run, theme, setAgentOrder, keys, nextCommand } from "herdr";
+import { agents, machines, focused, run, theme, setAgentOrder, keys, nextCommand, openOverlay } from "herdr";
 
 const DOS = "PxPlus IBM VGA 8x16";
 const SPRITES = "mods/agents-office/sprites";
@@ -49,6 +49,29 @@ export default class AgentsOffice extends View {
     cx.notify();
   }
 
+  // The hint beside the "Agents" label, from the live key table: the number-jump keys ("⌘⌥1–9") and the
+  // previous/next keys ("⌘[ ]"), each shown only when bound with one shared modifier. Follows rebinding.
+  keyHint(table) {
+    const glyph = { ctrl: "⌃", cmd: "⌘", alt: "⌥", shift: "⇧" }, word = { ctrl: "Ctrl", cmd: "Cmd", alt: "Alt", shift: "Shift" };
+    const split = (keys) => { const p = keys.split("-"), key = p.pop(); return { mods: p, key }; };
+    const sym = (mods) => mods.map((m) => glyph[m] ?? m).join(""), words = (mods, key) => [...mods.map((m) => word[m] ?? m), key].join("+");
+    const text = [], tip = [];
+    const nums = [...this.jump.keys()].sort((a, b) => a - b);
+    const prefixes = new Set(nums.map((n) => this.jump.get(n).slice(0, -String(n).length)));
+    if (nums.length && prefixes.size === 1) {
+      const mods = [...prefixes][0].split("-").filter(Boolean), range = nums.length > 1 ? `${nums[0]}–${nums.at(-1)}` : String(nums[0]);
+      text.push(sym(mods) + range); tip.push(`${words(mods, range)}: jump to an agent`);
+    }
+    const prev = table.find((x) => x.action === "agent.prev"), next = table.find((x) => x.action === "agent.next");
+    if (prev && next) {
+      const a = split(prev.keys), b = split(next.keys);
+      if (a.key && b.key && a.mods.join() === b.mods.join()) {
+        text.push(`${sym(a.mods)}${a.key} ${b.key}`); tip.push(`${words(a.mods, `${a.key} / ${b.key}`)}: previous / next agent`);
+      }
+    }
+    return text.length ? { text: text.join(" · "), tip: tip.join(" · ") } : null;
+  }
+
   bubble(st) {
     const box = () => div().absolute().top(0).right(1).px(3).text_size(12).font_family(DOS).text_color("#1b1d2a");
     if (st === "working") return box().bg("#ffffff").min_w(18).text_center().frames([".", "..", "..."], 380);
@@ -83,16 +106,23 @@ export default class AgentsOffice extends View {
       .when(scale > 1, (el) => el.child(div().w(cw).text_center().text_size(12).font_family(DOS).text_color("#8a90b0").child("vacant")));
   }
 
-  plant(scale) {
-    return v_flex().w(SW * scale + (scale > 1 ? 4 : 0)).flex_none().items_center().justify_end().pb(scale > 1 ? 18 : 0)
-      .child(image(`${SPRITES}/plant.svg`).w(8 * scale).h(10 * scale));
+  // The plant starts a new agent for this office's machine (a picker for the agent and the project).
+  plant(scale, i, name) {
+    const key = name ?? "";
+    return v_flex().id(`plant-${key}`).w(SW * scale + (scale > 1 ? 4 : 0)).flex_none().items_center().justify_end().pb(scale > 1 ? 2 : 0)
+      .bg(i % 2 ? FLOOR_A : FLOOR_B).cursor_pointer().hover((s) => s.bg(FLOOR_HOVER))
+      .tooltip(`New agent${name ? ` on ${name}` : ""} in a new space`)
+      .on_click(() => openOverlay({ mod: "agent-launcher", kind: "window", key: "agent-launcher", width: 420, height: 520, props: { machine: name } }))
+      .child(div().h(SH * scale - (scale > 1 ? 2 : 0)).flex().items_end().justify_center().pb(scale > 1 ? 6 : 0)
+        .child(image(`${SPRITES}/plant.svg`).w(8 * scale).h(10 * scale)))
+      .when(scale > 1, (el) => el.child(div().w(SW * scale).text_center().text_size(12).font_family(DOS).text_color("#bcd9ff").child("+ agent")));
   }
 
   office(name, members, n, scale, cols) {
     const wall = WALLS[n % WALLS.length], key = name ?? "", open = !this.folded.has(key);
     const top = members.reduce((m, a) => ((RANK[a.status] ?? 0) > (RANK[m] ?? 0) ? a.status : m), null);
     const cells = members.length ? members.map((a, i) => this.desk(a, scale, i)) : [this.vacant(scale, 0)];
-    if (cells.length % cols !== 0 || cells.length === 1) cells.push(this.plant(scale));
+    cells.push(this.plant(scale, cells.length, name));
     const rows = [];
     for (let i = 0; i < cells.length; i += cols) rows.push(cells.slice(i, i + cols));
     return v_flex().id(`office-${name ?? "local"}`).w_full().flex_none().border(scale > 1 ? 3 : 2).border_color(wall).bg(FLOOR_A)
@@ -123,10 +153,12 @@ export default class AgentsOffice extends View {
     // The desk number shows only when its key exists, so it is the actual hotkey and follows rebinding.
     this.num = new Map(this.order.map((a, i) => [a.address, i + 1]));
     this.jump = new Map();
-    for (const k of keys()) {
+    const table = keys();
+    for (const k of table) {
       const m = /^agents-office\.jump-(\d+)$/.exec(k.action);
       if (m && !this.jump.has(+m[1])) this.jump.set(+m[1], k.keys);
     }
+    const hint = this.keyHint(table);
     const narrow = this.width < 160, scale = narrow ? 1 : 3;
     const cols = Math.max(1, Math.floor((this.width - 16 - 8) / (SW * scale + (scale > 1 ? 4 : 0))));
     return v_flex().id("agents-office").size_full().min_h(0).bg(t.chrome).border_t(1).border_color(t.border)
@@ -134,7 +166,9 @@ export default class AgentsOffice extends View {
         if (Math.abs(size.width - this.width) > 0.5) { this.width = size.width; cx.notify(); }
       })
       .when(!narrow, (el) => el.child(h_flex().px(16).h(36).pt(12).pb(4).flex_none().items_center()
-        .child(div().text_size(11.5).font_medium().text_color(t.dim).child("Agents"))))
+        .child(h_flex().gap(8).items_baseline()
+          .child(div().text_size(11.5).font_medium().text_color(t.dim).child("Agents"))
+          .when(Boolean(hint), (el) => el.child(div().id("agent-keys").text_size(10.5).text_color(t.dim).tooltip(hint.tip).child(hint.text))))))
       .child(v_flex().id("office-list").flex_1().min_h(0).p(narrow ? 3 : 8).gap(narrow ? 4 : 10).overflow_y_scrollbar()
         .children([...offices].map(([name, members], n) => this.office(name, members, n, scale, cols))));
   }

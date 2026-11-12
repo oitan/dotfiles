@@ -1,0 +1,1 @@
+{ "place": "none", "title": "New agent", "overlay": { "kind": "window", "key": "agent-launcher", "width": 420, "height": 520 } }
