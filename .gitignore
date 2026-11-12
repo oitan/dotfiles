@@ -4,3 +4,6 @@
 .claude/settings.local.json
 *.swp
 .DS_Store
+# Herdr writes these into every mod folder
+.config/herdr-app/mods/*/gpui-kit.d.ts
+.config/herdr-app/mods/*/jsconfig.json

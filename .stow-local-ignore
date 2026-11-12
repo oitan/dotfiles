@@ -6,3 +6,4 @@ scripts
 .gitignore
 brew-list
 
+\.DS_Store
