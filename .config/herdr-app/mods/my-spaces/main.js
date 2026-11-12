@@ -394,6 +394,20 @@ export default class Spaces extends View {
       .when(Boolean(combo), el => el.tooltip(`Jump here: ${combo}`).child(String(n)));
   }
 
+  // "⌃1–9": the modifier all the space.select:N keys share, and the range of numbers they cover.
+  // Nothing when they don't share one prefix. Built from the live key table, so it follows rebinding.
+  jumpHint() {
+    const nums = [...this.jump.keys()].sort((a, b) => a - b);
+    if (!nums.length) return null;
+    const prefixes = new Set(nums.map((n) => this.jump.get(n).slice(0, -String(n).length)));
+    if (prefixes.size !== 1) return null;
+    const [prefix] = prefixes, mods = prefix.split("-").filter(Boolean);
+    const glyph = { ctrl: "⌃", cmd: "⌘", alt: "⌥", shift: "⇧" }, words = { ctrl: "Ctrl", cmd: "Cmd", alt: "Alt", shift: "Shift" };
+    const range = nums.length > 1 ? `${nums[0]}–${nums.at(-1)}` : String(nums[0]);
+    const name = mods.map((m) => words[m] ?? m).join("+");
+    return { text: mods.map((m) => glyph[m] ?? m).join("") + range, tip: `Press ${name}+${range} to jump to a space` };
+  }
+
   row({ w, i, g, tree }, t) {
     const on = w.active;
     const fromIndex = this.pressed === null ? -1 : spaces().findIndex(s => s.id === this.pressed);
@@ -476,6 +490,7 @@ export default class Spaces extends View {
       const m = /^space\.select:(\d+)$/.exec(k.action);
       if (m && !this.jump.has(+m[1])) this.jump.set(+m[1], k.keys);
     }
+    const hint = this.jumpHint();
     const palette = ["ansi6", "ansi3", "ansi4", "ansi5", "ansi2", "ansi1"];
     const sp = spaces();
     const ids = new Set(sp.map(p => p.id));
@@ -491,7 +506,8 @@ export default class Spaces extends View {
     return v_flex().size_full().min_h(0).bg(t.chrome).text_size(13)
       .child(h_flex().h(31).pl(16).pr(10).items_center().justify_between().text_size(11.5).text_color(t.dim)
         .when(collapsed, el => el.pl(0).pr(0).justify_center())
-        .when(!collapsed, el => el.child("Spaces"))
+        .when(!collapsed, el => el.child(h_flex().gap(8).items_baseline().child("Spaces")
+          .when(Boolean(hint), el => el.child(div().id("space-keys").text_size(10.5).text_color(t.dim).tooltip(hint.tip).child(hint.text)))))
         .child(div().id("space-new").size(26).flex_none().flex().items_center().justify_center().rounded(6).hover(s => s.bg(t.hover).text_color(t.foreground))
           .on_click(() => run("space.new")).child(svg("mods/workspace-chrome/plus.svg").size(14))))
       .child(v_flex().flex_1().min_h(0).px(collapsed ? 0 : 8).pb(14).overflow_y_scrollbar().mode("always")
