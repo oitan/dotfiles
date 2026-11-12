@@ -1,6 +1,30 @@
 import { View, div, svg, image } from "gpui-kit";
 import { h_flex, ScrollHandle } from "gpui-base";
-import { spaces, panes, run, openOverlay, theme, window, shared, layout, settings } from "herdr";
+import { spaces, panes, run, openOverlay, theme, window, shared, layout, settings, nextCommand, keys } from "herdr";
+
+const GLYPH = { ctrl: "⌃", cmd: "⌘", alt: "⌥", shift: "⇧" }, WORDS = { ctrl: "Ctrl", cmd: "Cmd", alt: "Alt", shift: "Shift" };
+
+// A key binding for an action, from the live key table: its modifiers and its key ("cmd-ctrl-[" -> ["cmd","ctrl"], "[").
+function binding(table, action) {
+  const k = table.find((x) => x.action === action);
+  if (!k) return null;
+  const parts = k.keys.split("-"), key = parts.pop();
+  return key ? { mods: parts, key } : null;
+}
+
+// The hint beside the panel buttons: "⌘⌃B · ⌘⌃[ ]" (show/hide, then previous and next panel tab), each part
+// shown only when its keys are bound (the bracket pair needs one shared modifier). Follows rebinding because
+// it reads the live key table.
+function panelKeyHint() {
+  const table = keys(), toggle = binding(table, "layout.toggle:panel"), prev = binding(table, "my-tabs.panel-prev"), next = binding(table, "my-tabs.panel-next");
+  const sym = (b) => b.mods.map((m) => GLYPH[m] ?? m).join(""), words = (b, key) => [...b.mods.map((m) => WORDS[m] ?? m), key].join("+");
+  const text = [], tip = [];
+  if (toggle) { text.push(`${sym(toggle)}${toggle.key.toUpperCase()}`); tip.push(`${words(toggle, toggle.key.toUpperCase())}: show or hide the panel`); }
+  if (prev && next && prev.mods.join() === next.mods.join()) {
+    text.push(`${sym(prev)}${prev.key} ${next.key}`); tip.push(`${words(prev, `${prev.key} / ${next.key}`)}: previous / next panel`);
+  }
+  return text.length ? { text: text.join(" · "), tip: tip.join(" · ") } : null;
+}
 
 function find(node, id) {
   if (node?.id === id) return node;
@@ -12,10 +36,30 @@ function find(node, id) {
 }
 
 export default class Tabs extends View {
-  init() {
+  init(_props, cx) {
     this.pressed = null;
     this.scroll = ScrollHandle.new();
     this.panels = JSON.parse(localStorage.getItem("panels") ?? "{}");
+    // Keys "my-tabs.panel-next" / "my-tabs.panel-prev" cycle the right panel's tabs (Files, Changes, PRs).
+    cx.spawn(async () => {
+      for (;;) {
+        const step = { "panel-next": 1, "panel-prev": -1 }[await nextCommand()];
+        if (step) this.cyclePanel(step);
+      }
+    });
+  }
+
+  // The next or previous panel tab, wrapping around; a hidden panel just opens on its current tab.
+  cyclePanel(step) {
+    const root = layout(), panel = find(root, "panel"), body = find(root, "panel-body");
+    const enabled = [...new Set([...(shared("workspace.panels") ?? ["files", "changes"]), "prs"])];
+    const order = ["files", "changes", "prs"].filter((id) => enabled.includes(id));
+    if (!panel || !body || !order.length) return;
+    if (!panel.hidden) {
+      const at = order.indexOf(body.active);
+      run("layout.select", { stack: "panel-body", child: order[((at < 0 ? 0 : at) + step + order.length) % order.length] });
+    }
+    run("layout.show", { id: "panel" });
   }
 
   // The side panel is remembered per space: switching shows that space's choice
@@ -57,6 +101,7 @@ export default class Tabs extends View {
       this.selectedIndex = active;
       if (active >= 0) this.scroll.scroll_to_item(active);
     }
+    const panelHint = panelKeyHint();
     const stop = (_e, cx) => cx.stop_propagation();
     const button = (id, label, action) => div().id(id).size(26).flex_none().flex().items_center().justify_center().rounded(6).text_color(t.dim).hover(s => s.bg(t.hover).text_color(t.foreground))
       .on_mouse_down("left", stop).on_click(action).child(label);
@@ -106,6 +151,7 @@ export default class Tabs extends View {
         .on_size_change((_size, cx) => { if (active >= 0) { this.scroll.scroll_to_item(active); cx.notify(); } })
         .children(shown.map(item)))
       .child(button("tab-new", "+", () => openOverlay({ mod: "new-menu", kind: "popup", width: 250, height: 512 })))
+      .when(Boolean(panelHint), el => el.child(div().id("panel-keys").flex_none().mr(2).text_size(10.5).text_color(t.dim).tooltip(panelHint.tip).child(panelHint.text)))
       .when(enabled.includes("files"), el => el.child(panelButton("files", "Files", "mods/files/file.svg")))
       .when(enabled.includes("changes"), el => el.child(panelButton("changes", "Changes", "mods/changes/changes.svg")))
       .when(enabled.includes("prs"), el => el.child(panelButton("prs", "PRs", "mods/prs/pr.svg")))
