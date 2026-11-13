@@ -1,12 +1,12 @@
-// Start an agent in a new space: pick Claude or Codex, then a project. Opened by an office's plant,
-// for that office's machine. Type to filter, ↑/↓ to choose, Tab to switch agent, Enter to start, Esc to leave.
+// Start an agent in a new space: pick the machine (when there is more than one), Claude or Codex, then a project.
+// Opened by an office's plant for that office's machine, or by the + button for the last machine picked. Type to filter, ↑/↓ to choose, Tab to switch agent, Enter to start, Esc to leave.
 // Projects are git repos found on the machine plus folders you added (kept per machine, shown from then on).
 // Type a path (/… or ~/…) to add a folder on any machine; locally the Add button opens the folder picker.
 // A window like the theme picker: an outside click doesn't dismiss it, and controls stop the drag.
 
 import { View, div, svg, image } from "gpui-kit";
 import { v_flex, h_flex, InputState, Input, ScrollHandle, Scrollbar } from "gpui-base";
-import { knownAgents, exec, run, theme, props, closeOverlay, pickFolder, shared, setShared } from "herdr";
+import { knownAgents, exec, run, theme, props, closeOverlay, pickFolder, shared, setShared, machines } from "herdr";
 
 const stop = (_e, cx) => cx.stop_propagation();
 const WANTED = ["claude", "codex"];
@@ -29,7 +29,10 @@ const store = {
 
 export default class AgentLauncher extends View {
   init(_props, cx) {
-    this.machine = props()?.machine ?? null;
+    // A plant passes its office's machine; the + button passes none, so the last one picked is used.
+    const given = props() ?? {};
+    this.machine = "machine" in given ? given.machine ?? null : store.get("machine", null);
+    this.loadId = 0;
     this.filter = "";
     this.at = 0;
     this.home = "";
@@ -46,23 +49,45 @@ export default class AgentLauncher extends View {
     this.input.on("submit", (_e, cx) => this.choose(this.list()[this.at], cx));
     this.input.focus();
     cx.timer.after(600, () => this.input.focus());
+    this.load(cx);
+  }
+
+  // The agents installed on this machine and the projects found on it; a stale answer (the machine changed meanwhile) is dropped.
+  load(cx) {
+    const id = ++this.loadId, machine = this.machine;
+    this.agents = null; this.projects = null; this.error = null; this.home = "";
     cx.spawn(async (cx) => {
+      let agents = [];
       try {
-        const all = await knownAgents({ on: this.machine });
-        this.agents = WANTED.map((k) => all.find((a) => a.key === k)).filter(Boolean);
-      } catch { this.agents = []; }
-      if (!this.agents.some((a) => a.key === this.chosen && a.installed)) this.chosen = this.agents.find((a) => a.installed)?.key ?? this.chosen;
+        const all = await knownAgents({ on: machine });
+        agents = WANTED.map((k) => all.find((a) => a.key === k)).filter(Boolean);
+      } catch {}
+      if (id !== this.loadId) return;
+      this.agents = agents;
+      if (!agents.some((a) => a.key === this.chosen && a.installed)) this.chosen = agents.find((a) => a.installed)?.key ?? this.chosen;
       cx.notify();
     });
     cx.spawn(async (cx) => {
+      let lines = [], error = null;
       try {
-        const r = await exec("sh", ["-c", FIND], { on: this.machine, timeout: 20000 });
-        const lines = r.stdout.split("\n").filter(Boolean);
-        this.home = lines.shift() ?? "";
-        this.projects = lines;
-      } catch (e) { this.projects = []; this.error = String(e); }
+        const r = await exec("sh", ["-c", FIND], { on: machine, timeout: 20000 });
+        lines = r.stdout.split("\n").filter(Boolean);
+      } catch (e) { error = String(e); }
+      if (id !== this.loadId) return;
+      this.home = lines.shift() ?? "";
+      this.projects = lines; this.error = error;
       cx.notify();
     });
+  }
+
+  chooseMachine(name, cx) {
+    if (name === this.machine) return;
+    this.machine = name;
+    store.set("machine", name);
+    this.recent = store.get(`recent:${name ?? ""}`, []);
+    this.filter = ""; this.input.set_value(""); this.at = 0; this.note = null;
+    this.load(cx);
+    cx.notify();
   }
 
   dismiss() { closeOverlay(props().overlay); }
@@ -180,7 +205,7 @@ export default class AgentLauncher extends View {
   }
 
   render(cx) {
-    const t = theme(), list = this.list(), agent = this.agent();
+    const t = theme(), list = this.list(), agent = this.agent(), known = machines();
     if (this.at >= list.length) this.at = Math.max(0, list.length - 1);
     const short = (p) => (this.home && p.startsWith(this.home) ? "~" + p.slice(this.home.length) : p);
     const sel = list[this.at];
@@ -199,6 +224,15 @@ export default class AgentLauncher extends View {
         .child(div().flex_1().min_w(0).truncate().text_size(11).text_color(t.dim).child(`in a new space · ${this.machine ?? "this computer"}`))
         .child(div().id("launcher-esc").px(6).py(2).rounded(5).text_size(11).text_color(t.dim).cursor_pointer().hover((s) => s.bg(t.hover).text_color(t.foreground))
           .on_mouse_down("left", stop).on_click(() => this.dismiss()).child("Esc")))
+      .when(known.length > 1, (el) => el.child(h_flex().gap(6).flex_none().flex_wrap().children(known.map((m) => {
+        const on = (m.name ?? null) === this.machine, ready = m.layout !== "unavailable";
+        return h_flex().id(`machine-${m.name ?? "local"}`).h(28).px(10).gap(6).items_center().rounded(8).border_1().text_size(12)
+          .border_color(on ? t.accent : t.border).bg(on ? t.selected : t.popover).text_color(ready ? (on ? t.foreground : t.muted) : t.dim)
+          .when(ready, (el) => el.cursor_pointer().hover((s) => s.bg(t.hover)).on_mouse_down("left", stop).on_click((_e, cx) => this.chooseMachine(m.name ?? null, cx)))
+          .tooltip(ready ? (m.name ? `Start the agent on ${m.name}` : "Start the agent on this computer") : `${m.name} is offline`)
+          .child(svg(`mods/workspace-chrome/${m.name ? "server" : "monitor"}.svg`).size(12).flex_none())
+          .child(div().child(m.name ?? "This computer"));
+      }))))
       .child(h_flex().gap(8).flex_none().children((this.agents ?? []).map((a) => {
         const on = a.key === this.chosen;
         return h_flex().id(`agent-${a.key}`).flex_1().h(38).px(12).gap(8).items_center().rounded(9).border_1()
