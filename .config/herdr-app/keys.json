@@ -61,7 +61,16 @@
     "cmd-ctrl-b": "layout.toggle:panel",
     "cmd-ctrl-[": "my-tabs.panel-prev",
     "cmd-ctrl-]": "my-tabs.panel-next",
-    "cmd-ctrl-s": "layout.toggle:spaces"
+    "cmd-ctrl-s": "layout.toggle:spaces",
+    "cmd-alt-1": "space.select:1",
+    "cmd-alt-2": "space.select:2",
+    "cmd-alt-3": "space.select:3",
+    "cmd-alt-4": "space.select:4",
+    "cmd-alt-5": "space.select:5",
+    "cmd-alt-6": "space.select:6",
+    "cmd-alt-7": "space.select:7",
+    "cmd-alt-8": "space.select:8",
+    "cmd-alt-9": "space.select:9"
   },
   "terminal": {
     "cmd-f": "terminal.search",

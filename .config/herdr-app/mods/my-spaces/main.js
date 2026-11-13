@@ -396,16 +396,25 @@ export default class Spaces extends View {
 
   // "⌃1–9": the modifier all the space.select:N keys share, and the range of numbers they cover.
   // Nothing when they don't share one prefix. Built from the live key table, so it follows rebinding.
-  jumpHint() {
+  jumpHint(table) {
+    const glyph = { ctrl: "⌃", cmd: "⌘", alt: "⌥", shift: "⇧" }, word = { ctrl: "Ctrl", cmd: "Cmd", alt: "Alt", shift: "Shift" };
+    const sym = (mods) => mods.map((m) => glyph[m] ?? m).join(""), words = (mods, key) => [...mods.map((m) => word[m] ?? m), key].join("+");
+    const text = [], tip = [];
     const nums = [...this.jump.keys()].sort((a, b) => a - b);
-    if (!nums.length) return null;
     const prefixes = new Set(nums.map((n) => this.jump.get(n).slice(0, -String(n).length)));
-    if (prefixes.size !== 1) return null;
-    const [prefix] = prefixes, mods = prefix.split("-").filter(Boolean);
-    const glyph = { ctrl: "⌃", cmd: "⌘", alt: "⌥", shift: "⇧" }, words = { ctrl: "Ctrl", cmd: "Cmd", alt: "Alt", shift: "Shift" };
-    const range = nums.length > 1 ? `${nums[0]}–${nums.at(-1)}` : String(nums[0]);
-    const name = mods.map((m) => words[m] ?? m).join("+");
-    return { text: mods.map((m) => glyph[m] ?? m).join("") + range, tip: `Press ${name}+${range} to jump to a space` };
+    if (nums.length && prefixes.size === 1) {
+      const mods = [...prefixes][0].split("-").filter(Boolean), range = nums.length > 1 ? `${nums[0]}–${nums.at(-1)}` : String(nums[0]);
+      text.push(sym(mods) + range); tip.push(`${words(mods, range)}: jump to a space`);
+    }
+    const split = (keys) => { const p = keys.split("-"), key = p.pop(); return { mods: p, key }; };
+    const prev = table.find((x) => x.action === "space.prev"), next = table.find((x) => x.action === "space.next");
+    if (prev && next) {
+      const a = split(prev.keys), b = split(next.keys);
+      if (a.key && b.key && a.mods.join() === b.mods.join()) {
+        text.push(`${sym(a.mods)}${a.key} ${b.key}`); tip.push(`${words(a.mods, `${a.key} / ${b.key}`)}: previous / next space`);
+      }
+    }
+    return text.length ? { text: text.join(" · "), tip: tip.join(" · ") } : null;
   }
 
   row({ w, i, g, tree }, t) {
@@ -486,12 +495,13 @@ export default class Spaces extends View {
     const t = theme();
     const collapsed = narrow();
     this.jump = new Map();
-    for (const k of keys()) {
+    const table = keys();
+    for (const k of table) {
       const m = /^space\.select:(\d+)$/.exec(k.action);
       if (m && !this.jump.has(+m[1])) this.jump.set(+m[1], k.keys);
       if (k.action === "layout.toggle:spaces" && !this.hideKey) this.hideKey = k.keys;
     }
-    const hint = this.jumpHint();
+    const hint = this.jumpHint(table);
     const palette = ["ansi6", "ansi3", "ansi4", "ansi5", "ansi2", "ansi1"];
     const sp = spaces();
     const ids = new Set(sp.map(p => p.id));
