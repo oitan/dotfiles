@@ -156,6 +156,13 @@
                         "mod": "prs"
                       },
                       "children": []
+                    },
+                    {
+                      "id": "codexbar",
+                      "type": "block",
+                      "content": {
+                        "mod": "codexbar"
+                      }
                     }
                   ],
                   "active": "files"

@@ -52,8 +52,8 @@ export default class Tabs extends View {
   // The next or previous panel tab, wrapping around; a hidden panel just opens on its current tab.
   cyclePanel(step) {
     const root = layout(), panel = find(root, "panel"), body = find(root, "panel-body");
-    const enabled = [...new Set([...(shared("workspace.panels") ?? ["files", "changes"]), "prs"])];
-    const order = ["files", "changes", "prs"].filter((id) => enabled.includes(id));
+    const enabled = [...new Set([...(shared("workspace.panels") ?? ["files", "changes"]), "prs", "codexbar"])];
+    const order = ["files", "changes", "prs", "codexbar"].filter((id) => enabled.includes(id));
     if (!panel || !body || !order.length) return;
     if (!panel.hidden) {
       const at = order.indexOf(body.active);
@@ -132,7 +132,7 @@ export default class Tabs extends View {
       ? Math.max(10, (root.traffic_lights[0] + 64) / settings().zoom - (sidebar?.hidden ? 0 : sidebar?.size?.px ?? 0))
       : 10;
     const panel = find(root, "panel"), body = find(root, "panel-body");
-    const enabled = [...new Set([...(shared("workspace.panels") ?? ["files", "changes"]), "prs"])];
+    const enabled = [...new Set([...(shared("workspace.panels") ?? ["files", "changes"]), "prs", "codexbar"])];
     this.syncPanel(space, panel, body, enabled);
     const panelButton = (id, label, icon) => {
       const on = panel && !panel.hidden && body?.active === id;
@@ -155,6 +155,7 @@ export default class Tabs extends View {
       .when(enabled.includes("files"), el => el.child(panelButton("files", "Files", "mods/files/file.svg")))
       .when(enabled.includes("changes"), el => el.child(panelButton("changes", "Changes", "mods/changes/changes.svg")))
       .when(enabled.includes("prs"), el => el.child(panelButton("prs", "PRs", "mods/prs/pr.svg")))
+      .when(enabled.includes("codexbar"), el => el.child(panelButton("codexbar", "Codex", "mods/codexbar/gauge.svg")))
       .child(button("theme", svg("mods/my-tabs/palette.svg").size(15), () => run("mod.open", { name: "theme-picker" })))
       .when(w?.buttons, el => el.child(button("minimize", w.platform === "windows" ? svg("mods/my-tabs/win-min.svg").size(16) : "−", () => run("window.minimize")))
         .child(button("maximize", w.platform === "windows" ? svg(`mods/my-tabs/${w.maximized ? "win-restore" : "win-max"}.svg`).size(16) : "□", () => run("window.maximize")))
