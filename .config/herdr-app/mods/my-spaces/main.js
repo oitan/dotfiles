@@ -489,6 +489,7 @@ export default class Spaces extends View {
     for (const k of keys()) {
       const m = /^space\.select:(\d+)$/.exec(k.action);
       if (m && !this.jump.has(+m[1])) this.jump.set(+m[1], k.keys);
+      if (k.action === "layout.toggle:spaces" && !this.hideKey) this.hideKey = k.keys;
     }
     const hint = this.jumpHint();
     const palette = ["ansi6", "ansi3", "ansi4", "ansi5", "ansi2", "ansi1"];
@@ -508,8 +509,12 @@ export default class Spaces extends View {
         .when(collapsed, el => el.pl(0).pr(0).justify_center())
         .when(!collapsed, el => el.child(h_flex().gap(8).items_baseline().child("Spaces")
           .when(Boolean(hint), el => el.child(div().id("space-keys").text_size(10.5).text_color(t.dim).tooltip(hint.tip).child(hint.text)))))
-        .child(div().id("space-new").size(26).flex_none().flex().items_center().justify_center().rounded(6).hover(s => s.bg(t.hover).text_color(t.foreground))
-          .on_click(() => run("space.new")).child(svg("mods/workspace-chrome/plus.svg").size(14))))
+        .child(h_flex().gap(2).flex_none()
+          .when(!collapsed, el => el.child(div().id("space-hide").size(26).flex_none().flex().items_center().justify_center().rounded(6).hover(s => s.bg(t.hover).text_color(t.foreground))
+            .tooltip(this.hideKey ? `Hide spaces (${this.hideKey.split("-").map(k => k[0].toUpperCase() + k.slice(1)).join("+")})` : "Hide spaces")
+            .on_click(() => run("layout.toggle", { id: "spaces" })).child(svg("mods/workspace-chrome/panel-left.svg").size(14))))
+          .child(div().id("space-new").size(26).flex_none().flex().items_center().justify_center().rounded(6).hover(s => s.bg(t.hover).text_color(t.foreground))
+            .on_click(() => run("space.new")).child(svg("mods/workspace-chrome/plus.svg").size(14)))))
       .child(v_flex().flex_1().min_h(0).px(collapsed ? 0 : 8).pb(14).overflow_y_scrollbar().mode("always")
         .on_mouse_up("left", (_e, cx) => { this.pressed = null; cx.notify(); })
         .children(this.grouped(t, collapsed)));
