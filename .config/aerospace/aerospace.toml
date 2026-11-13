@@ -159,7 +159,7 @@ run = ['move-node-to-workspace 2']
 
 # terminal
 [[on-window-detected]]
-if.app-name-regex-substring = 'ghostty'
+if.app-name-regex-substring = 'ghostty|herdr'
 check-further-callbacks = true
 run = ['move-node-to-workspace 3']
 
