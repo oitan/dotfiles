@@ -36,7 +36,7 @@ function find(node, id) {
 }
 
 // The right panel stacks: each of these blocks is shown or hidden on its own, and the panel itself is shown while any is.
-const PANELS = ["files", "changes", "prs", "codexbar", "spec"];
+const PANELS = ["files", "changes", "prs", "codexbar", "spec", "tasks"];
 // The panels in the order the layout stacks them (drag a button to change it).
 function panelOrder(root) {
   const ids = (find(root, "panel-body")?.children ?? []).map((c) => c.id).filter((id) => PANELS.includes(id));
@@ -44,7 +44,7 @@ function panelOrder(root) {
 }
 const PANEL_LOOK = {
   files: ["Files", "mods/files/file.svg"], changes: ["Changes", "mods/changes/changes.svg"], prs: ["PRs", "mods/prs/pr.svg"],
-  codexbar: ["Codex", "mods/codexbar/gauge.svg"], spec: ["Spec", "mods/spec-progress/list.svg"],
+  codexbar: ["Codex", "mods/codexbar/gauge.svg"], spec: ["Spec", "mods/spec-progress/list.svg"], tasks: ["Tasks", "mods/tasks/check.svg"],
 };
 function visiblePanels(root) {
   const panel = find(root, "panel");
@@ -73,7 +73,7 @@ export default class Tabs extends View {
   // The next or previous panel, wrapping around, shown alone; a hidden panel just opens as it was.
   cyclePanel(step) {
     const root = layout(), panel = find(root, "panel");
-    const enabled = [...new Set([...(shared("workspace.panels") ?? ["files", "changes"]), "prs", "codexbar", "spec"])];
+    const enabled = [...new Set([...(shared("workspace.panels") ?? ["files", "changes"]), "prs", "codexbar", "spec", "tasks"])];
     const order = panelOrder(root).filter((id) => enabled.includes(id));
     if (!panel || !order.length) return;
     if (!panel.hidden) {
@@ -160,7 +160,7 @@ export default class Tabs extends View {
     const lightsPadding = w?.platform === "macos" && w.titlebar === "none" && !w.fullscreen && root?.traffic_lights
       ? Math.max(10, (root.traffic_lights[0] + 64) / settings().zoom - (sidebar?.hidden ? 0 : sidebar?.size?.px ?? 0))
       : 10;
-    const enabled = [...new Set([...(shared("workspace.panels") ?? ["files", "changes"]), "prs", "codexbar", "spec"])];
+    const enabled = [...new Set([...(shared("workspace.panels") ?? ["files", "changes"]), "prs", "codexbar", "spec", "tasks"])];
     const open = visiblePanels(root);
     this.syncPanel(space, root, enabled);
     const panelButton = (id, label, icon) => {

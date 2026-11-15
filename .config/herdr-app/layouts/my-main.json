@@ -135,10 +135,34 @@
                   "type": "column",
                   "children": [
                     {
-                      "id": "files",
+                      "id": "spec",
                       "type": "block",
                       "content": {
-                        "mod": "files"
+                        "mod": "spec-progress"
+                      },
+                      "hidden": true
+                    },
+                    {
+                      "id": "tasks",
+                      "type": "block",
+                      "content": {
+                        "mod": "tasks"
+                      },
+                      "hidden": true
+                    },
+                    {
+                      "id": "codexbar",
+                      "type": "block",
+                      "content": {
+                        "mod": "codexbar"
+                      },
+                      "hidden": true
+                    },
+                    {
+                      "id": "prs",
+                      "type": "block",
+                      "content": {
+                        "mod": "prs"
                       },
                       "children": [],
                       "hidden": true
@@ -153,28 +177,12 @@
                       "hidden": true
                     },
                     {
-                      "id": "prs",
+                      "id": "files",
                       "type": "block",
                       "content": {
-                        "mod": "prs"
+                        "mod": "files"
                       },
                       "children": [],
-                      "hidden": true
-                    },
-                    {
-                      "id": "codexbar",
-                      "type": "block",
-                      "content": {
-                        "mod": "codexbar"
-                      },
-                      "hidden": true
-                    },
-                    {
-                      "id": "spec",
-                      "type": "block",
-                      "content": {
-                        "mod": "spec-progress"
-                      },
                       "hidden": true
                     }
                   ],
