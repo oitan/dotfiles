@@ -5,6 +5,7 @@
     "version": "0.1.15"
   },
   "type": "row",
+  "terminal_menu": "my-menu",
   "children": [
     {
       "id": "sidebar",
@@ -103,7 +104,7 @@
                 "pane": {
                   "header": {
                     "content": {
-                      "mod": "pane"
+                      "mod": "my-pane"
                     },
                     "reveal": "always",
                     "height": 30,
