@@ -35,12 +35,24 @@ function find(node, id) {
   return null;
 }
 
+// The right panel stacks: each of these blocks is shown or hidden on its own, and the panel itself is shown while any is.
+const PANELS = ["files", "changes", "prs", "codexbar", "spec"];
+function visiblePanels(root) {
+  const panel = find(root, "panel");
+  if (!panel || panel.hidden) return [];
+  return PANELS.filter((id) => { const n = find(root, id); return n && !n.hidden; });
+}
+function showPanels(ids) {
+  for (const id of PANELS) run(ids.includes(id) ? "layout.show" : "layout.hide", { id });
+  run(ids.length ? "layout.show" : "layout.hide", { id: "panel" });
+}
+
 export default class Tabs extends View {
   init(_props, cx) {
     this.pressed = null;
     this.scroll = ScrollHandle.new();
     this.panels = JSON.parse(localStorage.getItem("panels") ?? "{}");
-    // Keys "my-tabs.panel-next" / "my-tabs.panel-prev" cycle the right panel's tabs (Files, Changes, PRs).
+    // Keys "my-tabs.panel-next" / "my-tabs.panel-prev" show the right panel's panels one at a time.
     cx.spawn(async () => {
       for (;;) {
         const step = { "panel-next": 1, "panel-prev": -1 }[await nextCommand()];
@@ -49,43 +61,42 @@ export default class Tabs extends View {
     });
   }
 
-  // The next or previous panel tab, wrapping around; a hidden panel just opens on its current tab.
+  // The next or previous panel, wrapping around, shown alone; a hidden panel just opens as it was.
   cyclePanel(step) {
-    const root = layout(), panel = find(root, "panel"), body = find(root, "panel-body");
+    const root = layout(), panel = find(root, "panel");
     const enabled = [...new Set([...(shared("workspace.panels") ?? ["files", "changes"]), "prs", "codexbar", "spec"])];
-    const order = ["files", "changes", "prs", "codexbar", "spec"].filter((id) => enabled.includes(id));
-    if (!panel || !body || !order.length) return;
+    const order = PANELS.filter((id) => enabled.includes(id));
+    if (!panel || !order.length) return;
     if (!panel.hidden) {
-      const at = order.indexOf(body.active);
-      run("layout.select", { stack: "panel-body", child: order[((at < 0 ? 0 : at) + step + order.length) % order.length] });
-    }
-    run("layout.show", { id: "panel" });
+      const at = order.indexOf(visiblePanels(root)[0]);
+      showPanels([order[((at < 0 ? 0 : at) + step + order.length) % order.length]]);
+    } else run("layout.show", { id: "panel" });
   }
 
-  // The side panel is remembered per space: switching shows that space's choice
-  // (closed if it never had one), and opening or closing it records it.
-  syncPanel(space, panel, body, enabled) {
-    if (!space || !panel) return;
-    const now = panel.hidden ? null : body?.active ?? null;
+  // The side panel is remembered per space: switching shows that space's panels
+  // (closed if it never had any), and opening, closing or stacking one records it.
+  syncPanel(space, root, enabled) {
+    if (!space) return;
+    const now = visiblePanels(root).filter((id) => enabled.includes(id));
+    const same = (a, b) => a.join() === b.join();
     if (space.id !== this.space) {
       const first = this.space === undefined;
       this.space = space.id; this.pending = null;
       if (!(first && !(space.id in this.panels))) {
-        const stored = this.panels[space.id] ?? null, want = enabled.includes(stored) ? stored : null;
-        if (want !== now) {
+        const stored = [].concat(this.panels[space.id] ?? []), want = stored.filter((id) => enabled.includes(id));
+        if (!same(want, now)) {
           this.pending = { want, until: Date.now() + 1000 };
-          if (want) { run("layout.select", { stack: "panel-body", child: want }); run("layout.show", { id: "panel" }); }
-          else run("layout.hide", { id: "panel" });
+          showPanels(want);
           return;
         }
       }
     }
     // Until the restore lands (or something else won), the old state isn't a choice.
     if (this.pending) {
-      if (this.pending.want !== now && Date.now() < this.pending.until) return;
+      if (!same(this.pending.want, now) && Date.now() < this.pending.until) return;
       this.pending = null;
     }
-    if (this.panels[space.id] === now) return;
+    if (same([].concat(this.panels[space.id] ?? []), now)) return;
     this.panels[space.id] = now;
     localStorage.setItem("panels", JSON.stringify(this.panels));
   }
@@ -131,18 +142,15 @@ export default class Tabs extends View {
     const lightsPadding = w?.platform === "macos" && w.titlebar === "none" && !w.fullscreen && root?.traffic_lights
       ? Math.max(10, (root.traffic_lights[0] + 64) / settings().zoom - (sidebar?.hidden ? 0 : sidebar?.size?.px ?? 0))
       : 10;
-    const panel = find(root, "panel"), body = find(root, "panel-body");
     const enabled = [...new Set([...(shared("workspace.panels") ?? ["files", "changes"]), "prs", "codexbar", "spec"])];
-    this.syncPanel(space, panel, body, enabled);
+    const open = visiblePanels(root);
+    this.syncPanel(space, root, enabled);
     const panelButton = (id, label, icon) => {
-      const on = panel && !panel.hidden && body?.active === id;
+      const on = open.includes(id);
       return h_flex().id(`panel-${id}`).h(26).px(8).gap(5).flex_none().items_center().rounded(6)
         .text_size(12).bg(on ? t.selected : t.chrome).text_color(on ? t.foreground : t.muted)
         .hover(s => s.bg(t.hover)).on_mouse_down("left", stop)
-        .on_click(() => {
-          if (on) run("layout.hide", { id: "panel" });
-          else { run("layout.select", { stack: "panel-body", child: id }); run("layout.show", { id: "panel" }); }
-        }).child(svg(icon).size(14)).child(label);
+        .on_click(() => showPanels(PANELS.filter((x) => (x === id ? !on : open.includes(x))))).child(svg(icon).size(14)).child(label);
     };
     return h_flex().size_full().min_w(0).px(10).pl(lightsPadding).gap(3).items_center().bg(t.chrome).border_b(1).border_color(t.border)
       .on_mouse_up("left", () => { this.pressed = null; })

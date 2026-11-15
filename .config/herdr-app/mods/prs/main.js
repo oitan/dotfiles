@@ -28,8 +28,8 @@ function find(node, id) {
 }
 // The copy stays alive while hidden, so the timer asks whether the panel is on screen.
 function shown() {
-  const root = layout(), panel = find(root, "panel"), body = find(root, "panel-body");
-  return Boolean(panel && !panel.hidden && body?.active === "prs");
+  const root = layout(), panel = find(root, "panel"), me = find(root, "prs");
+  return Boolean(panel && !panel.hidden && me && !me.hidden);
 }
 
 function checks(rollup) {

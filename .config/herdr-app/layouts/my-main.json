@@ -132,7 +132,7 @@
               "children": [
                 {
                   "id": "panel-body",
-                  "type": "stack",
+                  "type": "column",
                   "children": [
                     {
                       "id": "files",
@@ -140,7 +140,8 @@
                       "content": {
                         "mod": "files"
                       },
-                      "children": []
+                      "children": [],
+                      "hidden": true
                     },
                     {
                       "id": "changes",
@@ -148,7 +149,8 @@
                       "content": {
                         "mod": "changes"
                       },
-                      "children": []
+                      "children": [],
+                      "hidden": true
                     },
                     {
                       "id": "prs",
@@ -156,24 +158,27 @@
                       "content": {
                         "mod": "prs"
                       },
-                      "children": []
+                      "children": [],
+                      "hidden": true
                     },
                     {
                       "id": "codexbar",
                       "type": "block",
                       "content": {
                         "mod": "codexbar"
-                      }
+                      },
+                      "hidden": true
                     },
                     {
                       "id": "spec",
                       "type": "block",
                       "content": {
                         "mod": "spec-progress"
-                      }
+                      },
+                      "hidden": true
                     }
                   ],
-                  "active": "files"
+                  "gap": 8
                 }
               ],
               "size": {

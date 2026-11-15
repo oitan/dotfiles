@@ -18,8 +18,8 @@ function find(node, id) {
 }
 // The copy stays alive while hidden, so it asks whether its panel is on screen.
 function shown() {
-  const root = layout(), panel = find(root, "panel"), body = find(root, "panel-body");
-  return Boolean(panel && !panel.hidden && body?.active === "codexbar");
+  const root = layout(), panel = find(root, "panel"), me = find(root, "codexbar");
+  return Boolean(panel && !panel.hidden && me && !me.hidden);
 }
 
 // "6d 19h", "3h 5m", "12m": how long until `iso`, or null when it has passed.
@@ -53,6 +53,7 @@ export default class CodexBar extends View {
   refresh(cx) {
     this.loading = true;
     cx.spawn(async (cx) => {
+      await null; cx.notify();   // refresh runs from render, which may not ask for a re-render itself
       try {
         const [json, text] = await Promise.all([
           exec("codexbar", ["usage", "--provider", "codex", "--json"], { timeout: 60000 }),
@@ -67,7 +68,6 @@ export default class CodexBar extends View {
       } catch (e) { this.error = String(e?.message ?? e); }
       finally { this.loading = false; cx.notify(); }
     });
-    cx.notify();
   }
 
   // One limit: its label, how much is left as a bar of blocks, and when it resets.
