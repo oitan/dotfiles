@@ -156,7 +156,10 @@ export default class Tabs extends View {
       .when(enabled.includes("changes"), el => el.child(panelButton("changes", "Changes", "mods/changes/changes.svg")))
       .when(enabled.includes("prs"), el => el.child(panelButton("prs", "PRs", "mods/prs/pr.svg")))
       .when(enabled.includes("codexbar"), el => el.child(panelButton("codexbar", "Codex", "mods/codexbar/gauge.svg")))
-      .child(button("theme", svg("mods/my-tabs/palette.svg").size(15), () => run("mod.open", { name: "theme-picker" })))
+      .child(h_flex().id("theme").h(26).px(7).gap(5).flex_none().items_center().rounded(6).text_size(12).text_color(t.dim)
+        .hover(s => s.bg(t.hover).text_color(t.foreground)).on_mouse_down("left", stop).on_click(() => run("mod.open", { name: "theme-picker" }))
+        .child(svg("mods/my-tabs/palette.svg").size(15).flex_none())
+        .when(typeof settings().theme === "string", el => el.child(div().child(settings().theme))))
       .when(w?.buttons, el => el.child(button("minimize", w.platform === "windows" ? svg("mods/my-tabs/win-min.svg").size(16) : "−", () => run("window.minimize")))
         .child(button("maximize", w.platform === "windows" ? svg(`mods/my-tabs/${w.maximized ? "win-restore" : "win-max"}.svg`).size(16) : "□", () => run("window.maximize")))
         .child(button("close-window", w.platform === "windows" ? svg("mods/my-tabs/win-close.svg").size(16) : svg("mods/pane/close.svg").size(13), () => run("window.close"))));

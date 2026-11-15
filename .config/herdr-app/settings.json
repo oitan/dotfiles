@@ -3,9 +3,9 @@
   "sounds": {
     "enabled": true
   },
+  "font": "JetBrainsMono Nerd Font",
   "font_ligatures": false,
   "minimum_contrast": 1,
-  "theme": "catppuccin-frappe",
-  "font": "JetBrainsMono Nerd Font",
-  "appearance": "light"
+  "appearance": "dark",
+  "theme": "catppuccin-frappe"
 }

@@ -128,6 +128,11 @@ export default class AgentsOffice extends View {
 
   setSnoozed(map) { setShared(SNOOZED, map); }
   setArchived(map) { setShared(ARCHIVED, map); }
+  setUnread(address, on) {
+    const all = { ...(shared(UNREAD) ?? {}) };
+    if (on) all[address] = true; else delete all[address];
+    setShared(UNREAD, all);
+  }
   setFilter(filter) { setShared(FILTER, filter); }
 
   toggleSection(key, cx) {

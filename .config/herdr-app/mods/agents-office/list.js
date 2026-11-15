@@ -99,6 +99,13 @@ function openMenu(a, mode, c) {
 const button = (id, children, on) => div().id(id).flex_none().h(22).px(6).gap(4).flex().items_center().rounded(6).text_size(11).cursor_pointer()
   .on_click((_e, cx) => { cx.stop_propagation(); on(cx); }).children([].concat(children));
 
+// The same circle as the menu: a ring to mark unread, a filled dot (the card's unread dot) to mark read.
+function unreadMark(a, c) {
+  const { t } = c;
+  return div().size(13).flex().items_center().justify_center()
+    .child(c.unread[a.address] ? div().size(9).rounded(5).bg(t.accent) : div().size(9).rounded(5).border(1.5).border_color(t.muted));
+}
+
 function card(a, c) {
   const { t, host } = c, tab = c.tabs.get(a.tab);
   const n = c.num.get(a.address), combo = c.jump.get(n), hot = host.hovered === a.address;
@@ -124,7 +131,11 @@ function card(a, c) {
         .child(div().flex_none().text_size(11).text_color(t.dim).child(tab?.changed_at ? age(c.now - tab.changed_at) : ""))
         .child(activity(a, t))))
     .child(h_flex().gap(6).items_center().min_w(0)
-      .when(c.unread[a.address] && reads(a), (el) => el.child(div().size(7).flex_none().rounded(4).bg(t.accent)))
+      .when(reads(a), (el) => el.child(div().size(13).flex_none().flex().items_center().justify_center()
+        .when(hot, (el) => el.child(unreadMark(a, c).id(`unread-${a.address}`).cursor_pointer()
+          .on_click((_e, cx) => { cx.stop_propagation(); host.setUnread(a.address, !c.unread[a.address]); })
+          .tooltip(c.unread[a.address] ? "Mark read" : "Mark unread")))
+        .when(!hot && c.unread[a.address], (el) => el.child(div().size(7).rounded(4).bg(t.accent)))))
       .child(div().flex_1().min_w(0).truncate().text_size(13).text_color(t.foreground).when(c.unread[a.address] && reads(a), (el) => el.font_semibold()).child(title(a, c))));
 }
 
