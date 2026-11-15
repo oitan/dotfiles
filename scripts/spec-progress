@@ -1,0 +1,15 @@
+#!/bin/bash
+# How an agent reports its spec interview to Herdr's Spec panel: labels on its own terminal.
+#   spec-progress 4 7 ["title"]   4 answered of 7 (the total may change at any step)
+#   spec-progress +1              one more answered
+#   spec-progress total 9         the interview grew (or shrank) to 9 questions
+#   spec-progress clear           remove it from the panel
+t=${HC_TERMINAL_ID:?not inside a Herdr terminal}
+get() { hc get "$t" --json | python3 -c "import json,sys; print(json.load(sys.stdin).get('labels',{}).get('$1',''))"; }
+case "$1" in
+  clear) hc label "$t" spec.answered= spec.total= spec.title= >/dev/null ;;
+  +*) a=$(( $(get spec.answered) + ${1#+} )); hc label "$t" spec.answered=$a >/dev/null ;;
+  total) hc label "$t" spec.total="$2" >/dev/null ;;
+  ''|*[!0-9]*) echo "usage: spec-progress <answered> <total> [title] | +1 | total N | clear" >&2; exit 1 ;;
+  *) args=(spec.answered="$1" spec.total="$2"); [ -n "$3" ] && args+=(spec.title="$3"); hc label "$t" "${args[@]}" >/dev/null ;;
+esac

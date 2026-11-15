@@ -71,7 +71,7 @@ export default class CodexBar extends View {
   }
 
   // One limit: its label, how much is left as a bar of blocks, and when it resets.
-  limit(label, w, t, mono, now) {
+  limit(label, w, t, mono, now, pace) {
     const left = Math.max(0, Math.min(100, 100 - (w.usedPercent ?? 0)));
     const color = left > 50 ? t.ansi2 : left > 20 ? t.ansi3 : t.ansi1;
     const filled = Math.round((left / 100) * CELLS), reset = w.resetsAt ? until(w.resetsAt, now) : null;
@@ -80,7 +80,11 @@ export default class CodexBar extends View {
         .child(div().text_color(t.foreground).font_semibold().child(label))
         .child(div().flex_1())
         .child(div().text_color(color).font_semibold().child(`${Math.round(left)}% left`)))
-      .child(h_flex().gap(2).children(Array.from({ length: CELLS }, (_, i) => div().flex_1().h(9).rounded(2).bg(i < filled ? color : t.raised))))
+      .child(h_flex().gap(2).children(Array.from({ length: CELLS }, (_, i) => div().flex_1().h(9).rounded(2).bg(i < filled ? color : t.raised)
+        // the notch: where you'd be if spending were even, i.e. what's left at this point of the window
+        .when(pace && i === Math.min(CELLS - 1, Math.floor(((100 - pace.expectedUsedPercent) / 100) * CELLS)), (el) => el.border_b(2).border_color(t.foreground)))))
+      .when(Boolean(pace), (el) => el.child(div().text_size(11).text_color(pace.deltaPercent <= 0 ? t.ansi2 : t.ansi1)
+        .child(`${pace.deltaPercent <= 0 ? `${Math.round(-pace.deltaPercent)}% ahead (in reserve)` : `${Math.round(pace.deltaPercent)}% over pace`} · even pace would be ${Math.round(pace.expectedUsedPercent)}% used`)))
       .child(div().text_size(11).text_color(t.dim).child(reset ? `Resets in ${reset}${w.resetDescription ? ` · ${w.resetDescription}` : ""}` : (w.resetDescription ? `Resets ${w.resetDescription}` : "")));
   }
 
@@ -92,7 +96,7 @@ export default class CodexBar extends View {
     this.maybe(cx);
     const t = theme(), mono = settings().font_family ?? "JetBrains Mono", now = Date.now(), d = this.data, u = d?.usage;
     const windows = [["primary", "Session"], ["secondary", "Weekly"], ["tertiary", "Extra"]]
-      .map(([k, fallback]) => [d?.rateWindowLabels?.[k] ?? fallback, u?.[k]]).filter(([, w]) => w);
+      .map(([k, fallback]) => [d?.rateWindowLabels?.[k] ?? fallback, u?.[k], k]).filter(([, w]) => w);
     const reset = d?.resetCredits ?? u?.codexResetCredits;
     const nextExpiry = d?.resetCredits?.nextExpiresAt ? until(d.resetCredits.nextExpiresAt, now) : null;
     return v_flex().id("codexbar").size_full().min_h(0).rounded(10).overflow_hidden().bg(t.background).border_1().border_color(t.border).text_color(t.foreground).text_size(12.5).font_family(mono)
@@ -109,7 +113,7 @@ export default class CodexBar extends View {
           .child(div().text_size(11).text_color(t.dim).child("Needs the codexbar CLI (brew install codexbar) and a Codex login."))))
         .when(!d && !this.error, (el) => el.child(div().text_color(t.dim).child("Reading Codex usage…")))
         .when(Boolean(d), (el) => el
-          .children(windows.map(([label, w]) => this.limit(label, w, t, mono, now)))
+          .children(windows.map(([label, w, key]) => this.limit(label, w, t, mono, now, d.pace?.[key])))
           .when(!windows.length, (el) => el.child(div().text_color(t.dim).child("No usage limits reported.")))
           .child(div().h(1).bg(t.border))
           .child(v_flex().gap(6)

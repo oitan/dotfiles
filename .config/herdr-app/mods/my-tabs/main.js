@@ -52,8 +52,8 @@ export default class Tabs extends View {
   // The next or previous panel tab, wrapping around; a hidden panel just opens on its current tab.
   cyclePanel(step) {
     const root = layout(), panel = find(root, "panel"), body = find(root, "panel-body");
-    const enabled = [...new Set([...(shared("workspace.panels") ?? ["files", "changes"]), "prs", "codexbar"])];
-    const order = ["files", "changes", "prs", "codexbar"].filter((id) => enabled.includes(id));
+    const enabled = [...new Set([...(shared("workspace.panels") ?? ["files", "changes"]), "prs", "codexbar", "spec"])];
+    const order = ["files", "changes", "prs", "codexbar", "spec"].filter((id) => enabled.includes(id));
     if (!panel || !body || !order.length) return;
     if (!panel.hidden) {
       const at = order.indexOf(body.active);
@@ -132,7 +132,7 @@ export default class Tabs extends View {
       ? Math.max(10, (root.traffic_lights[0] + 64) / settings().zoom - (sidebar?.hidden ? 0 : sidebar?.size?.px ?? 0))
       : 10;
     const panel = find(root, "panel"), body = find(root, "panel-body");
-    const enabled = [...new Set([...(shared("workspace.panels") ?? ["files", "changes"]), "prs", "codexbar"])];
+    const enabled = [...new Set([...(shared("workspace.panels") ?? ["files", "changes"]), "prs", "codexbar", "spec"])];
     this.syncPanel(space, panel, body, enabled);
     const panelButton = (id, label, icon) => {
       const on = panel && !panel.hidden && body?.active === id;
@@ -156,6 +156,7 @@ export default class Tabs extends View {
       .when(enabled.includes("changes"), el => el.child(panelButton("changes", "Changes", "mods/changes/changes.svg")))
       .when(enabled.includes("prs"), el => el.child(panelButton("prs", "PRs", "mods/prs/pr.svg")))
       .when(enabled.includes("codexbar"), el => el.child(panelButton("codexbar", "Codex", "mods/codexbar/gauge.svg")))
+      .when(enabled.includes("spec"), el => el.child(panelButton("spec", "Spec", "mods/spec-progress/list.svg")))
       .child(h_flex().id("theme").h(26).px(7).gap(5).flex_none().items_center().rounded(6).text_size(12).text_color(t.dim)
         .hover(s => s.bg(t.hover).text_color(t.foreground)).on_mouse_down("left", stop).on_click(() => run("mod.open", { name: "theme-picker" }))
         .child(svg("mods/my-tabs/palette.svg").size(15).flex_none())

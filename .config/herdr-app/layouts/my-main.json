@@ -164,6 +164,13 @@
                       "content": {
                         "mod": "codexbar"
                       }
+                    },
+                    {
+                      "id": "spec",
+                      "type": "block",
+                      "content": {
+                        "mod": "spec-progress"
+                      }
                     }
                   ],
                   "active": "files"

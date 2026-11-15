@@ -91,12 +91,15 @@ export default class AgentsOffice extends View {
 
   // Settles tabs whose agents have all been idle for the set number of days (shared agents.autosettle, 3 when never
   // set, 0 = off). Never a pinned, snoozed or focused agent. An agent's idle clock starts when we see it go idle, or the
-  // first time we see it (from Herdr's last change in its tab, else now), so a restart doesn't settle everything.
+  // first time we see it (from Herdr's last change in its tab, else now), so a restart doesn't settle everything. Focusing an
+  // agent restarts its clock.
   autoSettle() {
     const now = Date.now(), tabs = new Map(spaces().flatMap((s) => s.tabs).map((tab) => [tab.id, tab])), list = agents();
     let dirty = false;
     for (const a of list) {
       const state = a.status === "done" ? "idle" : a.status, seen = this.idle[a.address];
+      // Looking at an agent (clicking a settled one brings it back) starts its idle time over; else it settles again at once.
+      if (a.focused && seen) { seen.at = now; dirty = true; }
       if (seen?.s === state) continue;
       this.idle[a.address] = { s: state, at: seen ? now : (tabs.get(a.tab)?.changed_at ?? now) };
       dirty = true;
@@ -257,6 +260,11 @@ export default class AgentsOffice extends View {
     if (now_focused && now_focused !== this.lastFocused && unread[now_focused]) {
       const rest = { ...unread }; delete rest[now_focused];
       cx.timer.after(0, () => setShared(UNREAD, rest));
+    }
+    // Its idle time starts over too, or an agent that sat settled for days settles again as soon as you look away.
+    if (now_focused && now_focused !== this.lastFocused && this.idle[now_focused]) {
+      this.idle[now_focused].at = now;
+      try { localStorage.setItem("idle", JSON.stringify(this.idle)); } catch {}
     }
     this.lastFocused = now_focused;
     // The numbers (and the jump keys) follow what is drawn: desks office by office, or the list's active cards.
