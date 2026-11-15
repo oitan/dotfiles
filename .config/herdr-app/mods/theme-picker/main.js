@@ -1,6 +1,5 @@
 // Pick a theme. Type to filter, ↑/↓ and Enter to apply, Esc to leave.
-// A window, not a popup: an outside click does not dismiss it, so the tab bar button (mod.open) toggles it reliably.
-// A press the mod does not stop drags the window, so controls stop it.
+// A dialog: Esc closes it from anywhere, focused or not, and its scrim takes an outside click so the tab bar button cannot race it.
 const stop = (_e, cx) => cx.stop_propagation();
 import { View, div } from "gpui-kit";
 import { v_flex, h_flex, InputState, Input } from "gpui-base";

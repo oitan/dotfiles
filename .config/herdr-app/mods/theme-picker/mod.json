@@ -1,1 +1,1 @@
-{ "place": "none", "title": "Theme", "overlay": { "kind": "window", "key": "theme-picker", "width": 420, "height": 520 } }
+{ "place": "none", "title": "Theme", "overlay": { "width": 420, "height": 520 } }
