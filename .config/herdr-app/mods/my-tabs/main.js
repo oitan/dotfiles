@@ -1,6 +1,6 @@
 import { View, div, svg, image } from "gpui-kit";
 import { h_flex, ScrollHandle } from "gpui-base";
-import { spaces, panes, run, openOverlay, theme, window, shared, layout, settings, nextCommand, keys } from "herdr";
+import { spaces, panes, run, exec, appHome, openOverlay, theme, window, shared, layout, settings, nextCommand, keys } from "herdr";
 
 const GLYPH = { ctrl: "⌃", cmd: "⌘", alt: "⌥", shift: "⇧" }, WORDS = { ctrl: "Ctrl", cmd: "Cmd", alt: "Alt", shift: "Shift" };
 
@@ -37,10 +37,19 @@ function find(node, id) {
 
 // The right panel stacks: each of these blocks is shown or hidden on its own, and the panel itself is shown while any is.
 const PANELS = ["files", "changes", "prs", "codexbar", "spec"];
+// The panels in the order the layout stacks them (drag a button to change it).
+function panelOrder(root) {
+  const ids = (find(root, "panel-body")?.children ?? []).map((c) => c.id).filter((id) => PANELS.includes(id));
+  return [...ids, ...PANELS.filter((id) => !ids.includes(id))];
+}
+const PANEL_LOOK = {
+  files: ["Files", "mods/files/file.svg"], changes: ["Changes", "mods/changes/changes.svg"], prs: ["PRs", "mods/prs/pr.svg"],
+  codexbar: ["Codex", "mods/codexbar/gauge.svg"], spec: ["Spec", "mods/spec-progress/list.svg"],
+};
 function visiblePanels(root) {
   const panel = find(root, "panel");
   if (!panel || panel.hidden) return [];
-  return PANELS.filter((id) => { const n = find(root, id); return n && !n.hidden; });
+  return panelOrder(root).filter((id) => { const n = find(root, id); return n && !n.hidden; });
 }
 function showPanels(ids) {
   for (const id of PANELS) run(ids.includes(id) ? "layout.show" : "layout.hide", { id });
@@ -65,12 +74,21 @@ export default class Tabs extends View {
   cyclePanel(step) {
     const root = layout(), panel = find(root, "panel");
     const enabled = [...new Set([...(shared("workspace.panels") ?? ["files", "changes"]), "prs", "codexbar", "spec"])];
-    const order = PANELS.filter((id) => enabled.includes(id));
+    const order = panelOrder(root).filter((id) => enabled.includes(id));
     if (!panel || !order.length) return;
     if (!panel.hidden) {
       const at = order.indexOf(visiblePanels(root)[0]);
       showPanels([order[((at < 0 ? 0 : at) + step + order.length) % order.length]]);
     } else run("layout.show", { id: "panel" });
+  }
+
+  // Drops the panel `from` where `to` is, shifting the others, by rewriting the layout file (see reorder.py).
+  movePanel(from, to, root) {
+    const order = panelOrder(root), at = order.indexOf(to);
+    if (from === to || at < 0 || !order.includes(from)) return;
+    order.splice(order.indexOf(from), 1);
+    order.splice(at, 0, from);
+    exec("python3", [`${appHome()}/mods/my-tabs/reorder.py`, `${appHome()}/layouts/my-main.json`, visiblePanels(root).join(","), ...order], { timeout: 30000 }).catch(() => {});
   }
 
   // The side panel is remembered per space: switching shows that space's panels
@@ -149,22 +167,24 @@ export default class Tabs extends View {
       const on = open.includes(id);
       return h_flex().id(`panel-${id}`).h(26).px(8).gap(5).flex_none().items_center().rounded(6)
         .text_size(12).bg(on ? t.selected : t.chrome).text_color(on ? t.foreground : t.muted)
-        .hover(s => s.bg(t.hover)).on_mouse_down("left", stop)
-        .on_click(() => showPanels(PANELS.filter((x) => (x === id ? !on : open.includes(x))))).child(svg(icon).size(14)).child(label);
+        .hover(s => s.bg(t.hover))
+        .on_mouse_down("left", (_e, cx) => { cx.stop_propagation(); this.pressedPanel = id; })
+        .on_mouse_up("left", (_e, cx) => {
+          cx.stop_propagation();
+          const from = this.pressedPanel; this.pressedPanel = null;
+          if (from && from !== id) this.movePanel(from, id, root);
+          else if (from === id) showPanels(PANELS.filter((x) => (x === id ? !on : open.includes(x))));
+        }).child(svg(icon).size(14)).child(label);
     };
     return h_flex().size_full().min_w(0).px(10).pl(lightsPadding).gap(3).items_center().bg(t.chrome).border_b(1).border_color(t.border)
-      .on_mouse_up("left", () => { this.pressed = null; })
+      .on_mouse_up("left", () => { this.pressed = null; this.pressedPanel = null; })
       .on_scroll_wheel(e => { if (Math.abs(e.delta.y) >= 1) run(e.delta.y > 0 ? "tab.prev" : "tab.next"); })
       .child(h_flex().id("tab-scroll").flex_1().min_w(0).h_full().items_center().gap(3).overflow_x_scrollbar().track_scroll(this.scroll)
         .on_size_change((_size, cx) => { if (active >= 0) { this.scroll.scroll_to_item(active); cx.notify(); } })
         .children(shown.map(item)))
       .child(button("tab-new", "+", () => openOverlay({ mod: "new-menu", kind: "popup", width: 250, height: 512 })))
       .when(Boolean(panelHint), el => el.child(div().id("panel-keys").flex_none().mr(2).text_size(10.5).text_color(t.dim).tooltip(panelHint.tip).child(panelHint.text)))
-      .when(enabled.includes("files"), el => el.child(panelButton("files", "Files", "mods/files/file.svg")))
-      .when(enabled.includes("changes"), el => el.child(panelButton("changes", "Changes", "mods/changes/changes.svg")))
-      .when(enabled.includes("prs"), el => el.child(panelButton("prs", "PRs", "mods/prs/pr.svg")))
-      .when(enabled.includes("codexbar"), el => el.child(panelButton("codexbar", "Codex", "mods/codexbar/gauge.svg")))
-      .when(enabled.includes("spec"), el => el.child(panelButton("spec", "Spec", "mods/spec-progress/list.svg")))
+      .children(panelOrder(root).filter((id) => enabled.includes(id)).map((id) => panelButton(id, ...PANEL_LOOK[id])))
       .child(h_flex().id("theme").h(26).px(7).gap(5).flex_none().items_center().rounded(6).text_size(12).text_color(t.dim)
         .hover(s => s.bg(t.hover).text_color(t.foreground)).on_mouse_down("left", stop).on_click(() => run("mod.open", { name: "theme-picker" }))
         .child(svg("mods/my-tabs/palette.svg").size(15).flex_none())
