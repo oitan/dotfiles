@@ -89,7 +89,7 @@ function openMenu(a, mode, c) {
   openOverlay({
     mod: "agent-menu", kind: "popup", width: 250, height: { snooze: 262, rename: 126, autosettle: 214 }[mode] ?? ((settled ? 304 : 268) - (reads(a) ? 0 : 30)),
     props: {
-      address: a.address, tab: a.tab, space: a.space, project: a.space_name, name: title(a, c), pinned: a.pinned, settled,
+      address: a.address, tab: a.tab, pane: a.pane, space: a.space, project: a.space_name, name: title(a, c), pinned: a.pinned, settled,
       archived: Boolean(c.archived[a.address]), filtered: c.filter?.space === a.space, snoozed: (c.snoozed[a.address] ?? 0) > c.now,
       unread: Boolean(c.unread[a.address]), readable: reads(a), mode,
     },
@@ -202,7 +202,8 @@ export function listRows(g, c) {
     }));
   }
   const wake = (a) => (cx) => { const s = { ...c.snoozed }; delete s[a.address]; host.setSnoozed(s); cx.notify(); };
-  const archive = (a, on) => () => { const all = { ...c.archived }; if (on) all[a.address] = true; else delete all[a.address]; host.setArchived(all); };
+  const unarchive = (a) => () => { const all = { ...c.archived }; delete all[a.address]; host.setArchived(all); }; // only for agents archived before archiving closed the tab
+  const archive = (a) => () => run("pane.close", { pane: a.pane }); // archiving ends the agent and closes its pane
   if (g.asleep.length) {
     const open = host.open.snoozed;
     rows.push(section("Snoozed", g.asleep.length, open, c, "snoozed"));
@@ -217,7 +218,7 @@ export function listRows(g, c) {
         id: `settled-${a.address}`, meta: tab?.settled_at ? age(c.now - tab.settled_at) : "",
         actions: [
           { label: "↩", tip: "Unsettle", on: () => run("tab.unsettle", { id: a.tab }) },
-          { label: svg("mods/workspace-chrome/archive.svg").size(13).text_color(t.muted), tip: "Archive", on: archive(a, true) },
+          { label: svg("mods/workspace-chrome/archive.svg").size(13).text_color(t.muted), tip: "Archive", on: archive(a) },
         ],
       });
     }));
@@ -227,7 +228,7 @@ export function listRows(g, c) {
     rows.push(section("Archived", g.shelved.length, open, c, "archived"));
     if (open) rows.push(...g.shelved.map((a) => {
       const tab = c.tabs.get(a.tab);
-      return row(a, c, { id: `archived-${a.address}`, meta: tab?.settled_at ? age(c.now - tab.settled_at) : "", actions: [{ label: "↩", tip: "Unarchive", on: archive(a, false) }] });
+      return row(a, c, { id: `archived-${a.address}`, meta: tab?.settled_at ? age(c.now - tab.settled_at) : "", actions: [{ label: "↩", tip: "Unarchive", on: unarchive(a) }] });
     }));
   }
   return rows;

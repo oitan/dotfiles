@@ -59,12 +59,16 @@ function showPanels(ids) {
 export default class Tabs extends View {
   init(_props, cx) {
     this.pressed = null;
+    try { this.showSettled = localStorage.getItem("tabs.showSettled") === "1"; } catch { this.showSettled = false; }
     this.scroll = ScrollHandle.new();
     // Keys "my-tabs.panel-next" / "my-tabs.panel-prev" show the right panel's panels one at a time.
     cx.spawn(async () => {
       for (;;) {
-        const step = { "panel-next": 1, "panel-prev": -1 }[await nextCommand()];
+        const cmd = await nextCommand(), step = { "panel-next": 1, "panel-prev": -1 }[cmd];
         if (step) this.cyclePanel(step);
+        // cmd+N: the Nth tab in the bar, which leaves out settled ones unless they're shown
+        const n = /^tab-(\d)$/.exec(cmd)?.[1], tab = n && spaces().find((p) => p.active)?.tabs?.filter((x) => this.showSettled || !x.settled)[n - 1];
+        if (tab) run("tab.select", { id: tab.id });
       }
     });
   }
@@ -93,7 +97,8 @@ export default class Tabs extends View {
   render() {
     const t = theme();
     const space = spaces().find(p => p.active);
-    const shown = space?.tabs ?? [];
+    const away = (space?.tabs ?? []).filter(tab => tab.settled).length;
+    const shown = (space?.tabs ?? []).filter(tab => this.showSettled || !tab.settled);   // settled tabs are put away unless the filter button is on
     const active = shown.findIndex(tab => tab.active);
     const selected = shown[active]?.id;
     if (selected !== this.selected || active !== this.selectedIndex) {
@@ -156,6 +161,11 @@ export default class Tabs extends View {
       .child(h_flex().id("tab-scroll").flex_1().min_w(0).h_full().items_center().gap(3).overflow_x_scrollbar().track_scroll(this.scroll)
         .on_size_change((_size, cx) => { if (active >= 0) { this.scroll.scroll_to_item(active); cx.notify(); } })
         .children(shown.map(item)))
+      .when(away > 0 || this.showSettled, el => el.child(h_flex().id("tab-settled").h(26).px(8).flex_none().items_center().rounded(6).text_size(12)
+        .bg(this.showSettled ? t.selected : t.chrome).text_color(this.showSettled ? t.foreground : t.dim).hover(s => s.bg(t.hover))
+        .on_mouse_down("left", stop)
+        .on_click((_e, cx) => { this.showSettled = !this.showSettled; try { localStorage.setItem("tabs.showSettled", this.showSettled ? "1" : "0"); } catch {} cx.notify(); })
+        .tooltip(this.showSettled ? "Hide settled tabs" : "Show settled tabs").child(`settled ${away}`)))
       .child(button("tab-new", "+", () => openOverlay({ mod: "new-menu", kind: "popup", width: 250, height: 512 })))
       .when(Boolean(panelHint), el => el.child(div().id("panel-keys").flex_none().mr(2).text_size(10.5).text_color(t.dim).tooltip(panelHint.tip).child(panelHint.text)))
       .children(panelOrder(root).filter((id) => enabled.includes(id)).map((id) => panelButton(id, ...PANEL_LOOK[id])))

@@ -72,6 +72,12 @@ export default class AgentMenu extends View {
     this.close();
   }
 
+  // Archiving ends the agent and closes its pane (the tab goes with it when it was the last one).
+  archive() {
+    run("pane.close", { pane: props().pane });
+    this.close();
+  }
+
   snooze(until) { this.mark(SNOOZED, until); }
 
   item(t, id, icon, label, onClick, extra) {
@@ -150,6 +156,6 @@ export default class AgentMenu extends View {
       }))
       .child(this.item(t, "autosettle", "settings", "Auto-settle behavior", () => this.go(p, "autosettle", 214), svg("mods/workspace-chrome/chevron-right.svg").size(11).flex_none().text_color(t.dim)))
       .when(p.settled, (el) => el.child(divider())
-        .child(this.item(t, "archive", "archive", p.archived ? "Unarchive thread" : "Archive thread", () => this.mark(ARCHIVED, p.archived ? null : true))));
+        .child(this.item(t, "archive", "archive", "Archive thread", () => this.archive())));
   }
 }
