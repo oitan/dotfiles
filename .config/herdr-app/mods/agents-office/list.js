@@ -10,11 +10,14 @@ export const SNOOZED = "agents.snoozed"; // shared (persisted): { "<agent addres
 export const ARCHIVED = "agents.archived"; // shared (persisted): { "<agent address>": true }, only meaningful while its tab is settled
 export const FILTER = "agents.filter"; // shared (persisted): { space, name } while the list shows one project, else null
 export const AUTOSETTLE = "agents.autosettle"; // shared (persisted): days idle before a tab settles by itself (0 = off); 3 when never set
+export const PRIORITY = "agents.priority"; // shared (persisted): { "<agent address>": "high" | "low" }, absent = normal
+export const SORT = "agents.sort"; // shared (persisted): "priority" (the default) or "recent"
 export const UNREAD = "agents.unread"; // shared (persisted): { "<agent address>": true }, cleared when you switch to that agent
 
 const TILES = ["#22a99a", "#e3814f", "#5b8def", "#8b7cf6", "#3fae6a", "#d9649a"];
 const MARK = { ansi6: "#22a99a", ansi3: "#e3814f", ansi4: "#5b8def", ansi5: "#8b7cf6", ansi2: "#3fae6a", ansi1: "#d9649a" };
 const RANK = { blocked: 4, done: 3, working: 2, idle: 1 };
+const WEIGHT = { high: 1, low: -1 };
 const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 function hash(s) {
@@ -38,9 +41,9 @@ export function clock(ts, now) {
   return new Date(now).toDateString() === d.toDateString() ? t : `${DAYS[d.getDay()]} ${t}`;
 }
 
-// Active cards in the order shown (blocked, done, idle; a pinned one stays up top whatever it is doing), then the agents
+// Active cards in the order shown (pinned, then high priority before normal before low, then blocked, done, idle; a pinned one stays up top whatever it is doing), then the agents
 // that are working, what is snoozed and what is settled.
-export function groups(list, tabs, snoozed, now, archived = {}) {
+export function groups(list, tabs, snoozed, now, archived = {}, priority = {}, sort = "priority") {
   const tab = (a) => tabs.get(a.tab);
   const settled = [], shelved = [], asleep = [], working = [], active = [];
   for (const a of list) {
@@ -50,8 +53,10 @@ export function groups(list, tabs, snoozed, now, archived = {}) {
     else active.push(a);
   }
   const changed = (a) => tab(a)?.changed_at ?? 0;
-  active.sort((x, y) => Number(y.pinned) - Number(x.pinned) || (RANK[y.status] ?? 0) - (RANK[x.status] ?? 0) || changed(y) - changed(x));
-  working.sort((x, y) => (tab(y)?.working_since ?? 0) - (tab(x)?.working_since ?? 0));
+  // "recent" is plain recency (pinned still first); "priority" goes by priority, then what needs you, then recency.
+  const recent = sort === "recent", weight = (a) => (recent ? 0 : WEIGHT[priority[a.address]] ?? 0);
+  active.sort((x, y) => Number(y.pinned) - Number(x.pinned) || weight(y) - weight(x) || (recent ? 0 : (RANK[y.status] ?? 0) - (RANK[x.status] ?? 0)) || changed(y) - changed(x));
+  working.sort((x, y) => weight(y) - weight(x) || (tab(y)?.working_since ?? 0) - (tab(x)?.working_since ?? 0));
   asleep.sort((x, y) => snoozed[x.address] - snoozed[y.address]);
   const bySettled = (x, y) => (tab(y)?.settled_at ?? 0) - (tab(x)?.settled_at ?? 0);
   settled.sort(bySettled);
@@ -87,11 +92,11 @@ const reads = (a) => a.status !== "working" && a.status !== "blocked";
 function openMenu(a, mode, c) {
   const settled = Boolean(c.tabs.get(a.tab)?.settled);
   openOverlay({
-    mod: "agent-menu", kind: "popup", width: 250, height: { snooze: 262, rename: 126, autosettle: 214 }[mode] ?? ((settled ? 304 : 268) - (reads(a) ? 0 : 30)),
+    mod: "agent-menu", kind: "popup", width: 250, height: { snooze: 262, rename: 126, autosettle: 214, priority: 150 }[mode] ?? ((settled ? 334 : 298) - (reads(a) ? 0 : 30)),
     props: {
       address: a.address, tab: a.tab, pane: a.pane, space: a.space, project: a.space_name, name: title(a, c), pinned: a.pinned, settled,
       archived: Boolean(c.archived[a.address]), filtered: c.filter?.space === a.space, snoozed: (c.snoozed[a.address] ?? 0) > c.now,
-      unread: Boolean(c.unread[a.address]), readable: reads(a), mode,
+      priority: c.priority[a.address] ?? "normal", unread: Boolean(c.unread[a.address]), readable: reads(a), mode,
     },
   });
 }
@@ -123,6 +128,8 @@ function card(a, c) {
       .when(Boolean(combo), (el) => el.child(div().flex_none().w(8).text_size(10.5).text_color(t.dim).child(String(n))))
       .child(tile(a, c))
       .child(div().flex_1().min_w(0).truncate().text_size(11.5).text_color(t.muted).child(a.space_name))
+      .when(c.priority[a.address] === "high", (el) => el.child(div().flex_none().text_size(10.5).font_semibold().text_color(t.blocked).child("High")))
+      .when(c.priority[a.address] === "low", (el) => el.child(div().flex_none().text_size(10.5).text_color(t.dim).child("Low")))
       .when(a.pinned, (el) => el.child(svg("mods/workspace-chrome/pin.svg").size(11).flex_none().text_color(t.dim)))
       .when(hot, (el) => el
         .child(button(`snooze-${a.address}`, svg("mods/workspace-chrome/clock.svg").size(13).text_color(t.muted), () => openMenu(a, "snooze", c)).hover((s) => s.bg(t.hover)).tooltip("Snooze"))

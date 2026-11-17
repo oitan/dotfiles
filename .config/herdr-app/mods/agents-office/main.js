@@ -4,7 +4,7 @@
 import { View, div, image, svg } from "gpui-kit";
 import { v_flex, h_flex } from "gpui-base";
 import { agents, machines, focused, run, theme, setAgentOrder, keys, nextCommand, openOverlay, spaces, shared, setShared, layout, hc, exec, notify } from "herdr";
-import { listRows, groups, SNOOZED, UNREAD, ARCHIVED, FILTER, AUTOSETTLE } from "./list.js";
+import { listRows, groups, SNOOZED, UNREAD, ARCHIVED, FILTER, AUTOSETTLE, PRIORITY, SORT } from "./list.js";
 
 const DOS = "PxPlus IBM VGA 8x16";
 const SPRITES = "mods/agents-office/sprites";
@@ -253,7 +253,8 @@ export default class AgentsOffice extends View {
     const now = Date.now(), snoozed = shared(SNOOZED) ?? {};
     const tabs = new Map(spaces().flatMap((s) => s.tabs).map((tab) => [tab.id, tab]));
     const archived = shared(ARCHIVED) ?? {}, filter = shared(FILTER) ?? null;
-    const g = view === "list" ? groups(filter ? list.filter((a) => a.space === filter.space) : list, tabs, snoozed, now, archived) : null;
+    const sort = shared(SORT) ?? "priority";
+    const g = view === "list" ? groups(filter ? list.filter((a) => a.space === filter.space) : list, tabs, snoozed, now, archived, shared(PRIORITY) ?? {}, shared(SORT) ?? "priority") : null;
     // Switching to an agent reads it: its unread mark goes when it becomes the focused one (not while it already is,
     // so marking the agent you are looking at stays until you leave and come back).
     const unread = shared(UNREAD) ?? {}, now_focused = list.find((a) => a.focused)?.address ?? null;
@@ -295,12 +296,15 @@ export default class AgentsOffice extends View {
           .when(Boolean(hint), (el) => el.child(div().id("agent-keys").min_w(0).truncate().text_size(10.5).text_color(t.dim).tooltip(hint.tip).child(hint.text))))
         .when(spacesHidden, (el) => el.child(this.headerButton("show-spaces", svg("mods/workspace-chrome/panel-left.svg").size(13), false, t,
           `Show spaces${spacesKey ? ` (${spacesKey.split("-").map((k) => k[0].toUpperCase() + k.slice(1)).join("+")})` : ""}`, () => run("layout.toggle", { id: "spaces" }))))
+        .when(view === "list", (el) => el.child(div().id("sort").h(22).px(6).flex_none().flex().items_center().rounded(6).cursor_pointer().text_size(10.5).text_color(t.dim).hover((s) => s.bg(t.hover).text_color(t.foreground))
+          .tooltip(sort === "recent" ? "Sorted by recency; click to sort by priority" : "Sorted by priority; click to sort by recency")
+          .on_click(() => setShared(SORT, sort === "recent" ? "priority" : "recent")).child(sort === "recent" ? "Recent" : "Priority")))
         .when(view === "list", (el) => el.child(this.headerButton("new-agent", svg("mods/workspace-chrome/plus.svg").size(13), false, t, "New agent",
           () => openOverlay({ mod: "agent-launcher", kind: "window", key: "agent-launcher", width: 420, height: 520, props: {} }))))
         .child(this.headerButton("view-office", svg("mods/workspace-chrome/monitor.svg").size(13), view === "office", t, "Office view", () => setShared("agents.view", "office")))
         .child(this.headerButton("view-list", svg("mods/workspace-chrome/layers.svg").size(13), view === "list", t, "List view", () => setShared("agents.view", "list")))))
       .when(view === "list", (el) => el.child(v_flex().id("agent-list").flex_1().min_h(0).px(8).pb(8).gap(4).overflow_y_scrollbar()
-        .children(listRows(g, { t, now, tabs, colors: shared("space.colors") ?? {}, num: this.num, jump: this.jump, host: this, snoozed, unread, archived, filter }))))
+        .children(listRows(g, { t, now, tabs, colors: shared("space.colors") ?? {}, num: this.num, jump: this.jump, host: this, snoozed, unread, archived, filter, priority: shared(PRIORITY) ?? {} }))))
       .when(view !== "list", (el) => el.child(v_flex().id("office-list").flex_1().min_h(0).p(narrow ? 3 : 8).gap(narrow ? 4 : 10).overflow_y_scrollbar()
         .children([...offices].map(([name, members], n) => this.office(name, members, n, scale, cols)))));
   }

@@ -10,6 +10,8 @@ const props = () => hostProps() ?? {};
 
 const SNOOZED = "agents.snoozed";
 const UNREAD = "agents.unread";
+const PRIORITY = "agents.priority";
+const LEVELS = [["high", "High"], ["normal", "Normal"], ["low", "Low"]];
 const ARCHIVED = "agents.archived";
 const FILTER = "agents.filter";
 const AUTOSETTLE = "agents.autosettle";
@@ -123,6 +125,12 @@ export default class AgentMenu extends View {
           .child(Input.new(this.rename).flex_1().h_full().text_size(12).text_color(t.foreground)))
         .child(div().px(8).pt(6).text_size(10.5).text_color(t.dim).child("Enter to save · empty resets it"));
     }
+    if (p.mode === "priority") {
+      return box()
+        .child(div().px(8).pt(4).pb(6).text_size(11).text_color(t.dim).truncate().child(`Priority · ${p.name}`))
+        .children(LEVELS.map(([level, label]) => this.item(t, `priority-${level}`, null, label, () => this.mark(PRIORITY, level === "normal" ? null : level),
+          level === p.priority ? div().text_color(t.accent).child("✓") : null)));
+    }
     if (p.mode === "autosettle") {
       const now = shared(AUTOSETTLE) ?? 3;
       return box()
@@ -142,6 +150,7 @@ export default class AgentMenu extends View {
       .child(p.snoozed
         ? this.item(t, "wake", "clock", "Wake now", () => this.mark(SNOOZED, null))
         : this.item(t, "snooze", "clock", "Snooze", () => this.go(p, "snooze", 262), svg("mods/workspace-chrome/chevron-right.svg").size(11).flex_none().text_color(t.dim)))
+      .child(this.item(t, "priority", null, "Priority", () => this.go(p, "priority", 150), svg("mods/workspace-chrome/chevron-right.svg").size(11).flex_none().text_color(t.dim)))
       .child(divider())
       .child(this.item(t, "rename", "square-pen", "Rename thread", () => this.go(p, "rename", 126)))
       .child(this.item(t, "regen", div().w(14).flex_none().text_center().text_color(t.muted).child("↻"), "Regenerate title", () => {
