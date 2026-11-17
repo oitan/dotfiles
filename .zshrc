@@ -199,3 +199,6 @@ zj() {
 
   [[ -n "$session" ]] && zellij attach "$session"
 }
+
+# Herdr: long commands show up in its Terms panel
+source ~/.config/herdr-app/shell/cmd-done.zsh

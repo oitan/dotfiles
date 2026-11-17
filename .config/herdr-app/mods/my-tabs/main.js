@@ -1,6 +1,6 @@
 import { View, div, svg, image } from "gpui-kit";
 import { h_flex, ScrollHandle } from "gpui-base";
-import { spaces, panes, run, exec, appHome, openOverlay, theme, window, shared, layout, settings, nextCommand, keys } from "herdr";
+import { spaces, panes, terminals, run, exec, appHome, openOverlay, theme, window, shared, layout, settings, nextCommand, keys } from "herdr";
 
 const GLYPH = { ctrl: "⌃", cmd: "⌘", alt: "⌥", shift: "⇧" }, WORDS = { ctrl: "Ctrl", cmd: "Cmd", alt: "Alt", shift: "Shift" };
 
@@ -36,7 +36,7 @@ function find(node, id) {
 }
 
 // The right panel stacks: each of these blocks is shown or hidden on its own, and the panel itself is shown while any is.
-const PANELS = ["files", "changes", "prs", "codexbar", "spec", "tasks"];
+const PANELS = ["files", "changes", "prs", "codexbar", "spec", "tasks", "terms"];
 // The panels in the order the layout stacks them (drag a button to change it).
 function panelOrder(root) {
   const ids = (find(root, "panel-body")?.children ?? []).map((c) => c.id).filter((id) => PANELS.includes(id));
@@ -44,7 +44,7 @@ function panelOrder(root) {
 }
 const PANEL_LOOK = {
   files: ["Files", "mods/files/file.svg"], changes: ["Changes", "mods/changes/changes.svg"], prs: ["PRs", "mods/prs/pr.svg"],
-  codexbar: ["Codex", "mods/codexbar/gauge.svg"], spec: ["Spec", "mods/spec-progress/list.svg"], tasks: ["Tasks", "mods/tasks/check.svg"],
+  codexbar: ["Codex", "mods/codexbar/gauge.svg"], spec: ["Spec", "mods/spec-progress/list.svg"], tasks: ["Tasks", "mods/tasks/check.svg"], terms: ["Terms", "mods/terminal-done/terminal.svg"],
 };
 function visiblePanels(root) {
   const panel = find(root, "panel");
@@ -60,7 +60,6 @@ export default class Tabs extends View {
   init(_props, cx) {
     this.pressed = null;
     this.scroll = ScrollHandle.new();
-    this.panels = JSON.parse(localStorage.getItem("panels") ?? "{}");
     // Keys "my-tabs.panel-next" / "my-tabs.panel-prev" show the right panel's panels one at a time.
     cx.spawn(async () => {
       for (;;) {
@@ -73,7 +72,7 @@ export default class Tabs extends View {
   // The next or previous panel, wrapping around, shown alone; a hidden panel just opens as it was.
   cyclePanel(step) {
     const root = layout(), panel = find(root, "panel");
-    const enabled = [...new Set([...(shared("workspace.panels") ?? ["files", "changes"]), "prs", "codexbar", "spec", "tasks"])];
+    const enabled = [...new Set([...(shared("workspace.panels") ?? ["files", "changes"]), "prs", "codexbar", "spec", "tasks", "terms"])];
     const order = panelOrder(root).filter((id) => enabled.includes(id));
     if (!panel || !order.length) return;
     if (!panel.hidden) {
@@ -89,34 +88,6 @@ export default class Tabs extends View {
     order.splice(order.indexOf(from), 1);
     order.splice(at, 0, from);
     exec("python3", [`${appHome()}/mods/my-tabs/reorder.py`, `${appHome()}/layouts/my-main.json`, visiblePanels(root).join(","), ...order], { timeout: 30000 }).catch(() => {});
-  }
-
-  // The side panel is remembered per space: switching shows that space's panels
-  // (closed if it never had any), and opening, closing or stacking one records it.
-  syncPanel(space, root, enabled) {
-    if (!space) return;
-    const now = visiblePanels(root).filter((id) => enabled.includes(id));
-    const same = (a, b) => a.join() === b.join();
-    if (space.id !== this.space) {
-      const first = this.space === undefined;
-      this.space = space.id; this.pending = null;
-      if (!(first && !(space.id in this.panels))) {
-        const stored = [].concat(this.panels[space.id] ?? []), want = stored.filter((id) => enabled.includes(id));
-        if (!same(want, now)) {
-          this.pending = { want, until: Date.now() + 1000 };
-          showPanels(want);
-          return;
-        }
-      }
-    }
-    // Until the restore lands (or something else won), the old state isn't a choice.
-    if (this.pending) {
-      if (!same(this.pending.want, now) && Date.now() < this.pending.until) return;
-      this.pending = null;
-    }
-    if (same([].concat(this.panels[space.id] ?? []), now)) return;
-    this.panels[space.id] = now;
-    localStorage.setItem("panels", JSON.stringify(this.panels));
   }
 
   render() {
@@ -160,9 +131,11 @@ export default class Tabs extends View {
     const lightsPadding = w?.platform === "macos" && w.titlebar === "none" && !w.fullscreen && root?.traffic_lights
       ? Math.max(10, (root.traffic_lights[0] + 64) / settings().zoom - (sidebar?.hidden ? 0 : sidebar?.size?.px ?? 0))
       : 10;
-    const enabled = [...new Set([...(shared("workspace.panels") ?? ["files", "changes"]), "prs", "codexbar", "spec", "tasks"])];
+    const enabled = [...new Set([...(shared("workspace.panels") ?? ["files", "changes"]), "prs", "codexbar", "spec", "tasks", "terms"])];
     const open = visiblePanels(root);
-    this.syncPanel(space, root, enabled);
+    // Terms: a dot while some terminal's finished command hasn't been seen (see mods/terminal-done).
+    const seen = shared("terms.seen") ?? {};
+    const termsUnread = terminals().some((x) => Number(x.labels?.["cmd.at"]) > (seen[x.address] ?? 0));
     const panelButton = (id, label, icon) => {
       const on = open.includes(id);
       return h_flex().id(`panel-${id}`).h(26).px(8).gap(5).flex_none().items_center().rounded(6)
@@ -174,7 +147,8 @@ export default class Tabs extends View {
           const from = this.pressedPanel; this.pressedPanel = null;
           if (from && from !== id) this.movePanel(from, id, root);
           else if (from === id) showPanels(PANELS.filter((x) => (x === id ? !on : open.includes(x))));
-        }).child(svg(icon).size(14)).child(label);
+        }).child(svg(icon).size(14)).child(label)
+        .when(id === "terms" && termsUnread, el => el.child(div().size(6).flex_none().rounded(3).bg(t.accent)));
     };
     return h_flex().size_full().min_w(0).px(10).pl(lightsPadding).gap(3).items_center().bg(t.chrome).border_b(1).border_color(t.border)
       .on_mouse_up("left", () => { this.pressed = null; this.pressedPanel = null; })

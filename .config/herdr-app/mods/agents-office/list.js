@@ -1,6 +1,6 @@
 // The T3-style agents list: a card per active agent (pinned first), then a collapsed "Snoozed" and "Settled" section.
 // Pin is Herdr's terminal.pin and settle is its tab.settle (a settled tab keeps running and comes back when shown or
-// when an agent in it needs you). Snooze is ours: a wake-up time per agent in shared state, ignored while it is blocked.
+// when an agent in it needs you). Snooze is ours: a wake-up time per agent in shared state, kept even while it needs you (its row shows a red dot).
 
 import { div, svg } from "gpui-kit";
 import { v_flex, h_flex } from "gpui-base";
@@ -45,7 +45,7 @@ export function groups(list, tabs, snoozed, now, archived = {}) {
   const settled = [], shelved = [], asleep = [], working = [], active = [];
   for (const a of list) {
     if (tab(a)?.settled) (archived[a.address] ? shelved : settled).push(a); // archived only counts while it stays settled
-    else if ((snoozed[a.address] ?? 0) > now && a.status !== "blocked") asleep.push(a); // needing you wakes it
+    else if ((snoozed[a.address] ?? 0) > now) asleep.push(a); // snoozed holds even when it needs you
     else if (a.status === "working" && !a.pinned) working.push(a);
     else active.push(a);
   }
@@ -158,6 +158,7 @@ function row(a, c, { id, meta, actions }) {
       ? h_flex().gap(2).flex_none().children(actions.map((x, i) => button(`${id}-${i}`, x.label, x.on).hover((s) => s.bg(t.raised)).text_color(t.muted).tooltip(x.tip)))
       : h_flex().gap(6).flex_none().items_center()
           .when(a.status === "working", (el) => el.child(svg("mods/workspace-chrome/spinner.svg").size(12).flex_none().text_color(t.working).spin(900)))
+          .when(a.status === "blocked", (el) => el.child(div().size(6).flex_none().rounded(3).bg(t.blocked).tooltip("Needs you")))
           .child(div().text_size(11).text_color(t.dim).child(meta)));
 }
 

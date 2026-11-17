@@ -151,6 +151,14 @@
                       "hidden": true
                     },
                     {
+                      "id": "terms",
+                      "type": "block",
+                      "content": {
+                        "mod": "terminal-done"
+                      },
+                      "hidden": true
+                    },
+                    {
                       "id": "codexbar",
                       "type": "block",
                       "content": {
