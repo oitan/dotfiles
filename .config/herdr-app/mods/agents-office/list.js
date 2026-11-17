@@ -49,7 +49,7 @@ export function groups(list, tabs, snoozed, now, archived = {}, priority = {}, s
   for (const a of list) {
     if (tab(a)?.settled) (archived[a.address] ? shelved : settled).push(a); // archived only counts while it stays settled
     else if ((snoozed[a.address] ?? 0) > now) asleep.push(a); // snoozed holds even when it needs you
-    else if (a.status === "working" && !a.pinned) working.push(a);
+    else if (a.status === "working" && !a.pinned && !a.focused) working.push(a); // the open agent stays in view, highlighted
     else active.push(a);
   }
   const changed = (a) => tab(a)?.changed_at ?? 0;
