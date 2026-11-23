@@ -6,6 +6,7 @@ tap "gromgit/brewtils"
 tap "jesseduffield/lazydocker"
 tap "mongodb/brew"
 tap "nikitabobko/tap"
+tap "saffsanity/sill"
 tap "vjeantet/tap"
 
 # --- Formulae ---
@@ -93,17 +94,19 @@ cask "font-symbols-only-nerd-font"
 cask "ghostty"
 cask "google-gemini"
 cask "gramps"
+cask "herdr-app"
 cask "jetbrains-toolbox"
 cask "itsycal"
 cask "karabiner-elements"
 cask "libreoffice"
-cask "sw33tlie/macshot/macshot"
+cask "macshot"
 cask "motionik"
 cask "ngrok"
 cask "notion"
 cask "notion-calendar"
 cask "postman"
 cask "raycast"
+cask "saffsanity/sill/sill"
 cask "t3-code@nightly"
 cask "thaw"
 cask "vercel"
@@ -119,7 +122,7 @@ mas "Focus", id: 777233759
 mas "Gapplin", id: 768053424
 mas "Hand Mirror", id: 1502839586
 mas "Keynote", id: 409183694
-mas "Numbers", id: 409203825
+mas "Numbers", id: 361304891
 mas "Pages", id: 409201541
 mas "SocialFocus", id: 1661093205
 mas "Tailscale", id: 1475387142
@@ -127,4 +130,3 @@ mas "Telegram", id: 747648890
 mas "uBlock Origin Lite", id: 6745342698
 mas "WhatsApp", id: 310633997
 mas "Xcode", id: 497799835
-mas "Xnip", id: 1221250572
