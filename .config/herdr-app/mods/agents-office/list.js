@@ -49,7 +49,7 @@ export function groups(list, tabs, snoozed, now, archived = {}, priority = {}, s
   for (const a of list) {
     if (tab(a)?.settled) (archived[a.address] ? shelved : settled).push(a); // archived only counts while it stays settled
     else if ((snoozed[a.address] ?? 0) > now) asleep.push(a); // snoozed holds even when it needs you
-    else if (a.status === "working" && !a.pinned && !a.focused) working.push(a); // the open agent stays in view, highlighted
+    else if (a.status === "working" && !a.pinned) working.push(a);
     else active.push(a);
   }
   const changed = (a) => tab(a)?.changed_at ?? 0;
@@ -115,6 +115,7 @@ function card(a, c) {
   const { t, host } = c, tab = c.tabs.get(a.tab);
   const n = c.num.get(a.address), combo = c.jump.get(n), hot = host.hovered === a.address;
   return v_flex().id(`card-${a.address}`).flex_none().px(10).py(8).gap(3).rounded(10).cursor_pointer()
+    .border(2).border_color(a.focused ? t.accent : "#00000000")
     .bg(a.focused ? t.selected : t.raised).hover((s) => s.bg(a.focused ? t.selected : t.hover))
     .tooltip(`${a.space_name} · ${a.program?.name ?? "agent"} · ${a.status}${combo ? ` · ${combo}` : ""}`)
     .on_hover((on, cx) => {
@@ -149,7 +150,9 @@ function card(a, c) {
 // A compact row for a settled, snoozed or archived agent: dimmed tile, title, then its age (or wake time), and on hover its actions.
 function row(a, c, { id, meta, actions }) {
   const { t, host } = c, hot = host.hovered === id, n = c.num.get(a.address), combo = c.jump.get(n), live = a.status === "working"; // live rows are not dimmed
-  return h_flex().id(id).h(30).flex_none().px(10).gap(8).items_center().rounded(8).cursor_pointer().hover((s) => s.bg(t.hover))
+  return h_flex().id(id).h(30).flex_none().px(10).gap(8).items_center().rounded(8).cursor_pointer()
+    .border(2).border_color(a.focused ? t.accent : "#00000000")
+    .when(a.focused, (el) => el.bg(t.selected)).hover((s) => s.bg(a.focused ? t.selected : t.hover))
     .on_hover((on, cx) => {
       if (on) host.hovered = id;
       else if (host.hovered === id) host.hovered = null;
@@ -195,7 +198,7 @@ export function listRows(g, c) {
   rows.push(...g.active.map((a) => card(a, c)));
   if (!g.active.length && !g.working.length) rows.push(div().px(10).py(8).text_size(12).text_color(t.dim).child(c.filter ? "No active agents in this project." : "No active agents."));
   if (g.working.length) {
-    const open = host.open.working;
+    const open = host.open.working || g.working.some((a) => a.focused); // opens by itself while the agent you're in is working
     rows.push(section("Working", g.working.length, open, c, "working"));
     if (open) rows.push(...g.working.map((a) => {
       const tab = c.tabs.get(a.tab), since = tab?.working_since ?? tab?.changed_at;
