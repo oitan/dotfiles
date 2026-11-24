@@ -303,7 +303,7 @@ export default class AgentsOffice extends View {
           () => openOverlay({ mod: "agent-launcher", kind: "window", key: "agent-launcher", width: 420, height: 520, props: {} }))))
         .child(this.headerButton("view-office", svg("mods/workspace-chrome/monitor.svg").size(13), view === "office", t, "Office view", () => setShared("agents.view", "office")))
         .child(this.headerButton("view-list", svg("mods/workspace-chrome/layers.svg").size(13), view === "list", t, "List view", () => setShared("agents.view", "list")))))
-      .when(view === "list", (el) => el.child(v_flex().id("agent-list").flex_1().min_h(0).px(8).pb(8).gap(4).overflow_y_scrollbar()
+      .when(view === "list", (el) => el.child(v_flex().id("agent-list").flex_1().min_h(0).pl(8).pr(16).pb(8).gap(4).overflow_y_scrollbar()
         .children(listRows(g, { t, now, tabs, colors: shared("space.colors") ?? {}, num: this.num, jump: this.jump, host: this, snoozed, unread, archived, filter, priority: shared(PRIORITY) ?? {} }))))
       .when(view !== "list", (el) => el.child(v_flex().id("office-list").flex_1().min_h(0).p(narrow ? 3 : 8).gap(narrow ? 4 : 10).overflow_y_scrollbar()
         .children([...offices].map(([name, members], n) => this.office(name, members, n, scale, cols)))));
