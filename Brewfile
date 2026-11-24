@@ -71,20 +71,20 @@ brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
 
 # --- Casks ---
-cask "nikitabobko/tap/aerospace"
-cask "android-platform-tools"
-cask "antigravity"
-cask "antigravity-cli"
-cask "betteraudio"
-cask "betterdisplay"
-cask "caffeine"
-cask "chatgpt"
-cask "claude-code"
-cask "clop"
-cask "codex"
-cask "dropbox"
-cask "flux-app"
-cask "66HEX/frame/frame"
+cask "nikitabobko/tap/aerospace"  # i3-like tiling window manager
+cask "android-platform-tools"  # adb and fastboot for Android devices
+cask "antigravity"  # agent orchestration platform
+cask "antigravity-cli"  # terminal interface for Antigravity agents
+cask "betteraudio"  # per-app volume, EQ and audio device control
+cask "betterdisplay"  # display management: resolutions, scaling, virtual screens
+cask "caffeine"  # keeps the Mac from sleeping
+cask "chatgpt"  # OpenAI's ChatGPT desktop app
+cask "claude-code"  # Anthropic's terminal AI coding assistant
+cask "clop"  # optimises images, video, PDFs and clipboard content
+cask "codex"  # OpenAI's terminal coding agent
+cask "dropbox"  # Dropbox cloud storage client
+cask "flux-app"  # screen colour temperature by time of day
+cask "66HEX/frame/frame"  # FFmpeg GUI for media conversion
 
 # Fonts
 cask "font-fira-code-nerd-font"
@@ -94,46 +94,46 @@ cask "font-sf-mono"
 cask "font-sf-pro"
 cask "font-symbols-only-nerd-font"
 
-cask "ghostty"
-cask "google-gemini"
-cask "gramps"
-cask "handy"
-cask "herdr-app"
-cask "iina"
-cask "jetbrains-toolbox"
-cask "itsycal"
-cask "karabiner-elements"
-cask "libreoffice"
-cask "macshot"
-cask "motionik"
-cask "ngrok"
-cask "notion"
-cask "notion-calendar"
-cask "postman"
-cask "raycast"
-cask "saffsanity/sill/sill"
-cask "t3-code@nightly"
-cask "textream"
-cask "thaw"
-cask "vercel"
-cask "vlc"
-cask "vorssaint"
-cask "webtorrent"
-cask "zed"
+cask "ghostty"  # GPU-accelerated native terminal emulator
+cask "google-gemini"  # Google's Gemini desktop assistant
+cask "gramps"  # genealogy software
+cask "handy"  # speech-to-text dictation
+cask "herdr-app"  # desktop app for terminals and coding agents
+cask "iina"  # open-source media player
+cask "jetbrains-toolbox"  # installs and updates JetBrains IDEs
+cask "itsycal"  # menu bar calendar
+cask "karabiner-elements"  # keyboard remapping
+cask "libreoffice"  # free office suite
+cask "macshot"  # screenshot and screen recording
+cask "motionik"  # screen recording
+cask "ngrok"  # tunnels localhost to a public URL
+cask "notion"  # docs, notes and project planning
+cask "notion-calendar"  # calendar app connected to Notion
+cask "postman"  # API development and testing
+cask "raycast"  # launcher and keyboard-driven productivity tool
+cask "saffsanity/sill/sill"  # streams Mac windows to an iPhone or iPad
+cask "t3-code@nightly"  # minimal GUI for AI code agents (nightly build)
+cask "textream"  # teleprompter that follows your voice
+cask "thaw"  # menu bar icon manager
+cask "vercel"  # Vercel CLI
+cask "vlc"  # media player for nearly any format
+cask "vorssaint"  # menu bar toolkit: keep-awake, system monitor, volume mixer
+cask "webtorrent"  # torrent streaming app
+cask "zed"  # multiplayer code editor
 
 # --- Mac App Store ---
-mas "Amphetamine", id: 937984704
-mas "Bitwarden", id: 1352778147
-mas "DaVinci Resolve", id: 571213070
-mas "Focus", id: 777233759
-mas "Gapplin", id: 768053424
-mas "Hand Mirror", id: 1502839586
-mas "Keynote", id: 409183694
-mas "Numbers", id: 361304891
-mas "Pages", id: 409201541
-mas "SocialFocus", id: 1661093205
-mas "Tailscale", id: 1475387142
-mas "Telegram", id: 747648890
-mas "uBlock Origin Lite", id: 6745342698
-mas "WhatsApp", id: 310633997
-mas "Xcode", id: 497799835
+mas "Amphetamine", id: 937984704  # keeps the Mac awake
+mas "Bitwarden", id: 1352778147  # password manager
+mas "DaVinci Resolve", id: 571213070  # video editing and colour grading
+mas "Focus", id: 777233759  # deep work timer
+mas "Gapplin", id: 768053424  # image viewer
+mas "Hand Mirror", id: 1502839586  # menu bar camera mirror for checking your look
+mas "Keynote", id: 409183694  # Apple presentations
+mas "Numbers", id: 361304891  # Apple spreadsheets
+mas "Pages", id: 409201541  # Apple word processor
+mas "SocialFocus", id: 1661093205  # hides distracting feeds on social sites
+mas "Tailscale", id: 1475387142  # Tailscale VPN client
+mas "Telegram", id: 747648890  # Telegram messenger
+mas "uBlock Origin Lite", id: 6745342698  # Safari ad blocker
+mas "WhatsApp", id: 310633997  # WhatsApp messenger
+mas "Xcode", id: 497799835  # Apple's IDE and developer tools
